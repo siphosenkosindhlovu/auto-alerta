@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap3/dist/css/bootstrap.min.css';
+import 'bootstrap3/dist/css/bootstrap-theme.min.css';
+import 'bootstrap-toggle/css/bootstrap-toggle.min.css'
 import '@fortawesome/fontawesome-free/css/all.css';
 import './index.css';
 import Layout from './layout';

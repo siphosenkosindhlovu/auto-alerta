@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import getState from './flux';
 
+import { loadReCaptcha } from 'react-recaptcha-google'
+
 export const Context = React.createContext(null);
 
 const injectContext = PassedComponent => {
@@ -25,6 +27,7 @@ const injectContext = PassedComponent => {
 			 * This function is the equivalent to "window.onLoad", it only run once on the entire application lifetime
 			 * you should do your ajax requests or fetch api requests here
 			 **/
+			loadReCaptcha();
             this.state.actions.isAuthenticated();
             if(this.state.store.isAuthenticated){
                 this.state.actions.getUsers('/api/users');
