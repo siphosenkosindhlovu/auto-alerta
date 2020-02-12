@@ -7,7 +7,7 @@ const Home = props => {
     const { store } = useContext(Context);
 
     useEffect(() => {
-        if (!store.isAuthenticated) props.history.push("/login");
+        //if (!store.isAuthenticated) props.history.push("/login");
     })
 
 

@@ -10,13 +10,18 @@ import Preguntas from './views/preguntas';
 import Notificar from './views/notificar';
 import Contact from './views/contacto';
 import Terminos from './views/terminos';
+import Confirmacion from './views/confirmacion';
+import Configuracion from './views/configuracion';
 
 const Layout = props => {
     return (
         <BrowserRouter>
             <Navbar />
             <Switch>
+                <Route exact path="/confirmation/:token" component={Confirmacion} />
                 <Route exact path="/registro" component={Registro} />
+                <Route exact path="/configuracion/:mod" component={Configuracion} />
+                <Route exact path="/configuracion" component={Configuracion} />
                 <Route exact path="/notificar" component={Notificar} />
                 <Route exact path="/contacto" component={Contact} />
                 <Route exact path="/terminos" component={Terminos} />

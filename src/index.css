@@ -886,3 +886,7 @@ i.vehiculos_adicionales {
 #login-container .copy * {
     color: white;
 }
+
+.g-recaptcha {
+    width: 90%;
+}
