@@ -48,6 +48,10 @@ const getState = ({
             registro_result_error: null,
             registro_confirm_success: null,
             registro_confirm_msg: null,
+            role: {
+                id: 0,
+                name: ''
+            },
         },
         actions: {
             handleChange: e => {
@@ -436,6 +440,38 @@ const getState = ({
                             })
                         }
                     })
+            },
+            postRole: data => {
+                console.log(data);
+            },
+            editRole: url => {
+                const store = getStore();
+                fetch(store.path + url + '/' + store.role.id, {
+                        method: 'PUT',
+                        body: JSON.stringify(store.role),
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + store.currentUser.access_token
+                        }
+                    })
+                    .then(resp => resp.json())
+                    .then(data => {
+                        getActions().getRoles('/api/roles', store.roles.current_page);
+                    });
+            },
+
+            handleChangeObject: (e, object) => {
+                const store = getStore();
+                const nObject = store[object];
+                nObject[e.target.name] = e.target.value;
+                setStore({
+                    [object]: nObject
+                });
+            },
+            setObject: (name, object) => {
+                setStore({
+                    [name]: Object.assign({}, object)
+                })
             }
         }
     }

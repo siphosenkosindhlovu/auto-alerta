@@ -3,6 +3,8 @@ import { withRouter, Link } from 'react-router-dom';
 import { Context } from './../store/appContext';
 import Pagination from '../components/pagination.jsx';
 import moment from 'moment';
+import Modal from '../components/modal';
+import EditRole from '../forms/editRole';
 
 const Configuracion = props => {
     const { store, actions } = useContext(Context);
@@ -45,8 +47,12 @@ const Configuracion = props => {
                         </div>
                     </div>
                     <div className="col-md-9">
+                        <button className="btn btn-success btn-sm pull-right mb-4" data-toggle="modal" data-target="#editRole"
+                            onClick={() => actions.setObject('role', {})}>
+                            <i className="fa fa-pen"></i> Crear Role
+                        </button>
                         <table className="table table-bordered table-hover">
-                            <thead style={{"background-color": 'black', 'color': 'white'}}>
+                            <thead style={{ "backgroundColor": 'black', 'color': 'white' }}>
                                 <tr>
                                     <th>#</th>
                                     <th>Role</th>
@@ -61,9 +67,15 @@ const Configuracion = props => {
                                             <td>{role.id}</td>
                                             <td>{role.name}</td>
                                             <td>
-                                                <button className="btn btn-info">
+                                                <button className="btn btn-info" data-toggle="modal" data-target="#editRole"
+                                                    onClick={() => actions.setObject('role', role)}>
                                                     <i className="fa fa-edit"></i>
                                                 </button>
+                                                <Modal id="editRole" title="Editar Role" callFunc={actions.editRole}>
+                                                    <EditRole role={role}
+                                                        handleChange={actions.handleChangeObject}
+                                                    />
+                                                </Modal>
                                             </td>
                                             <td>
                                                 <button className="btn btn-danger">
@@ -77,14 +89,18 @@ const Configuracion = props => {
                             <tfoot>
                                 <tr>
                                     <td colSpan="4" className="text-center">
-                                    <Pagination {...store.roles} getFetch={actions.getRoles} path='/api/roles' />
+                                        <Pagination {...store.roles} getFetch={actions.getRoles} path='/api/roles' />
                                     </td>
                                 </tr>
                             </tfoot>
                         </table>
 
+                        <button className="btn btn-success btn-sm pull-right mb-4" data-toggle="modal" data-target="#editUser"
+                            onClick={() => actions.setObject('role', {})}>
+                            <i className="fa fa-pen"></i> Crear User
+                        </button>
                         <table className="table table-bordered table-hover">
-                            <thead style={{"background-color": 'black', 'color': 'white'}}>
+                            <thead style={{ "backgroundColor": 'black', 'color': 'white' }}>
                                 <tr>
                                     <th>#</th>
                                     <th>Nombre</th>
@@ -103,9 +119,10 @@ const Configuracion = props => {
                                             <td>{user.email}</td>
                                             <td>{user.role.name}</td>
                                             <td>
-                                                <button className="btn btn-info">
+                                                <button className="btn btn-info" data-toggle="modal" data-target="#editUser">
                                                     <i className="fa fa-edit"></i>
                                                 </button>
+                                                <Modal id="editUser" title="Editar Usuario" />
                                             </td>
                                             <td>
                                                 <button className="btn btn-danger">
@@ -126,7 +143,7 @@ const Configuracion = props => {
                         </table>
 
                         <table className="table table-bordered table-hover">
-                            <thead style={{"background-color": 'black', 'color': 'white'}}>
+                            <thead style={{ "backgroundColor": 'black', 'color': 'white' }}>
                                 <tr>
                                     <th>#</th>
                                     <th>Nombre</th>

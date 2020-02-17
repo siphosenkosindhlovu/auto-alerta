@@ -9,7 +9,7 @@ class Pagination extends Component {
         const renderPageNumbers = pageNumbers.map(number => {
             let classes = this.props.current_page === number ? 'active' : '';
 
-            if (number == 1 || number == this.props.total || (number >= this.props.current_page - 2 && number <= this.props.current_page + 2)) {
+            if (number === 1 || number === this.props.total || (number >= this.props.current_page - 2 && number <= this.props.current_page + 2)) {
                 return (
                     <li key={number} className={"page-item " + classes}>
                         <a className="page-link" href="/#"
@@ -51,7 +51,7 @@ class Pagination extends Component {
         } else {
 
             return (
-                <h5 class="text-primary font-weight-bold">Sin resultados</h5>
+                <h5 className="text-primary font-weight-bold">Sin resultados</h5>
             )
         }
     }
