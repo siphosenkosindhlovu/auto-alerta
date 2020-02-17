@@ -5,10 +5,11 @@ import Pagination from '../components/pagination.jsx';
 import moment from 'moment';
 import Modal from '../components/modal';
 import EditRole from '../forms/editRole';
+import CreateRole from '../forms/createRole';
 
 const Configuracion = props => {
     const { store, actions } = useContext(Context);
-    const { mod, setMod } = useState(props.match.params.mod);
+    const [mod] = useState(props.match.params.mod);
     //6LcXsh4TAAAAAIMQIRcgdLIoA9KOz3mB2qKs4LOY
     useEffect(() => {
         if (!store.isAuthenticated) props.history.push("/login");
@@ -47,10 +48,15 @@ const Configuracion = props => {
                         </div>
                     </div>
                     <div className="col-md-9">
-                        <button className="btn btn-success btn-sm pull-right mb-4" data-toggle="modal" data-target="#editRole"
-                            onClick={() => actions.setObject('role', {})}>
+                        <button className="btn btn-success btn-sm pull-right mb-4" data-toggle="modal" data-target="#crearRole"
+                            onClick={() => actions.setObject('role', { name: '' })}>
                             <i className="fa fa-pen"></i> Crear Role
                         </button>
+                        <Modal id="crearRole" title="Crear Role" callFunc={actions.createRole}>
+                            <CreateRole
+                                handleChange={actions.handleChangeObject}
+                            />
+                        </Modal>
                         <table className="table table-bordered table-hover">
                             <thead style={{ "backgroundColor": 'black', 'color': 'white' }}>
                                 <tr>
@@ -78,9 +84,15 @@ const Configuracion = props => {
                                                 </Modal>
                                             </td>
                                             <td>
-                                                <button className="btn btn-danger">
+                                                <button className="btn btn-danger" data-toggle="modal" data-target="#editRole"
+                                                    onClick={() => actions.setObject('role', role)}>
                                                     <i className="fa fa-trash"></i>
                                                 </button>
+                                                <Modal id="deleteRole" title="Eliminar Role" callFunc={actions.deleteRole}>
+                                                    <EditRole role={role}
+                                                        handleChange={actions.handleChangeObject}
+                                                    />
+                                                </Modal>
                                             </td>
                                         </tr>
                                     ))

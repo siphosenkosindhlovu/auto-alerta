@@ -441,8 +441,23 @@ const getState = ({
                         }
                     })
             },
-            postRole: data => {
-                console.log(data);
+            createRole: url => {
+                const store = getStore();
+                fetch(store.path + url, {
+                        method: 'POST',
+                        body: JSON.stringify(store.role),
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + store.currentUser.access_token
+                        }
+                    })
+                    .then(resp => resp.json())
+                    .then(data => {
+                        setStore({
+                            role: {}
+                        });
+                        getActions().getRoles('/api/roles', store.roles.current_page);
+                    });
             },
             editRole: url => {
                 const store = getStore();
@@ -456,6 +471,9 @@ const getState = ({
                     })
                     .then(resp => resp.json())
                     .then(data => {
+                        setStore({
+                            role: {}
+                        });
                         getActions().getRoles('/api/roles', store.roles.current_page);
                     });
             },

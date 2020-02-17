@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Context } from '../store/appContext';
 
 const CreateRole = props => {
+    const {store} = useContext(Context);
+
     return (
-        <p>Role Form</p>
+        <>
+            <div className="form-group">
+                <label htmlFor="role_name">Role</label>
+                <input type="text" className="form-control" id="name" name="name" value={store.role.name}
+                    placeholder="Nombre del Role" onChange={(e) => props.handleChange(e, 'role')} />
+            </div>
+        </>
     )
 }
 

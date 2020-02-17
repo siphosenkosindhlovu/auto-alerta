@@ -49,7 +49,6 @@ class Pagination extends Component {
                 </nav>
             )
         } else {
-
             return (
                 <h5 className="text-primary font-weight-bold">Sin resultados</h5>
             )
