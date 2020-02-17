@@ -14,6 +14,7 @@ const getState = ({
             error: null,
             users: {},
             roles: {},
+            contacts_web: {},
 
             //############## Datos Form Contacto #################################
             contacto_nombre: '',
@@ -123,6 +124,24 @@ const getState = ({
                         //console.log(data);
                         setStore({
                             roles: data
+                        })
+
+                    });
+            },
+            getContactWeb: (url, page = 1) => {
+                const store = getStore();
+                fetch(store.path + url + '?page=' + page, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + store.currentUser.access_token
+                        }
+                    })
+                    .then(resp => resp.json())
+                    .then(data => {
+                        //console.log(data);
+                        setStore({
+                            contacts_web: data
                         })
 
                     });
@@ -266,6 +285,7 @@ const getState = ({
                                     contacto_result: 'Email no enviado. Por favor intente mas tarde'
                                 });
                             }
+                            getActions().getContactWeb('/api/webcontacts')
                         })
                         .catch(error => console.log(error));
                 }

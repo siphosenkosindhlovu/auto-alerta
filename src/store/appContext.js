@@ -29,7 +29,8 @@ const injectContext = PassedComponent => {
             this.state.actions.isAuthenticated();
             if(this.state.store.isAuthenticated){
 				this.state.actions.getRoles('/api/roles');
-                this.state.actions.getUsers('/api/users');
+				this.state.actions.getUsers('/api/users');
+				this.state.actions.getContactWeb('/api/webcontacts');
             }
 		}
 

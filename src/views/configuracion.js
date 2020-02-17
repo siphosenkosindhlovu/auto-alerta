@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { Context } from './../store/appContext';
 import Pagination from '../components/pagination.jsx';
+import moment from 'moment';
 
 const Configuracion = props => {
     const { store, actions } = useContext(Context);
@@ -14,6 +15,10 @@ const Configuracion = props => {
 
     const handleMod = mod => {
         console.log(mod);
+    }
+
+    const handleDate = date => {
+        return moment(date).format('D MMM YYYY, h:mm:ss a');
     }
     return (
         <section id="page">
@@ -41,7 +46,7 @@ const Configuracion = props => {
                     </div>
                     <div className="col-md-9">
                         <table className="table table-bordered table-hover">
-                            <thead>
+                            <thead style={{"background-color": 'black', 'color': 'white'}}>
                                 <tr>
                                     <th>#</th>
                                     <th>Role</th>
@@ -79,7 +84,7 @@ const Configuracion = props => {
                         </table>
 
                         <table className="table table-bordered table-hover">
-                            <thead>
+                            <thead style={{"background-color": 'black', 'color': 'white'}}>
                                 <tr>
                                     <th>#</th>
                                     <th>Nombre</th>
@@ -115,6 +120,52 @@ const Configuracion = props => {
                                 <tr>
                                     <td colSpan="6" className="text-center">
                                         <Pagination {...store.users} getFetch={actions.getUsers} path='/api/users' />
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        <table className="table table-bordered table-hover">
+                            <thead style={{"background-color": 'black', 'color': 'white'}}>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Asunto</th>
+                                    <th>Mensaje</th>
+                                    <th>Fecha</th>
+                                    <th width="8%" colSpan="2">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    !!store.contacts_web.results &&
+                                    store.contacts_web.results.map((contact_web, i) => (
+                                        <tr key={i}>
+                                            <td>{contact_web.id}</td>
+                                            <td>{contact_web.name}</td>
+                                            <td>{contact_web.email}</td>
+                                            <td>{contact_web.subject}</td>
+                                            <td>{contact_web.message}</td>
+                                            <td>{handleDate(contact_web.date_msg)}</td>
+                                            <td>
+                                                <button className="btn btn-info">
+                                                    <i className="fa fa-edit"></i>
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button className="btn btn-danger">
+                                                    <i className="fa fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colSpan="8" className="text-center">
+                                        <Pagination {...store.contacts_web} getFetch={actions.getContactWeb} path='/api/webcontacts' />
                                     </td>
                                 </tr>
                             </tfoot>
