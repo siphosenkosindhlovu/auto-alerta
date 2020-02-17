@@ -6,7 +6,7 @@ const Confirmacion = props => {
     let token = props.match.params.token;
     useEffect(() => {
         actions.getConfirmation(token);
-    }, []);
+    }, [actions, token]);
     return (
         <Fragment>
             <section id="page">

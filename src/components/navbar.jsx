@@ -31,7 +31,7 @@ const Navbar = props => {
                                     )
                             }
                             <li className="reverse"><Link to="/registro"><i className="fa fa-pencil-square-o"></i> Registrarse</Link></li>
-                            <li className=""><Link to="/notificar"><i className="fa fa-bell-o"></i> Alertar</Link></li>
+                            <li className=""><Link to="/notificar"><i className="fa fa-bell-o"></i> Notificar</Link></li>
                             <li className=""><Link to="/contacto"><i className="fa fa-envelope"></i> Contacto</Link></li>
                         </ul>
                     </div>

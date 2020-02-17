@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from 'react';
-import { Context } from '../store/appContext';
+import React, { useEffect } from 'react';
+//import { Context } from '../store/appContext';
 import { Link } from 'react-router-dom';
 //import moment from 'moment';
 
 const Home = props => {
-    const { store } = useContext(Context);
+    //const { store } = useContext(Context);
 
     useEffect(() => {
         //if (!store.isAuthenticated) props.history.push("/login");

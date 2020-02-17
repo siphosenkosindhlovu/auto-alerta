@@ -1,4 +1,8 @@
-const getState = ({ getStore, getActions, setStore }) => {
+const getState = ({
+    getStore,
+    getActions,
+    setStore
+}) => {
     return {
         store: {
             //path: 'http://10.105.104.222:5000',
@@ -8,8 +12,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             isAuthenticated: false,
             currentUser: null,
             error: null,
-            users: [],
-            roles: [],
+            users: {},
+            roles: {},
 
             //############## Datos Form Contacto #################################
             contacto_nombre: '',
@@ -58,16 +62,18 @@ const getState = ({ getStore, getActions, setStore }) => {
                     password: store.password
                 }
                 fetch(store.path + url, {
-                    method: 'POST',
-                    body: JSON.stringify(data),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
+                        method: 'POST',
+                        body: JSON.stringify(data),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
                     .then(resp => resp.json())
                     .then(data => {
                         console.log(data);
-                        if (data.msg) setStore({ error: data })
+                        if (data.msg) setStore({
+                            error: data
+                        })
                         else {
                             setStore({
                                 email: '',
@@ -85,33 +91,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 
                     });
             },
-            getUsers: (url) => {
+            getUsers: (url, page = 1) => {
                 const store = getStore();
-                fetch(store.path + url, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + store.currentUser.access_token
-                    }
-                })
+                fetch(store.path + url + '?page=' + page, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + store.currentUser.access_token
+                        }
+                    })
                     .then(resp => resp.json())
                     .then(data => {
-                        //console.log(data);
+                        console.log(data);
                         setStore({
                             users: data
                         })
 
                     });
             },
-            getRoles: (url) => {
+            getRoles: (url, page = 1) => {
                 const store = getStore();
-                fetch(store.path + url, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + store.currentUser.access_token
-                    }
-                })
+                fetch(store.path + url + '?page=' + page, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + store.currentUser.access_token
+                        }
+                    })
                     .then(resp => resp.json())
                     .then(data => {
                         //console.log(data);
@@ -232,12 +238,12 @@ const getState = ({ getStore, getActions, setStore }) => {
                         "message": store.contacto_mensaje
                     }
                     fetch(store.path + '/api/web-contact/', {
-                        method: 'POST',
-                        body: JSON.stringify(data),
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    })
+                            method: 'POST',
+                            body: JSON.stringify(data),
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
                         .then(resp => resp.json())
                         .then(data => {
                             //console.log(data);
@@ -250,7 +256,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                                     contacto_recaptcha: '',
                                     contacto_result: 'Email enviado. Muchas Gracias por su aporte'
                                 });
-                            }else{
+                            } else {
                                 setStore({
                                     contacto_nombre: '',
                                     contacto_email: '',
@@ -339,18 +345,18 @@ const getState = ({ getStore, getActions, setStore }) => {
                 ) {
                     //console.log("Enviando Formulario de Contacto");
                     const data = {
-                        "name":    store.registro_nombre,
-                        "email":   store.registro_email,
+                        "name": store.registro_nombre,
+                        "email": store.registro_email,
                         "password": store.registro_patente,
                         "patent": store.registro_patente
                     }
                     fetch(store.path + '/api/register', {
-                        method: 'POST',
-                        body: JSON.stringify(data),
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    })
+                            method: 'POST',
+                            body: JSON.stringify(data),
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
                         .then(resp => resp.json())
                         .then(data => {
                             //console.log(data);
@@ -366,7 +372,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                                     registro_result_success: 'Gracias por registrarse. Por favor verificar cuenta mediante correo enviado.',
                                     registro_result_error: null,
                                 });
-                            }else{
+                            } else {
                                 setStore({
                                     currentUser: null,
                                     registro_nombre: '',
@@ -392,19 +398,19 @@ const getState = ({ getStore, getActions, setStore }) => {
             getConfirmation: token => {
                 const store = getStore();
 
-                fetch(store.path + '/api/confirm/'+token, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
+                fetch(store.path + '/api/confirm/' + token, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
                     .then(resp => resp.json())
                     .then(data => {
-                        if(data.success){
+                        if (data.success) {
                             setStore({
-                                registro_confirm_success: data.success 
+                                registro_confirm_success: data.success
                             })
-                        }else{
+                        } else {
                             setStore({
                                 registro_confirm_msg: data.msg
                             })
