@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 import { Context } from './../store/appContext';
 import Pagination from '../components/pagination.jsx';
 import moment from 'moment';
@@ -9,16 +9,12 @@ import CreateRole from '../forms/createRole';
 
 const Configuracion = props => {
     const { store, actions } = useContext(Context);
-    const [mod] = useState(props.match.params.mod);
     //6LcXsh4TAAAAAIMQIRcgdLIoA9KOz3mB2qKs4LOY
     useEffect(() => {
         if (!store.isAuthenticated) props.history.push("/login");
-        if (store.currentUser.user.role.id !== 1) props.history.push("/login");
+        if(store.currentUser.user)
+            if (store.currentUser.user.role.id !== 1) props.history.push("/login");
     }, [props.history, store.currentUser, store.isAuthenticated])
-
-    const handleMod = mod => {
-        console.log(mod);
-    }
 
     const handleDate = date => {
         return moment(date).format('D MMM YYYY, h:mm:ss a');
@@ -31,23 +27,8 @@ const Configuracion = props => {
                 <hr />
 
                 <div className="row">
-                    <div className="col-md-3">
-                        <div className="list-group">
-                            <Link to="/configuracion/roles" className={"list-group-item " + (mod === 'roles' ? " active" : "")} onClick={() => handleMod('roles')}>
-                                <h4 className="list-group-item-heading">Roles</h4>
-                                <p className="list-group-item-text">Modulo de Roles</p>
-                            </Link>
-                            <Link to="/configuracion/users" className={"list-group-item " + (mod === 'users' ? " active" : "")}>
-                                <h4 className="list-group-item-heading">Usuarios</h4>
-                                <p className="list-group-item-text">Modulo de Usuarios</p>
-                            </Link>
-                            <Link to="/configuracion/contacto-web" className={"list-group-item " + (mod === 'contacto-web' ? " active" : "")}>
-                                <h4 className="list-group-item-heading">Contacto Web</h4>
-                                <p className="list-group-item-text">Modulo de Contactos Web</p>
-                            </Link>
-                        </div>
-                    </div>
-                    <div className="col-md-9">
+                    
+                    <div className="col-md-12">
                         <button className="btn btn-success btn-sm pull-right mb-4" data-toggle="modal" data-target="#crearRole"
                             onClick={() => actions.setObject('role', { name: '' })}>
                             <i className="fa fa-pen"></i> Crear Role
@@ -60,7 +41,7 @@ const Configuracion = props => {
                         <table className="table table-bordered table-hover">
                             <thead style={{ "backgroundColor": 'black', 'color': 'white' }}>
                                 <tr>
-                                    <th>#</th>
+                                    <th width="5%">#</th>
                                     <th>Role</th>
                                     <th width="8%" colSpan="2">Actions</th>
                                 </tr>
@@ -114,7 +95,7 @@ const Configuracion = props => {
                         <table className="table table-bordered table-hover">
                             <thead style={{ "backgroundColor": 'black', 'color': 'white' }}>
                                 <tr>
-                                    <th>#</th>
+                                    <th width="5%">#</th>
                                     <th>Nombre</th>
                                     <th>Email</th>
                                     <th>Rol</th>
@@ -157,7 +138,7 @@ const Configuracion = props => {
                         <table className="table table-bordered table-hover">
                             <thead style={{ "backgroundColor": 'black', 'color': 'white' }}>
                                 <tr>
-                                    <th>#</th>
+                                    <th width="5%">#</th>
                                     <th>Nombre</th>
                                     <th>Email</th>
                                     <th>Asunto</th>

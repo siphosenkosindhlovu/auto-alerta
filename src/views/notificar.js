@@ -18,39 +18,25 @@ const Notificar = props => {
                         <hr />
                         <h3>Datos del vehículo</h3>
                         <hr />
-                        <div className="form-group form-group-patente">
-                            <label htmlFor="patente" className="col-sm-3 control-label">Patente</label>
-                            <div className="col-sm-4">
+                        <div className="form-group control-type-textarea control-name-mensaje ">
+                            <label htmlFor="patente" className="col-lg-3 control-label">Patente</label>
+                            <div className="col-lg-9 col-sm-12">
                                 <input className="form-control solo-string" type="text" name="notificar[patente]" placeholder="XXYY11"
-                                    style={{textTransform: "uppercase"}} required id="notificar_patente" /> </div>
-                            <div className="col-sm-5">
-                                <div id="validador-patente"></div>
-                            </div>
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="categoria_mensaje_id" className="col-sm-3 control-label">Vehículo</label>
-                            <div className="col-sm-5">
-                                <select name="categoria_mensaje_id" id="categoria_mensaje_id" className="form-control"
-                                    onChange={(e) => alert(e.target.value)}>
-                                    <option value="">SELECCIONE</option>
-                                    <option value="1"> En Movimiento</option>
-                                    <option value="2"> Estacionado</option>
-                                </select>
-
+                                    style={{ textTransform: "uppercase" }} required id="notificar_patente" />
+                                    <div id="validador-patente"></div>
                             </div>
                         </div>
 
                         <div className="form-group control-type-textarea control-name-mensaje ">
                             <label htmlFor="contacto_mensaje" className="col-lg-3 control-label">Mensaje</label>
-                            <div className="col-lg-9"><textarea rows="4" cols="30" className="form-control" name="mensaje"
+                            <div className="col-lg-9 col-sm-12"><textarea rows="4" cols="30" className="form-control" name="mensaje"
                                 placeholder="Este mensaje será público." id="contacto_mensaje"></textarea>
                             </div>
                         </div>
 
                         <div className="form-group control-type-textarea control-name-mensaje ">
                             <label htmlFor="contacto_email" className="col-lg-3 control-label">Tu correo</label>
-                            <div className="col-lg-9"><textarea rows="1" cols="30" className="form-control" name="email"
+                            <div className="col-lg-9 col-sm-12"><textarea rows="1" cols="30" className="form-control" name="email"
                                 placeholder="No sera mostrado, este es para validar tu identidad." id="contacto_email"></textarea></div>
                         </div>
 

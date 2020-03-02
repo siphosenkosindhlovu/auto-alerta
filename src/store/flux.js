@@ -90,7 +90,9 @@ const getState = ({
 
                             sessionStorage.setItem('currentUser', JSON.stringify(data))
                             sessionStorage.setItem('isAuthenticated', true)
-
+                            getActions().getRoles('/api/roles');
+				            getActions().getUsers('/api/users');
+				            getActions().getContactWeb('/api/webcontacts');
                             history.push('/')
                         }
 

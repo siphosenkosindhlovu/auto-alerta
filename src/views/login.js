@@ -55,8 +55,8 @@ const Login = props => {
                         </div>
                         <div className="form-group">
                             <div className="col-lg-12">
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-lg btn-success">Login</button>
+                                <div className="text-center">
+                                    <button type="submit" className="btn btn-lg btn-success">Login</button>
                                 </div>
                             </div>
                         </div>
