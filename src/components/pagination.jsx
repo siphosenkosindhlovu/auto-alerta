@@ -27,7 +27,7 @@ class Pagination extends Component {
                 <nav aria-label="Page navigation example">
                     <ul className="pagination">
                         <li className="page-item">
-                            <a className="page-link" href="#" aria-label="Previous"
+                            <a className="page-link" href="/#" aria-label="Previous"
                                 onClick={(e) => {
                                     e.preventDefault();
                                     this.props.getFetch(this.props.path, this.props.prev_page);
@@ -37,7 +37,7 @@ class Pagination extends Component {
                         </li>
                         {renderPageNumbers}
                         <li className="page-item">
-                            <a className="page-link" href="#" aria-label="Next"
+                            <a className="page-link" href="/#" aria-label="Next"
                                 onClick={(e) => {
                                     e.preventDefault();
                                     this.props.getFetch(this.props.path, this.props.next_page);

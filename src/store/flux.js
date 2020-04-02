@@ -52,6 +52,19 @@ const getState = ({
                 id: 0,
                 name: ''
             },
+            notificar_patente: '',
+            notificar_mensaje: '',
+            notificar_email: '',
+            notificar_errors: {
+                "patente": null,
+                "mensaje": null,
+                "email": null,
+            },
+            notificar_result: null,
+            notificar_result_success: null,
+            notificar_result_error: null,
+            notificar_confirm_success: null,
+            notificar_confirm_msg: null,
         },
         actions: {
             handleChange: e => {
@@ -492,6 +505,87 @@ const getState = ({
                 setStore({
                     [name]: Object.assign({}, object)
                 })
+            },
+            handleSubmitNotificar: e => {
+                e.preventDefault();
+                const store = getStore();
+                let error = Object.assign({}, store.notificar_errors);
+                if (store.notificar_patente === '') {
+                    error['patente'] = 'La patente es requerida';
+                    setStore({
+                        notificar_errors: Object.assign(store.notificar_errors, error)
+                    })
+                } else {
+                    error['patente'] = null;
+                    setStore({
+                        notificar_errors: Object.assign(store.notificar_errors, error)
+                    })
+                }
+
+                if (store.notificar_email === '') {
+                    error['email'] = 'El email es requerido';
+                    setStore({
+                        notificar_errors: Object.assign(store.notificar_errors, error)
+                    })
+                } else {
+                    error['email'] = null;
+                    setStore({
+                        notificar_errors: Object.assign(store.notificar_errors, error)
+                    })
+                }
+
+                if (store.notificar_mensaje === '') {
+                    error['mensaje'] = 'El mensaje es requerido';
+                    setStore({
+                        notificar_errors: Object.assign(store.notificar_errors, error)
+                    })
+                } else {
+                    error['mensaje'] = null;
+                    setStore({
+                        notificar_errors: Object.assign(store.notificar_errors, error)
+                    })
+                }
+                
+                if (
+                    store.notificar_patente !== '' &&
+                    store.notificar_email !== '' &&
+                    store.notificar_mensaje !== ''
+                ) {
+                    //console.log("Enviando Formulario de Contacto");
+                    const data = {
+                        "patent": store.notificar_patente,
+                        "email": store.notificar_email,
+                        "message": store.notificar_mensaje
+                    }
+                    fetch(store.path + '/api/notify', {
+                            method: 'POST',
+                            body: JSON.stringify(data),
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                        .then(resp => resp.json())
+                        .then(data => {
+                            console.log(data);
+                            if (data.id) {
+                                setStore({
+                                    notificar_patente: '',
+                                    notificar_email: '',
+                                    notificar_mensaje: '',
+                                    notificar_result_success: 'Notificacion enviado. Muchas Gracias por su aporte'
+                                });
+                            } else {
+                                setStore({
+                                    notificar_patente: '',
+                                    notificar_email: '',
+                                    notificar_mensaje: '',
+                                    notificar_result_error: 'Notificacion no enviado. Por favor intente mas tarde'
+                                });
+                            }
+                            //getActions().getContactWeb('/api/notificar')
+                        })
+                        .catch(error => console.log(error));
+                }
             }
         }
     }
