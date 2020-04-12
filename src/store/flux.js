@@ -80,12 +80,12 @@ const getState = ({
                     password: store.password
                 }
                 fetch(store.path + url, {
-                        method: 'POST',
-                        body: JSON.stringify(data),
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    })
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
                     .then(resp => resp.json())
                     .then(data => {
                         console.log(data);
@@ -104,8 +104,8 @@ const getState = ({
                             sessionStorage.setItem('currentUser', JSON.stringify(data))
                             sessionStorage.setItem('isAuthenticated', true)
                             getActions().getRoles('/api/roles');
-				            getActions().getUsers('/api/users');
-				            getActions().getContactWeb('/api/webcontacts');
+                            getActions().getUsers('/api/users');
+                            getActions().getContactWeb('/api/webcontacts');
                             history.push('/')
                         }
 
@@ -114,12 +114,12 @@ const getState = ({
             getUsers: (url, page = 1) => {
                 const store = getStore();
                 fetch(store.path + url + '?page=' + page, {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': 'Bearer ' + store.currentUser.access_token
-                        }
-                    })
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + store.currentUser.access_token
+                    }
+                })
                     .then(resp => resp.json())
                     .then(data => {
                         console.log(data);
@@ -132,12 +132,12 @@ const getState = ({
             getRoles: (url, page = 1) => {
                 const store = getStore();
                 fetch(store.path + url + '?page=' + page, {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': 'Bearer ' + store.currentUser.access_token
-                        }
-                    })
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + store.currentUser.access_token
+                    }
+                })
                     .then(resp => resp.json())
                     .then(data => {
                         //console.log(data);
@@ -150,12 +150,12 @@ const getState = ({
             getContactWeb: (url, page = 1) => {
                 const store = getStore();
                 fetch(store.path + url + '?page=' + page, {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': 'Bearer ' + store.currentUser.access_token
-                        }
-                    })
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + store.currentUser.access_token
+                    }
+                })
                     .then(resp => resp.json())
                     .then(data => {
                         //console.log(data);
@@ -200,6 +200,25 @@ const getState = ({
                     registro_result_success: null,
                     registro_result_error: null,
                 });
+            },
+            clearDataNotificacion: () => {
+                setStore({
+                    notificar_patente: '',
+                    notificar_mensaje: '',
+                    notificar_email: '',
+                    notificar_errors: {
+                        "patente": null,
+                        "mensaje": null,
+                        "email": null,
+                    },
+                    notificar_result: null,
+                    notificar_result_success: null,
+                    notificar_confirm_result_success: null,
+                    notificar_result_error: null,
+                    notificar_confirm_result_error: null,
+                    notificar_confirm_success: null,
+                    notificar_confirm_msg: null,
+                })
             },
             handleSubmitContact: e => {
                 e.preventDefault();
@@ -276,12 +295,12 @@ const getState = ({
                         "message": store.contacto_mensaje
                     }
                     fetch(store.path + '/api/web-contact/', {
-                            method: 'POST',
-                            body: JSON.stringify(data),
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }
-                        })
+                        method: 'POST',
+                        body: JSON.stringify(data),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
                         .then(resp => resp.json())
                         .then(data => {
                             //console.log(data);
@@ -390,12 +409,12 @@ const getState = ({
                         "patent": store.registro_patente
                     }
                     fetch(store.path + '/api/register', {
-                            method: 'POST',
-                            body: JSON.stringify(data),
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }
-                        })
+                        method: 'POST',
+                        body: JSON.stringify(data),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
                         .then(resp => resp.json())
                         .then(data => {
                             //console.log(data);
@@ -438,11 +457,11 @@ const getState = ({
                 const store = getStore();
 
                 fetch(store.path + '/api/confirm/' + token, {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    })
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
                     .then(resp => resp.json())
                     .then(data => {
                         if (data.success) {
@@ -456,16 +475,38 @@ const getState = ({
                         }
                     })
             },
+            getConfirmationNotify: token => {
+                const store = getStore();
+
+                fetch(store.path + '/api/notify/confirm/' + token, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(resp => resp.json())
+                    .then(data => {
+                        if (data.result) {
+                            setStore({
+                                notificar_confirm_result_success: data.result
+                            })
+                        } else {
+                            setStore({
+                                notificar_confirm_result_error: data.msg
+                            })
+                        }
+                    })
+            },
             createRole: url => {
                 const store = getStore();
                 fetch(store.path + url, {
-                        method: 'POST',
-                        body: JSON.stringify(store.role),
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': 'Bearer ' + store.currentUser.access_token
-                        }
-                    })
+                    method: 'POST',
+                    body: JSON.stringify(store.role),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + store.currentUser.access_token
+                    }
+                })
                     .then(resp => resp.json())
                     .then(data => {
                         setStore({
@@ -477,13 +518,13 @@ const getState = ({
             editRole: url => {
                 const store = getStore();
                 fetch(store.path + url + '/' + store.role.id, {
-                        method: 'PUT',
-                        body: JSON.stringify(store.role),
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': 'Bearer ' + store.currentUser.access_token
-                        }
-                    })
+                    method: 'PUT',
+                    body: JSON.stringify(store.role),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + store.currentUser.access_token
+                    }
+                })
                     .then(resp => resp.json())
                     .then(data => {
                         setStore({
@@ -492,7 +533,6 @@ const getState = ({
                         getActions().getRoles('/api/roles', store.roles.current_page);
                     });
             },
-
             handleChangeObject: (e, object) => {
                 const store = getStore();
                 const nObject = store[object];
@@ -545,7 +585,7 @@ const getState = ({
                         notificar_errors: Object.assign(store.notificar_errors, error)
                     })
                 }
-                
+
                 if (
                     store.notificar_patente !== '' &&
                     store.notificar_email !== '' &&
@@ -558,12 +598,12 @@ const getState = ({
                         "message": store.notificar_mensaje
                     }
                     fetch(store.path + '/api/notify', {
-                            method: 'POST',
-                            body: JSON.stringify(data),
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }
-                        })
+                        method: 'POST',
+                        body: JSON.stringify(data),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
                         .then(resp => resp.json())
                         .then(data => {
                             console.log(data);

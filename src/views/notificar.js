@@ -26,16 +26,16 @@ const Notificar = props => {
                                     <button type="button" className="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
-                                    <strong>Nota:</strong>. {store.notificar_result_success}.<br /> <button className="btn btn-success btn-block" onClick={() => actions.clearDataRegistro()}>Continuar</button>
+                                    <strong>Nota:</strong>. {store.notificar_result_success}.<br /> <button className="btn btn-success btn-block" onClick={() => actions.clearDataNotificacion()}>Continuar</button>
                                 </div>
                             ) : store.notificar_result_error !== null ? (
-                                    <div className="alert alert-danger alert-dismissible">
-                                        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                        <strong>Nota:</strong>. {store.notificar_result_error}.<br /><br />
-                                    </div>
-                                ):("")
+                                <div className="alert alert-danger alert-dismissible">
+                                    <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <strong>Nota:</strong>. {store.notificar_result_error}.<br /><br />
+                                </div>
+                            ) : ("")
                         }
                         <div className={"form-group control-type-textarea control-name-mensaje " + (store.notificar_errors.patente !== null ? 'has-error' : '')}>
                             <label htmlFor="patente" className="col-lg-3 control-label">Patente</label>

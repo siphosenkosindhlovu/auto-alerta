@@ -21,17 +21,23 @@ const Confirmacion = props => {
                                 <button type="button" className="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
-                                <strong>Nota:</strong>. {store.registro_confirm_success}.<br /> <button className="btn btn-success btn-block" onClick={() => actions.clearDataRegistro()}>Continuar</button>
-                            </div>
-                        ):(
-                            <div className="alert alert-danger alert-dismissible">
-                                <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
+                                <strong>Nota:</strong>. {store.registro_confirm_success}.<br />
+                                <button className="btn btn-success btn-block" onClick={() => {
+                                    actions.clearDataRegistro()
+                                    props.history.push('/')
+                                }}>
+                                    Continuar
                                 </button>
-                                <strong>Nota:</strong>. {store.registro_confirm_msg}.<br /><br /> 
-                                <button className="btn btn-danger btn-block" onClick={() => actions.clearDataRegistro()}>Reenviar Email</button>
                             </div>
-                        )
+                        ) : (
+                                <div className="alert alert-danger alert-dismissible">
+                                    <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <strong>Nota:</strong>. {store.registro_confirm_msg}.<br /><br />
+                                    <button className="btn btn-danger btn-block" onClick={() => actions.clearDataRegistro()}>Reenviar Email</button>
+                                </div>
+                            )
                     }
 
                 </div>

@@ -20,6 +20,7 @@ class Pagination extends Component {
                     </li>
                 );
             }
+            return null;
         });
 
         if (this.props.total > 0) {

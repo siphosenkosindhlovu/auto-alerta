@@ -12,7 +12,7 @@ const Configuracion = props => {
     //6LcXsh4TAAAAAIMQIRcgdLIoA9KOz3mB2qKs4LOY
     useEffect(() => {
         if (!store.isAuthenticated) props.history.push("/login");
-        if(store.currentUser.user)
+        if (store.currentUser.user)
             if (store.currentUser.user.role.id !== 1) props.history.push("/login");
     }, [props.history, store.currentUser, store.isAuthenticated])
 
@@ -27,7 +27,7 @@ const Configuracion = props => {
                 <hr />
 
                 <div className="row">
-                    
+
                     <div className="col-md-12">
                         <button className="btn btn-success btn-sm pull-right mb-4" data-toggle="modal" data-target="#crearRole"
                             onClick={() => actions.setObject('role', { name: '' })}>
