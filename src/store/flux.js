@@ -6,7 +6,8 @@ const getState = ({
     return {
         store: {
             //path: 'http://10.105.104.222:5000',
-            path: 'http://localhost:5000',
+            //path: 'http://localhost:5000',
+            path: 'http://luisjrodriguezo.pythonanywhere.com',
             email: '',
             password: '',
             isAuthenticated: false,
