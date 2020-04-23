@@ -25,7 +25,8 @@ const Navbar = props => {
                             {
                                 !store.currentUser ?
                                     (
-                                        <li className="btn-login "><Link to="/login"><i className="fa fa-key"></i> Iniciar Sesión</Link></li>
+                                        /*<li className="btn-login "><Link to="/login"><i className="fa fa-key"></i> Iniciar Sesión</Link></li>*/
+                                        ""
                                     ) : (
                                         <li className=""><Link to="/configuracion"><i className="fa fa-cogs"></i> Configuracion</Link></li>
                                     )
