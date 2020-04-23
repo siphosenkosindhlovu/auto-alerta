@@ -98,6 +98,7 @@ const Configuracion = props => {
                                     <th width="5%">#</th>
                                     <th>Nombre</th>
                                     <th>Email</th>
+                                    <th>Patente</th>
                                     <th>Rol</th>
                                     <th width="8%" colSpan="2">Actions</th>
                                 </tr>
@@ -110,6 +111,7 @@ const Configuracion = props => {
                                             <td>{user.id}</td>
                                             <td>{user.name}</td>
                                             <td>{user.email}</td>
+                                            <td>{user.patent}</td>
                                             <td>{user.role.name}</td>
                                             <td>
                                                 <button className="btn btn-info" data-toggle="modal" data-target="#editUser">

@@ -7,7 +7,7 @@ const getState = ({
         store: {
             //path: 'http://10.105.104.222:5000',
             //path: 'http://localhost:5000',
-            path: 'http://luisjrodriguezo.pythonanywhere.com',
+            path: 'https://api.autoalerta.cl',
             email: '',
             password: '',
             isAuthenticated: false,
@@ -627,7 +627,33 @@ const getState = ({
                         })
                         .catch(error => console.log(error));
                 }
-            }
+            },
+            getPasswordChange: token => {
+                const store = getStore();
+
+                fetch(store.path + '/change-password-confirm/' + token, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        'password': '123456',
+                        'repassword': '123456'
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(resp => resp.json())
+                    .then(data => {
+                        if (data.success) {
+                            setStore({
+                                registro_confirm_success: data.success
+                            })
+                        } else {
+                            setStore({
+                                registro_confirm_msg: data.msg
+                            })
+                        }
+                    })
+            },
         }
     }
 }
