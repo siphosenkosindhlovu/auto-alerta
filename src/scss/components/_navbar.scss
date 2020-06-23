@@ -1,0 +1,59 @@
+.navbar {
+  &-nav {
+    .nav-link {
+      padding: {
+        left: $navbar-nav-link-padding-x;
+        right: $navbar-nav-link-padding-x;
+      }
+      border-bottom: 1px solid $navbar-nav-link-border-bottom-color;
+      &.active {
+        color: $primary;
+      }
+    }
+  }
+
+  &-brand {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    @extend .d-inline-flex;
+    @extend .align-items-center;
+  }
+
+  &-header {
+    display: block;
+    position: relative;
+    width: 100%;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .navbar {
+    padding: {
+      top: 1.5rem;
+      bottom: 1.5rem;
+    }
+    &-nav {
+      .nav-link {
+        font-size: 19px;
+        padding: {
+          left: 4rem !important; //.navbar-expand-lg overrides this without !important
+          right: 4rem !important; //.navbar-expand-lg overrides this without !important
+        }
+        border-bottom: none;
+        &:last-child {
+          padding-right: 0 !important;
+        }
+      }
+    }
+    &-brand {
+      position: static;
+      transform: unset;
+    }
+    &-header {
+      width: auto;
+    }
+  }
+}

@@ -1,1 +1,31 @@
+$primary: #cf302a;
+$body-color: #4d4d4d;
+
+$nav-link-padding-y: 1rem;
+$nav-link-padding-x: 1rem;
+$navbar-nav-link-padding-x: 1rem;
+$navbar-nav-link-border-bottom-color: #dddddd;
+$navbar-light-color: $body-color;
+$navbar-light-active-color: $primary;
+$navbar-toggler-padding-y: 1rem;
+$navbar-toggler-padding-x: 1rem;
+$navbar-light-toggler-icon-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'><path stroke='#{$primary}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+$navbar-light-toggler-border-color: transparent;
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1920px,
+);
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1600px,
+);
 @import "~bootstrap/scss/bootstrap";
+@import "./components/logo";
+@import "./components/navbar";

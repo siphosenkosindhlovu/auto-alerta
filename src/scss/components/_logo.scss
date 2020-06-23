@@ -1,0 +1,27 @@
+.logo {
+  &__image {
+    height: 19px;
+    margin-right: 11px;
+  }
+  &__text {
+    height: 21px;
+  }
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@include media-breakpoint-up(xl) {
+  .logo {
+    &__wrapper {
+      position: static;
+    }
+
+    &__image {
+      height: 33px;
+    }
+    &__text {
+      height: 37px;
+    }
+  }
+}
