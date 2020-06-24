@@ -1,6 +1,7 @@
 $primary: #cf302a;
 $body-color: #4d4d4d;
 
+$enable-responsive-font-sizes: true;
 $nav-link-padding-y: 1rem;
 $nav-link-padding-x: 1rem;
 $navbar-nav-link-padding-x: 1rem;
@@ -26,6 +27,10 @@ $container-max-widths: (
   xl: 1140px,
   xxl: 1600px,
 );
+
+$form-text-margin-top: 0.5rem;
+$input-placeholder-color: #b7b7b7;
 @import "~bootstrap/scss/bootstrap";
 @import "./components/logo";
 @import "./components/navbar";
+@import "./components/footer";

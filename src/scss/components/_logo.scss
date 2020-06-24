@@ -9,19 +9,27 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  &--footer {
+    flex-direction: column;
+    .logo__image {
+      height: 65px;
+    }
+  }
 }
 
 @include media-breakpoint-up(xl) {
   .logo {
-    &__wrapper {
-      position: static;
-    }
-
     &__image {
       height: 33px;
     }
     &__text {
       height: 37px;
+    }
+    &--footer {
+      flex-direction: column;
+      .logo__image {
+        height: 100px;
+      }
     }
   }
 }
