@@ -17,6 +17,16 @@
   }
 }
 
+@include media-breakpoint-up(lg) {
+  .logo {
+    &--footer {
+      flex-direction: column;
+      .logo__image {
+        height: 100px;
+      }
+    }
+  }
+}
 @include media-breakpoint-up(xl) {
   .logo {
     &__image {
@@ -24,12 +34,6 @@
     }
     &__text {
       height: 37px;
-    }
-    &--footer {
-      flex-direction: column;
-      .logo__image {
-        height: 100px;
-      }
     }
   }
 }

@@ -12,8 +12,8 @@ import Logo from 'components/Logo';
 export default function TopNav() {
   const { store } = useContext(Context);
   return (
-    <header className="container">
-      <Navbar expand="xl">
+    <header>
+      <Navbar expand="xl" className="container">
         <div class="navbar-header">
           <NavbarToggle />
           <Link component={NavbarBrand} to="/">

@@ -14,9 +14,9 @@ export default function Logo({ variant }) {
           <img src={name} alt="AutoAlerta" className="logo__text" />
         </>
       ) : (
-        <span>
+        <>
           <img src={footerLogo} alt="AutoAlerta Logo" className="logo__image" />
-        </span>
+        </>
       )}
     </span>
   );

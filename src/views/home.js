@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
+import Hero from 'components/Hero';
+import FilterSearch from 'components/FilterSearch';
 //import { Context } from '../store/appContext';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 //import moment from 'moment';
 
 const Home = (props) => {
@@ -12,6 +14,8 @@ const Home = (props) => {
 
   return (
     <>
+      <Hero />
+      <FilterSearch />
       {/* <section id="cellphone" className="">
         <div className="container">
           <div className="row">

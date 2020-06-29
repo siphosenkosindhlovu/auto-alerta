@@ -1,0 +1,13 @@
+.banner {
+  font-size: 12px;
+  a {
+    color: white;
+    border-bottom: 1px solid white;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .banner {
+    font-size: 16px;
+  }
+}

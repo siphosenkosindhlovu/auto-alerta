@@ -17,20 +17,24 @@ $grid-breakpoints: (
   sm: 576px,
   md: 768px,
   lg: 992px,
-  xl: 1200px,
+  xl: 1280px,
   xxl: 1920px,
 );
 $container-max-widths: (
   sm: 540px,
   md: 720px,
   lg: 960px,
-  xl: 1140px,
+  xl: 1250px,
   xxl: 1600px,
 );
 
 $form-text-margin-top: 0.5rem;
 $input-placeholder-color: #b7b7b7;
 @import "~bootstrap/scss/bootstrap";
+@import "./components/forms";
+@import "./components/buttons";
 @import "./components/logo";
 @import "./components/navbar";
 @import "./components/footer";
+@import "./components/banner";
+@import "./components/hero";

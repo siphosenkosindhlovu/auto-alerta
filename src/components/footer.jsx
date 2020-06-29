@@ -15,7 +15,7 @@ import FormGroup from 'react-bootstrap/FormGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import InputGroup from 'react-bootstrap/InputGroup';
 import checkCircle from 'images/check-VB_Mesa de trabajo 1.svg';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export default function Footer() {
   const navItems = [
     'Página de inicio',
@@ -24,17 +24,29 @@ export default function Footer() {
     'Contáctanos',
   ];
   return (
-    <footer className="footer">
+    <footer className="footer py-5">
       <Container>
-        <Row>
+        <Row className="mb-4 mb-lg-5">
           <Col xs={6} lg={4}>
             <Logo variant="footer" />
+            <br />
+            <div className="footer__location-text mt-4">
+              <FontAwesomeIcon
+                icon="map-marker-alt"
+                className="text-primary mr-2"
+              />
+              Santiago, Chile.
+            </div>
           </Col>
           <Col xs={6} lg={4}>
             <Nav variant="dark" as="ul">
               <NavItem as="li">
                 {navItems.map((item) => (
                   <Link component={NavLink} to="/pagnai">
+                    <FontAwesomeIcon
+                      icon="chevron-right"
+                      className="text-primary mr-3"
+                    />{' '}
                     {item}
                   </Link>
                 ))}
@@ -42,9 +54,9 @@ export default function Footer() {
             </Nav>
           </Col>
           <Col xs={12} lg={4}>
-            <Form>
+            <Form className="subscribe-form">
               <FormGroup>
-                <FormLabel style={{ fontSize: '13px' }}>
+                <FormLabel className="subscribe-form__label">
                   Inscríbete a nuestras noticias
                 </FormLabel>
                 <InputGroup>
@@ -68,6 +80,10 @@ export default function Footer() {
             </Form>
           </Col>
         </Row>
+        <hr className="bg-primary my-lg-5" />
+        <div class="footer__copyright text-center">
+          &copy; 2020 Auto Alerta - Todos los derechos reservados.
+        </div>
         {/* <div id="developer" className="pull-right">
           <a
             href="http://www.andrés.cl/"
