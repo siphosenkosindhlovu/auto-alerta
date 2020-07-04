@@ -9,23 +9,29 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 
-export function FilterSearchHeader({ children }) {
-  return (
-    <div className="filter-search__header filter-form__header--mobile bg-primary align-self-center">
-      {children}
-    </div>
-  );
+export function FilterSearchHeader({ children, desktop }) {
+  let classNames = 'filter-search__header bg-primary align-self-center';
+  if (desktop) classNames += ' filter-search__header--desktop';
+  return <div className={classNames}>{children}</div>;
 }
 
 export default function FilterSearch() {
   return (
-    <section class="filter-search__wrapper py-3 py-lg-5 bg-light">
+    <section
+      class="filter-search__wrapper pt-0 pb-3 py-lg-5"
+      style={{ backgroundColor: '#e5e5e5' }}
+    >
+      {' '}
+      <FilterSearchHeader className="d-lg-none">
+        Informar
+        <div className="filter-search__arrow-container"></div>
+      </FilterSearchHeader>
       <Container>
         <Form>
           <Row className="align-items-end justify-content-center mx-auto">
-            <Col lg={2}>
+            <Col lg={2} className="d-none d-lg-block">
               <FormGroup>
-                <FilterSearchHeader>Informar</FilterSearchHeader>
+                <FilterSearchHeader desktop>Informar</FilterSearchHeader>
               </FormGroup>
             </Col>
             <Col lg={3}>
@@ -52,11 +58,13 @@ export default function FilterSearch() {
               </FormGroup>
             </Col>
           </Row>
-          <Row lg={{ offset: 3 }}>
-            <FormText>
-              Antes de notificar al destinatario, verificaremos que tu correo
-              sea válido.
-            </FormText>
+          <Row>
+            <Col lg={{ offset: 2 }}>
+              <FormText>
+                Antes de notificar al destinatario, verificaremos que tu correo
+                sea válido.
+              </FormText>
+            </Col>
           </Row>
         </Form>
       </Container>

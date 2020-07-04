@@ -1,35 +1,74 @@
-.subscribe-form {
-  &__label {
-    font-size: 13px;
-  }
+:root {
+  --input-btn-padding-x: $input-btn-padding-x;
+  --input-btn-padding-y: $input-btn-padding-y;
+  --form-label-font-size: 14px;
+  --form-label-font-weight: 500;
 }
 
 @include media-breakpoint-up(lg) {
-  .subscribe-form {
-    &__label {
-      font-size: 21px;
-    }
+  :root {
+    --input-btn-padding-x: 1rem;
+    --input-btn-padding-y: 0.75rem;
+    --form-label-font-size: 20px;
+    --form-label-font-weight: 500;
   }
+}
+
+.subscribe-form {
+  &__label {
+    font-size: var(--form-label-font-size);
+  }
+}
+
+%arrow {
+  content: " ";
+  display: block;
+  width: 29px;
+  height: 29px;
+  background-color: $primary;
+  position: absolute;
+  transform-origin: center;
+  transform: translateX(5px) translateY(-50%) rotate(45deg);
 }
 
 .filter-search {
   &__header {
-    padding: 24px 50px;
-    border-radius: 5px;
+    padding: map-get($map: $spacers, $key: 3) * 0.75;
     color: white;
     position: relative;
-    margin-bottom: -($input-line-height + $input-padding-y) / 2;
-    &::before {
-      content: " ";
-      display: block;
-      width: 29px;
-      height: 29px;
-      background-color: $primary;
-      position: absolute;
-      transform-origin: center;
-      transform: translateX(5px) translateY(-50%) rotate(45deg);
-      right: 0;
-      top: 50%;
+    margin-bottom: map-get($map: $spacers, $key: 3);
+    text-align: center;
+    &--desktop {
+      text-align: left;
+      padding: 24px 50px;
+      border-radius: 5px;
+      margin-bottom: -7px;
+      &::before {
+        @extend %arrow;
+        transform: translateX(0) translateY(-50%) rotate(45deg);
+        right: 0;
+        top: 50%;
+      }
     }
+  }
+  &__arrow-container {
+    @extend .container;
+    position: relative;
+    &::before {
+      @extend %arrow;
+      bottom: 0;
+      left: 0;
+      transform: translateX(50%) translateY(50%) rotate(45deg);
+    }
+  }
+}
+
+.form {
+  &-label {
+    font-weight: var(--form-label-font-weight);
+    font-size: var(--form-label-font-size);
+  }
+  &-control {
+    padding: var(--input-btn-padding-y) var(--input-btn-padding-x);
   }
 }

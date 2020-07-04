@@ -1,13 +1,22 @@
 import React, { useEffect } from 'react';
 import Hero from 'components/Hero';
 import FilterSearch from 'components/FilterSearch';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
+import robo from 'images/robo_Mesa de trabajo 1.svg';
+import bus from 'images/bus_Mesa de trabajo 1.svg';
+import label from 'images/label_Mesa de trabajo 1.svg';
+import Carousel from 'react-bootstrap/Carousel';
+import Slick from 'react-slick';
 //import { Context } from '../store/appContext';
 //import { Link } from 'react-router-dom';
 //import moment from 'moment';
 
 const Home = (props) => {
   //const { store } = useContext(Context);
-
+  const settings = {};
   useEffect(() => {
     //if (!store.isAuthenticated) props.history.push("/login");
   });
@@ -16,6 +25,153 @@ const Home = (props) => {
     <>
       <Hero />
       <FilterSearch />
+      <Container>
+        <h2 className="text-center">
+          Informar es prevenir
+          <br />
+          <small>Ante estas situaciones informa y previene</small>
+        </h2>
+        <Row>
+          <Col lg={6}>
+            <h3>¿SI ALGUIEN INTENTA ROBAR UN AUTO?</h3>
+            <div className="row">
+              <figure className="col-5">
+                <img src={robo} alt="Robo" className="img-fluid" />
+              </figure>
+              <div className="col-7">
+                <p>
+                  <ul>
+                    <ol>
+                      <li style={{ textDecoration: 'strikethough' }}>
+                        Intervienes
+                      </li>
+                      <li>Llamas a carabineros</li>
+                      <li>Contactas al dueño</li>
+                    </ol>
+                  </ul>
+                </p>
+                <p>
+                  El tiempo es vital, utiliza{' '}
+                  <span className="text-primary">
+                    <strong>Auto Alerta</strong>
+                  </span>
+                  .
+                </p>
+              </div>
+            </div>
+          </Col>
+          <Col lg={6}>
+            <h3>¿SI ALGUIEN INTENTA ROBAR UN AUTO?</h3>
+            <div className="row">
+              <figure className="col-5">
+                <img src={bus} alt="Bus" className="img-fluid" />
+              </figure>
+              <div className="col-7">
+                <p>
+                  <ul>
+                    <ol>
+                      <li style={{ textDecoration: 'strikethough' }}>
+                        Intervienes
+                      </li>
+                      <li>Informas al Ministerio de Transporte</li>
+                      <li>Informas directamente a la empresa</li>
+                    </ol>
+                  </ul>
+                </p>
+                <p>¿Deseas lamentar o prevenir?</p>
+              </div>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+
+      <section class="bg-primary py-4 py-lg-5" style={{ position: 'relative' }}>
+        <Container>
+          <h2>
+            Somos Comunidad
+            <small>Ante estas situaciones informa y previene</small>
+          </h2>
+          <div>
+            <p>
+              Al pertenecer a <strong>Auto Alerta</strong>, estarás formando
+              parte de la primera comunidad fundada entre automovilistas
+              solidarios preocupados en hacer de las calles un lugar más seguro
+              para el transporte, logrando de forma colaborativa ayudar a otros
+              y eventualmente ser informado de situaciones que pueden ocurrir
+              mientras no estás cerca de tu vehículo (hurtos, descuidos y más).
+            </p>
+            <p>
+              Enviamos notificaciones preventivas pre-configuradas en tiempo
+              real que permiten al propietario de todo vehículo registrado
+              realizar mejoras correctivas, ofreciendo la posibilidad de
+              prevenir diversas situaciones.
+              <br />
+              Tranquilo, son anónimas.
+            </p>
+            <p>Servicio GRATUITO.</p>
+          </div>
+        </Container>
+      </section>
+      <section className="py-5">
+        <Container>
+          <h2>
+            Algunas situaciones
+            <small>
+              Ejemplo de algunas de las situaciones en las que podrías verte
+              involucrado.
+            </small>
+          </h2>
+          <Row>
+            <Col lg={4}>
+              <Card.Img variant="top" src={robo}></Card.Img>
+              <Card.Body>
+                <Card.Title className="text-muted text-center">ROBO</Card.Title>
+              </Card.Body>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+      <section>
+        <Container>
+          <h2>
+            ¿Cómo funciona?
+            <small>Ante estas situaciones informa y previene</small>
+          </h2>
+          <Carousel>
+            <Carousel.Item></Carousel.Item>
+          </Carousel>
+        </Container>
+      </section>
+      <Container>
+        <h2 className="text-center">
+          ¡Próximamente!
+          <small className="subtitle">
+            Estamos trabajando para tener las versiones en Android y iPhone
+          </small>
+        </h2>
+        <Row>
+          <Col></Col>
+          <Col></Col>
+        </Row>
+      </Container>
+      <section>
+        <Container>
+          <div>
+            <div>
+              <h3 className="text-primary">
+                ¿Quieres informar alguna situación pero no tienes cuenta?
+              </h3>
+              <p>
+                Puedes Informarla de todas formas, ingresando los datos
+                solicitados.
+              </p>
+            </div>
+            <div>
+              <button className="btn btn-primary btn-lg">Informar</button>
+            </div>
+          </div>
+        </Container>
+      </section>
       {/* <section id="cellphone" className="">
         <div className="container">
           <div className="row">
