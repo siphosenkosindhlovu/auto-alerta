@@ -5,6 +5,8 @@ import ReactDOM from 'react-dom';
 // import 'bootstrap-toggle/css/bootstrap-toggle.min.css';
 // import '@fortawesome/fontawesome-free/css/all.css';
 // import './index.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import 'scss/main.scss';
 import App from 'App';
 ReactDOM.render(<App />, document.getElementById('root'));
