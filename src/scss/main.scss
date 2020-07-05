@@ -1,6 +1,9 @@
 $primary: #cf302a;
 $body-color: #4d4d4d;
 
+$body-bg: #fafafa;
+$border-radius: 0.35rem;
+$card-border-color: transparent;
 $enable-responsive-font-sizes: true;
 $nav-link-padding-y: 1rem;
 $nav-link-padding-x: 1rem;
@@ -30,10 +33,51 @@ $container-max-widths: (
 
 $form-text-margin-top: 0.5rem;
 $input-placeholder-color: #b7b7b7;
-$input-border-color: transparent;
+//$input-border-color: transparent;
 $input-btn-padding-y: 1rem;
 $input-btn-padding-x: 1.5rem;
 @import "~bootstrap/scss/bootstrap";
+html {
+  font-size: 14px;
+}
+:root {
+  --base-font-size: 14px;
+  --input-font-size: var(--base-font-size);
+  --input-px: 1rem;
+  --input-py: 1rem;
+  --input-line-height: 1;
+
+  --label-font-size: 14px;
+  --label-font-weight: 500;
+
+  --heading-margin-top: 24px;
+  --heading-font-size: 28px;
+  --heading-color: #cf302a;
+  --heading-font-weight: 300;
+  --subtitle-font-size: 14px;
+  --subheading-font-size: 18px;
+  --subheading-weight: 700;
+
+  --inform-img-height: 85px;
+}
+@include media-breakpoint-up(lg) {
+  html {
+    font-size: 16px;
+  }
+  :root {
+    --input-font-size: 18px;
+    --input-px: 1.5rem;
+    --input-py: 0.75rem;
+
+    --label-font-size: 20px;
+
+    --heading-margin-top: 48px;
+    --heading-font-size: 51px;
+    --subtitle-font-size: 21px;
+
+    --subheading-font-size: 18px;
+  }
+}
 @import "./components/forms";
 @import "./components/buttons";
 @import "./components/logo";
@@ -41,3 +85,42 @@ $input-btn-padding-x: 1.5rem;
 @import "./components/footer";
 @import "./components/banner";
 @import "./components/hero";
+
+.page__heading {
+  font-size: var(--heading-font-size);
+  color: var(--heading-color);
+  font-weight: var(--heading-font-weight);
+  margin-top: var(--heading-margin-top);
+}
+
+.page__subtitle {
+  font-size: var(--subtitle-font-size);
+}
+
+.card {
+  box-shadow: 0 9px 21px rgba(0, 0, 0, 0.039);
+  border-radius: 1rem;
+}
+
+//home.scss
+
+.inform {
+  &__img {
+    height: 85px;
+  }
+  &__text {
+    font-size: 10pt;
+  }
+}
+.container-narrow {
+  width: 85%;
+  max-width: 1600px;
+  margin: auto;
+  padding: 15px;
+}
+
+//lists
+ul,
+ol {
+  padding-inline-start: 0;
+}

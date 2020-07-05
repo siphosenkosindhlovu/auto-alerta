@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
+import Figure from 'react-bootstrap/Figure';
 import robo from 'images/robo_Mesa de trabajo 1.svg';
 import bus from 'images/bus_Mesa de trabajo 1.svg';
 import label from 'images/label_Mesa de trabajo 1.svg';
@@ -25,21 +26,22 @@ const Home = (props) => {
     <>
       <Hero />
       <FilterSearch />
-      <Container>
-        <h2 className="text-center">
-          Informar es prevenir
-          <br />
-          <small>Ante estas situaciones informa y previene</small>
-        </h2>
+      <Container className="container-narrow">
+        <h2 className="text-center page__heading">Informar es prevenir</h2>
+        <p className="page__subtitle text-center">
+          Ante estas situaciones informa y previene
+        </p>
         <Row>
           <Col lg={6}>
             <h3>¿SI ALGUIEN INTENTA ROBAR UN AUTO?</h3>
             <div className="row">
-              <figure className="col-5">
-                <img src={robo} alt="Robo" className="img-fluid" />
-              </figure>
+              <Col xs="auto">
+                <figure>
+                  <img src={robo} alt="Robo" className="inform__img" />
+                </figure>
+              </Col>
               <div className="col-7">
-                <p>
+                <p className="inform__text">
                   <ul>
                     <ol>
                       <li style={{ textDecoration: 'strikethough' }}>
@@ -85,12 +87,17 @@ const Home = (props) => {
         </Row>
       </Container>
 
-      <section class="bg-primary py-4 py-lg-5" style={{ position: 'relative' }}>
+      <section
+        class="bg-primary py-4 py-lg-5 text-white"
+        style={{ position: 'relative' }}
+      >
         <Container>
-          <h2>
+          <h2 className="page__heading text-center text-white">
             Somos Comunidad
-            <small>Ante estas situaciones informa y previene</small>
           </h2>
+          <p className="page__subtitle text-center">
+            Ante estas situaciones informa y previene
+          </p>
           <div>
             <p>
               Al pertenecer a <strong>Auto Alerta</strong>, estarás formando
@@ -114,19 +121,21 @@ const Home = (props) => {
       </section>
       <section className="py-5">
         <Container>
-          <h2>
-            Algunas situaciones
-            <small>
-              Ejemplo de algunas de las situaciones en las que podrías verte
-              involucrado.
-            </small>
-          </h2>
+          <h2 className="page__heading text-center">Algunas situaciones</h2>
+          <p className="page__subtitle text-center">
+            Ejemplo de algunas de las situaciones en las que podrías verte
+            involucrado.
+          </p>
           <Row>
             <Col lg={4}>
-              <Card.Img variant="top" src={robo}></Card.Img>
-              <Card.Body>
-                <Card.Title className="text-muted text-center">ROBO</Card.Title>
-              </Card.Body>
+              <Card>
+                <Card.Img variant="top" src={robo}></Card.Img>
+                <Card.Body>
+                  <Card.Title className="text-muted text-center">
+                    ROBO
+                  </Card.Title>
+                </Card.Body>
+              </Card>
             </Col>
           </Row>
         </Container>

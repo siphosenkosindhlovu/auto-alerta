@@ -37,19 +37,28 @@ export default function FilterSearch() {
             <Col lg={3}>
               <FormGroup controlId="patente">
                 <FormLabel>Nº Patente</FormLabel>
-                <FormControl placeholder="VSRE23" />
+                <FormControl
+                  className="filter-search__input"
+                  placeholder="VSRE23"
+                />
               </FormGroup>
             </Col>
             <Col lg={3}>
               <FormGroup controlId="patente">
                 <FormLabel>Mensaje</FormLabel>
-                <FormControl placeholder="Reportar robo" />
+                <FormControl
+                  className="filter-search__input"
+                  placeholder="Reportar robo"
+                />
               </FormGroup>
             </Col>
             <Col lg={3}>
               <FormGroup controlId="patente">
                 <FormLabel>Correo electrónico</FormLabel>
-                <FormControl placeholder="Ingresa tu correo" />
+                <FormControl
+                  className="filter-search__input"
+                  placeholder="Ingresa tu correo"
+                />
               </FormGroup>
             </Col>
             <Col lg={1}>

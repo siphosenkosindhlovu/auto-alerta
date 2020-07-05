@@ -20,7 +20,7 @@ const Notificar = (props) => {
         subtitle={`Completa los datos para enviar un mensaje a motos, autos, buses y camiones mediante Auto Alerta`}
       >
         <section className="bg-white rounded">
-          <h3 className="subheader">Datos del vehículo</h3>
+          <h2 className="subheader">Datos del vehículo</h2>
           <Container fluid>
             <Form>
               <Form.Group>

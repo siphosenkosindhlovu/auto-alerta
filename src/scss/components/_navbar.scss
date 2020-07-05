@@ -17,6 +17,10 @@
     top: 0;
     bottom: 0;
     left: 50%;
+    padding: {
+      top: 0;
+      bottom: 0;
+    }
     transform: translateX(-50%);
     @extend .d-inline-flex;
     @extend .align-items-center;
@@ -41,6 +45,8 @@
         padding: {
           left: 4rem !important; //.navbar-expand-lg overrides this without !important
           right: 4rem !important; //.navbar-expand-lg overrides this without !important
+          top: 0;
+          bottom: 0;
         }
         border-bottom: none;
         &:last-child {

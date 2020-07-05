@@ -18,7 +18,7 @@ const Registro = (props) => {
       }
     >
       <section>
-        <h3 className="subheader">Ingresa tus datos</h3>
+        <h2 className="subheader">Ingresa tus datos</h2>
         <Form>
           <Container fluid>
             <Row>
