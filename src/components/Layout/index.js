@@ -1,22 +1,23 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 import PropTypes from 'prop-types';
-
-export default function Layout({ title, subtitle, children }) {
+import LayoutPageHeader from './LayoutPageTitle';
+import LayoutSubHeader from './LayoutSubtitle';
+export default function Layout({ header, subtitle, children }) {
   return (
     <>
       <Container>
-        {title}
-        {subtitle}
+        <LayoutPageHeader>{header}</LayoutPageHeader>
+        <LayoutSubHeader>{subtitle}</LayoutSubHeader>
         <hr />
       </Container>
-      {children}
+      <Container>{children}</Container>
     </>
   );
 }
 
 Layout.propTypes = {
-  title: PropTypes.elementType.isRequired,
-  subtitle: PropTypes.elementType.isRequired,
+  header: PropTypes.element.isRequired,
+  subheader: PropTypes.element.isRequired,
   children: PropTypes.element,
 };
