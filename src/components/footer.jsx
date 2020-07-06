@@ -54,15 +54,15 @@ export default function Footer() {
             </Nav>
           </Col>
           <Col xs={12} lg={4}>
-            <Form className="subscribe-form">
+            <Form className="subscribe-form pt-5 pt-lg-0">
               <FormGroup>
                 <FormLabel className="subscribe-form__label">
                   Inscríbete a nuestras noticias
                 </FormLabel>
                 <InputGroup>
-                  <FormControl type="email" placeholder="Ingresa tu email" />
+                  <FormControl className="subscribe-form__input" type="email" placeholder="Ingresa tu email" />
                   <InputGroup.Append>
-                    <Button type="submit">Enviar</Button>
+                    <Button  className="subscribe-form__input subscribe-form__input--submit" type="submit">Enviar</Button>
                   </InputGroup.Append>
                 </InputGroup>
                 <FormText className="text-primary">

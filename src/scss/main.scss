@@ -36,6 +36,7 @@ $input-placeholder-color: #b7b7b7;
 //$input-border-color: transparent;
 $input-btn-padding-y: 1rem;
 $input-btn-padding-x: 1.5rem;
+$btn-padding-x: 3rem;
 @import "~bootstrap/scss/bootstrap";
 html {
   font-size: 14px;
@@ -102,6 +103,13 @@ html {
   border-radius: 1rem;
 }
 
+.btn-long {
+  padding: {
+    left: 2.5rem;
+    right: 2.5rem;
+  }
+}
+
 //home.scss
 
 .inform {
@@ -123,4 +131,115 @@ html {
 ul,
 ol {
   padding-inline-start: 0;
+  list-style-position: inside;
+}
+
+.list-alphabet {
+  list-style-type: lower-alpha;
+  list-style-position: outside;
+  padding-inline-start: 1rem;
+}
+//separator component
+.seperator {
+  border-top: 1px solid rgba(207, 48, 42, 0.267);
+  height: 1px;
+  width: 80%;
+  flex-basis: 80%;
+}
+
+//homepage sections
+.community {
+  position: relative;
+  background: url(../images/Luis1.png), $primary;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom;
+  color: white;
+  &__label {
+    position: absolute;
+    left: 0;
+    height: 28pt;
+    top: -10px;
+  }
+}
+
+.situations {
+  &__card {
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0pt 9pt 21px rgba(0, 0, 0, 0.039);
+    padding-bottom: 1rem;
+    border: none;
+    margin-bottom: 1rem;
+    &__img {
+      height: 96px;
+    }
+    &__label {
+      font-size: 16pt;
+      font-weight: medium;
+    }
+  }
+}
+
+.slider {
+  &__inner {
+    padding: 9px;
+    img {
+      width: auto;
+      height: 425px;
+    }
+  }
+}
+.slick {
+  &-list {
+    overflow: visible !important;
+    width: 75%;
+  }
+  &-dots {
+    position: static;
+    li.slick-active {
+      button:before {
+        color: $primary;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.app-store {
+  @extend .btn;
+  background-color: black;
+  color: white;
+  font-size: 15pt;
+  padding: 0.625rem 0.875rem;
+  display: flex;
+  align-items: center;
+  margin: 1rem;
+  &__icon {
+    height: 26pt;
+    width: auto !important;
+    margin-right: 1rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .community {
+    background-position: left;
+  }
+  .slider {
+    max-width: 1250px;
+    margin: auto;
+    &__inner {
+      img {
+        padding: 18px;
+        max-width: 100%;
+        height: auto;
+      }
+    }
+  }
+  .slick {
+    &-list {
+      width: auto;
+    }
+  }
 }

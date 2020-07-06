@@ -8,9 +8,12 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
+import alertCircle from 'images/ic-alerta_Mesa de trabajo 1.svg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export function FilterSearchHeader({ children, desktop }) {
   let classNames = 'filter-search__header bg-primary align-self-center';
+  if (!desktop) classNames += ' d-lg-none';
   if (desktop) classNames += ' filter-search__header--desktop';
   return <div className={classNames}>{children}</div>;
 }
@@ -22,7 +25,7 @@ export default function FilterSearch() {
       style={{ backgroundColor: '#e5e5e5' }}
     >
       {' '}
-      <FilterSearchHeader className="d-lg-none">
+      <FilterSearchHeader>
         Informar
         <div className="filter-search__arrow-container"></div>
       </FilterSearchHeader>
@@ -34,7 +37,7 @@ export default function FilterSearch() {
                 <FilterSearchHeader desktop>Informar</FilterSearchHeader>
               </FormGroup>
             </Col>
-            <Col lg={3}>
+            <Col lg={2}>
               <FormGroup controlId="patente">
                 <FormLabel>Nº Patente</FormLabel>
                 <FormControl
@@ -43,7 +46,7 @@ export default function FilterSearch() {
                 />
               </FormGroup>
             </Col>
-            <Col lg={3}>
+            <Col lg={4}>
               <FormGroup controlId="patente">
                 <FormLabel>Mensaje</FormLabel>
                 <FormControl
@@ -52,7 +55,7 @@ export default function FilterSearch() {
                 />
               </FormGroup>
             </Col>
-            <Col lg={3}>
+            <Col lg={3} className="filter-search__input--bordered">
               <FormGroup controlId="patente">
                 <FormLabel>Correo electrónico</FormLabel>
                 <FormControl
@@ -62,17 +65,35 @@ export default function FilterSearch() {
               </FormGroup>
             </Col>
             <Col lg={1}>
-              <FormGroup>
-                <Button type="submit">Enviar</Button>
+              <FormGroup className="text-center">
+                <Button
+                  className="filter-search__input filter-search__input--submit"
+                  type="submit"
+                >
+                  Enviar
+                </Button>
               </FormGroup>
             </Col>
           </Row>
-          <Row>
+          <Row className="mx-0">
             <Col lg={{ offset: 2 }}>
-              <FormText>
-                Antes de notificar al destinatario, verificaremos que tu correo
-                sea válido.
-              </FormText>
+              <FormGroup>
+                <FormText className="d-flex">
+                  <img
+                    style={{
+                      width: '1.25rem',
+                      height: '1.25rem',
+                      marginRight: '0.6rem',
+                    }}
+                    src={alertCircle}
+                    alt="Alert"
+                  />{' '}
+                  <div>
+                    Antes de notificar al destinatario, verificaremos que tu
+                    correo sea válido.
+                  </div>
+                </FormText>
+              </FormGroup>
             </Col>
           </Row>
         </Form>

@@ -7,10 +7,16 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Figure from 'react-bootstrap/Figure';
 import robo from 'images/robo_Mesa de trabajo 1.svg';
+import accidente from 'images/accidente_Mesa de trabajo 1.svg';
+import descuido from 'images/descuido_Mesa de trabajo 1.svg';
 import bus from 'images/bus_Mesa de trabajo 1.svg';
 import label from 'images/label_Mesa de trabajo 1.svg';
 import Carousel from 'react-bootstrap/Carousel';
-import Slick from 'react-slick';
+import Slider from 'react-slick';
+import slide1 from 'images/Captura de Pantalla 2020-04-29 a la(s) 20.33.32.png';
+import slide2 from 'images/Captura de Pantalla 2020-04-29 a la(s) 20.34.29.png';
+import slide3 from 'images/Captura de Pantalla 2020-04-29 a la(s) 20.35.39.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 //import { Context } from '../store/appContext';
 //import { Link } from 'react-router-dom';
 //import moment from 'moment';
@@ -21,36 +27,78 @@ const Home = (props) => {
   useEffect(() => {
     //if (!store.isAuthenticated) props.history.push("/login");
   });
+  const situaciones = [
+    {
+      image: robo,
+      label: 'ROBO',
+    },
+    {
+      image: accidente,
+      label: 'ACCIDENTES',
+    },
+    {
+      image: descuido,
+      label: 'DESCUIDOS',
+    },
+  ];
 
+  const slides = [
+    {
+      image: slide1,
+      alt: 'Antes: Véhiculo previamente inscrito',
+    },
+    {
+      image: slide2,
+      alt: 'Durante: Proprietario del vehiculo recibe alerta',
+    },
+    {
+      image: slide3,
+      alt: 'Después: Podràs protegerte a tiempo',
+    },
+  ];
+  const sliderSettings = {
+    infinite: false,
+    speed: 700,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    dots: false,
+    className: 'slider',
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          dots: true,
+        },
+      },
+    ],
+  };
   return (
     <>
       <Hero />
       <FilterSearch />
-      <Container className="container-narrow">
+      <Container className="container-narrow py-5">
         <h2 className="text-center page__heading">Informar es prevenir</h2>
-        <p className="page__subtitle text-center">
+        <p className="page__subtitle text-center mb-5">
           Ante estas situaciones informa y previene
         </p>
         <Row>
           <Col lg={6}>
-            <h3>¿SI ALGUIEN INTENTA ROBAR UN AUTO?</h3>
-            <div className="row">
-              <Col xs="auto">
-                <figure>
-                  <img src={robo} alt="Robo" className="inform__img" />
-                </figure>
-              </Col>
-              <div className="col-7">
-                <p className="inform__text">
-                  <ul>
-                    <ol>
-                      <li style={{ textDecoration: 'strikethough' }}>
-                        Intervienes
-                      </li>
-                      <li>Llamas a carabineros</li>
-                      <li>Contactas al dueño</li>
-                    </ol>
-                  </ul>
+            <h3 className="h6 mb-5">¿SI ALGUIEN INTENTA ROBAR UN AUTO?</h3>
+            <div className="d-flex">
+              <figure className="pr-2 pr-md-3">
+                <img src={robo} alt="Robo" className="inform__img" />
+              </figure>
+              <div className="inform__text">
+                <p className="">
+                  <ol className="list-alphabet">
+                    <li style={{ textDecoration: 'strikethough' }}>
+                      Intervienes
+                    </li>
+                    <li>Llamas a carabineros</li>
+                    <li>Contactas al dueño</li>
+                  </ol>
                 </p>
                 <p>
                   El tiempo es vital, utiliza{' '}
@@ -62,23 +110,22 @@ const Home = (props) => {
               </div>
             </div>
           </Col>
+          <div className="seperator d-lg-none my-5 mx-auto"></div>
           <Col lg={6}>
-            <h3>¿SI ALGUIEN INTENTA ROBAR UN AUTO?</h3>
-            <div className="row">
-              <figure className="col-5">
-                <img src={bus} alt="Bus" className="img-fluid" />
+            <h3 className="h6 mb-5">¿SI ALGUIEN INTENTA ROBAR UN AUTO?</h3>
+            <div className="d-flex">
+              <figure className="pr-2 pr-md-3">
+                <img src={bus} alt="Bus" className="inform__img" />
               </figure>
-              <div className="col-7">
+              <div className="inform__text">
                 <p>
-                  <ul>
-                    <ol>
-                      <li style={{ textDecoration: 'strikethough' }}>
-                        Intervienes
-                      </li>
-                      <li>Informas al Ministerio de Transporte</li>
-                      <li>Informas directamente a la empresa</li>
-                    </ol>
-                  </ul>
+                  <ol className="list-alphabet">
+                    <li style={{ textDecoration: 'strikethough' }}>
+                      Intervienes
+                    </li>
+                    <li>Informas al Ministerio de Transporte</li>
+                    <li>Informas directamente a la empresa</li>
+                  </ol>
                 </p>
                 <p>¿Deseas lamentar o prevenir?</p>
               </div>
@@ -87,12 +134,14 @@ const Home = (props) => {
         </Row>
       </Container>
 
-      <section
-        class="bg-primary py-4 py-lg-5 text-white"
-        style={{ position: 'relative' }}
-      >
-        <Container>
-          <h2 className="page__heading text-center text-white">
+      <section className="community">
+        <Container className=" py-4 py-lg-5" style={{ position: 'relative' }}>
+          <img
+            src={label}
+            alt="¡SERVICIO GRATUITO!"
+            className="community__label"
+          />
+          <h2 className="page__heading text-center text-white mt-0">
             Somos Comunidad
           </h2>
           <p className="page__subtitle text-center">
@@ -120,63 +169,85 @@ const Home = (props) => {
         </Container>
       </section>
       <section className="py-5">
-        <Container>
+        <Container className="container-narrow">
           <h2 className="page__heading text-center">Algunas situaciones</h2>
-          <p className="page__subtitle text-center">
+          <p className="page__subtitle text-center pb-md-5">
             Ejemplo de algunas de las situaciones en las que podrías verte
             involucrado.
           </p>
           <Row>
-            <Col lg={4}>
-              <Card>
-                <Card.Img variant="top" src={robo}></Card.Img>
-                <Card.Body>
-                  <Card.Title className="text-muted text-center">
-                    ROBO
-                  </Card.Title>
-                </Card.Body>
-              </Card>
-            </Col>
+            {situaciones.map(({ image, label }) => (
+              <Col lg={4}>
+                <Card className="situations__card">
+                  <Card.Img
+                    variant="top"
+                    src={image}
+                    className="situations__card__img"
+                  ></Card.Img>
+                  <Card.Body className="pb-0">
+                    <Card.Title className="text-muted text-center situations__card__label">
+                      {label}
+                    </Card.Title>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
           </Row>
         </Container>
       </section>
-      <section>
-        <Container>
-          <h2>
-            ¿Cómo funciona?
-            <small>Ante estas situaciones informa y previene</small>
-          </h2>
-          <Carousel>
-            <Carousel.Item></Carousel.Item>
-          </Carousel>
+      <section className="text-center py-5">
+        <Container fluid style={{ overflowX: 'hidden' }}>
+          <h2 className="page__heading">¿Cómo funciona?</h2>
+          <p className="page__subtitle">
+            Ante estas situaciones informa y previene
+          </p>
+          <Slider {...sliderSettings}>
+            {slides.map(({ image, alt }) => (
+              <div className="slider__inner">
+                <img src={image} alt={alt} />
+              </div>
+            ))}
+          </Slider>
         </Container>
       </section>
-      <Container>
-        <h2 className="text-center">
-          ¡Próximamente!
-          <small className="subtitle">
-            Estamos trabajando para tener las versiones en Android y iPhone
-          </small>
-        </h2>
-        <Row>
-          <Col></Col>
-          <Col></Col>
-        </Row>
+      <Container className="text-center py-5">
+        <h2 className="page__heading">¡Próximamente!</h2>
+        <p className="page__subtitle">
+          Estamos trabajando para tener las versiones en Android y iPhone
+        </p>
+        <div className="d-flex justify-content-center">
+          <a href="#" className="app-store">
+            <FontAwesomeIcon
+              icon={['fab', 'google-play']}
+              className="app-store__icon"
+            />
+            Google Play
+          </a>
+          <a href="#" className="app-store">
+            <FontAwesomeIcon
+              icon={['fab', 'apple']}
+              className="app-store__icon"
+            />{' '}
+            App Store
+          </a>
+        </div>
       </Container>
-      <section>
-        <Container>
-          <div>
-            <div>
-              <h3 className="text-primary">
+      <section className="py-5">
+        <Container className="container-narrow">
+          <div className="d-flex flex-column flex-lg-row align-items-center justify-content-center">
+            <div className="text-center text-lg-left">
+              <h3 className="text-primary h4">
                 ¿Quieres informar alguna situación pero no tienes cuenta?
               </h3>
-              <p>
+              <p class="page__subtitle">
                 Puedes Informarla de todas formas, ingresando los datos
                 solicitados.
               </p>
             </div>
-            <div>
-              <button className="btn btn-primary btn-lg">Informar</button>
+            <div className="mx-4">
+              <button className="btn btn-primary btn-lg btn-long">
+                Informar
+              </button>
             </div>
           </div>
         </Container>
