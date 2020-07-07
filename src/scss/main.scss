@@ -330,3 +330,18 @@ ol {
     }
   }
 }
+.mx-auto-upto-lg {
+  margin: {
+    left: auto;
+    right: auto;
+  }
+}
+
+@media (max-width: var(--breakpoint-lg)) {
+  .mx-auto-upto-lg {
+    margin: {
+      left: 0;
+      right: 0;
+    }
+  }
+}

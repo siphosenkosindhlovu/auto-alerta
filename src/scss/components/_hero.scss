@@ -40,7 +40,7 @@
   }
 }
 
-@include media-breakpoint-up(lg) {
+@include media-breakpoint-up(xl) {
   .hero {
     height: 600px;
     &__title {
@@ -53,9 +53,8 @@
         size: 20px;
       }
       line-height: 25px;
-      //font: Medium 20px/25px 'Helvetica Neue';
-      @extend .py-lg-3;
-      @extend .px-lg-5;
+      @extend .py-xl-3;
+      @extend .px-xl-5;
     }
   }
 }

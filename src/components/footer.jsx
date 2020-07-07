@@ -18,10 +18,10 @@ import checkCircle from 'images/check-VB_Mesa de trabajo 1.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export default function Footer() {
   const navItems = [
-    {title: 'Página de inicio', href: '/'},
-    {title: 'Términos y condiciones', href: '/terminos'},
-    {title: 'Preguntas Frecuentes', href: '/preguntas-frecuentes'},
-    {title: 'Contáctanos', href: '/contacto'},
+    { title: 'Página de inicio', href: '/' },
+    { title: 'Términos y condiciones', href: '/terminos' },
+    { title: 'Preguntas Frecuentes', href: '/preguntas-frecuentes' },
+    { title: 'Contáctanos', href: '/contacto' },
   ];
   return (
     <footer className="footer py-5">
@@ -41,7 +41,7 @@ export default function Footer() {
           <Col xs={6} lg={4}>
             <Nav variant="dark" as="ul">
               <NavItem as="li">
-                {navItems.map(({title, href}) => (
+                {navItems.map(({ title, href }) => (
                   <Link component={NavLink} to={href}>
                     <FontAwesomeIcon
                       icon="chevron-right"
@@ -60,9 +60,18 @@ export default function Footer() {
                   Inscríbete a nuestras noticias
                 </FormLabel>
                 <InputGroup>
-                  <FormControl className="subscribe-form__input" type="email" placeholder="Ingresa tu email" />
+                  <FormControl
+                    className="subscribe-form__input"
+                    type="email"
+                    placeholder="Ingresa tu email"
+                  />
                   <InputGroup.Append>
-                    <Button  className="subscribe-form__input subscribe-form__input--submit" type="submit">Enviar</Button>
+                    <Button
+                      className="subscribe-form__input subscribe-form__input--submit"
+                      type="submit"
+                    >
+                      Enviar
+                    </Button>
                   </InputGroup.Append>
                 </InputGroup>
                 <FormText className="text-primary">

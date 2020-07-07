@@ -13,8 +13,8 @@ export default function Hero() {
       /> */}
       <Container className="hero__content text-center">
         <Row>
-          <Col lg={{ offset: 5 }}>
-            <h1 className="hero__title mb-3 mb-lg-4">
+          <Col xl={{ offset: 5 }}>
+            <h1 className="hero__title mb-3 mb-xl-4">
               ¡No más robo de vehículos!
             </h1>
             <a href="/registro" className="btn btn-primary hero__cta">

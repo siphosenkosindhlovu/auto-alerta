@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export function FilterSearchHeader({ children, desktop }) {
   let classNames = 'filter-search__header bg-primary align-self-center';
-  if (!desktop) classNames += ' d-lg-none';
+  if (!desktop) classNames += ' d-xl-none';
   if (desktop) classNames += ' filter-search__header--desktop';
   return <div className={classNames}>{children}</div>;
 }
@@ -21,7 +21,7 @@ export function FilterSearchHeader({ children, desktop }) {
 export default function FilterSearch() {
   return (
     <section
-      class="filter-search__wrapper pt-0 pb-3 py-lg-5"
+      class="filter-search__wrapper pt-0 pb-3 py-xl-5"
       style={{ backgroundColor: '#e5e5e5' }}
     >
       {' '}
@@ -31,8 +31,8 @@ export default function FilterSearch() {
       </FilterSearchHeader>
       <Container>
         <Form>
-          <Row className="align-items-end justify-content-center mx-auto">
-            <Col lg={2} className="d-none d-lg-block">
+          <Row className="align-items-end mx-auto">
+            <Col xl={2} className="d-none d-xl-block">
               <FormGroup>
                 <FilterSearchHeader desktop>Informar</FilterSearchHeader>
               </FormGroup>
@@ -46,7 +46,7 @@ export default function FilterSearch() {
                 />
               </FormGroup>
             </Col>
-            <Col lg={4}>
+            <Col lg={5}>
               <FormGroup controlId="patente">
                 <FormLabel>Mensaje</FormLabel>
                 <FormControl
@@ -64,16 +64,14 @@ export default function FilterSearch() {
                 />
               </FormGroup>
             </Col>
-            <Col lg={1}>
-              <FormGroup className="text-center">
-                <Button
-                  className="filter-search__input filter-search__input--submit"
-                  type="submit"
-                >
-                  Enviar
-                </Button>
-              </FormGroup>
-            </Col>
+            <FormGroup className="text-center mx-auto-upto-lg">
+              <Button
+                className="filter-search__input filter-search__input--submit"
+                type="submit"
+              >
+                Enviar
+              </Button>
+            </FormGroup>
           </Row>
           <Row className="mx-0">
             <Col lg={{ offset: 2 }}>
