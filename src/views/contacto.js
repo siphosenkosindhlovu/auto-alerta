@@ -26,8 +26,8 @@ const Contact = (props) => {
       header="Contacto"
       subtitle="Si tienes dudas o comentarios de alguna situación importante."
     >
-      <section className="bg-white rounded">
-        <h2 className="subheader">¿En qué podemos ayudarte?</h2>
+      <section className="page__section">
+        <h2 className="page__subheading">¿En qué podemos ayudarte?</h2>
         <Form>
           <Container fluid>
             <Row>
@@ -73,7 +73,11 @@ const Contact = (props) => {
                 name="contacto_recaptcha"
               />
             </Form.Group>
-            <Button type="submit">Enviar</Button>
+            <div className="text-center">
+              <Button type="submit" className="btn-long btn-lg mt-3">
+                Enviar
+              </Button>
+            </div>
           </Container>
         </Form>
       </section>

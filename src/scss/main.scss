@@ -34,9 +34,8 @@ $container-max-widths: (
 $form-text-margin-top: 0.5rem;
 $input-placeholder-color: #b7b7b7;
 //$input-border-color: transparent;
-$input-btn-padding-y: 1rem;
-$input-btn-padding-x: 1.5rem;
-$btn-padding-x: 3rem;
+// $input-btn-padding-y: 1rem;
+// $input-btn-padding-x: 1.5rem;
 @import "~bootstrap/scss/bootstrap";
 html {
   font-size: 14px;
@@ -45,20 +44,22 @@ html {
   --base-font-size: 14px;
   --input-font-size: var(--base-font-size);
   --input-px: 1rem;
-  --input-py: 1rem;
+  --input-py: 0.5rem;
   --input-line-height: 1;
 
   --label-font-size: 14px;
   --label-font-weight: 500;
 
-  --heading-margin-top: 24px;
-  --heading-font-size: 28px;
-  --heading-color: #cf302a;
-  --heading-font-weight: 300;
-  --subtitle-font-size: 14px;
-  --subheading-font-size: 18px;
-  --subheading-weight: 700;
-
+  --page-heading-margin-top: 24px;
+  --page-heading-font-size: 28px;
+  --page-heading-color: #cf302a;
+  --page-heading-font-weight: 300;
+  --page-subtitle-font-size: 14px;
+  --page-subheading-font-size: 18pt;
+  --page-subheading-font-weight: 700;
+  --page-subheading-margin-bottom: 1.375rem;
+  --page-section-padding: 1.375rem 1.25rem;
+  --page-section-margin-bottom: 1.371rem;
   --inform-img-height: 85px;
 }
 @include media-breakpoint-up(lg) {
@@ -72,11 +73,15 @@ html {
 
     --label-font-size: 20px;
 
-    --heading-margin-top: 48px;
-    --heading-font-size: 51px;
-    --subtitle-font-size: 21px;
+    --page-heading-margin-top: 48px;
+    --page-heading-font-size: 51px;
+    --page-subtitle-font-size: 21px;
 
-    --subheading-font-size: 18px;
+    --page-subheading-font-size: 30px;
+    --page-subheading-margin-bottom: 3rem;
+
+    --page-section-padding: 3rem 1.5rem;
+    --page-section-margin-bottom: 3rem;
   }
 }
 @import "./components/forms";
@@ -88,14 +93,27 @@ html {
 @import "./components/hero";
 
 .page__heading {
-  font-size: var(--heading-font-size);
-  color: var(--heading-color);
-  font-weight: var(--heading-font-weight);
-  margin-top: var(--heading-margin-top);
+  font-size: var(--page-heading-font-size);
+  color: var(--page-heading-color);
+  font-weight: var(--page-heading-font-weight);
+  margin-top: var(--page-heading-margin-top);
 }
 
 .page__subtitle {
-  font-size: var(--subtitle-font-size);
+  font-size: var(--page-subtitle-font-size);
+}
+
+.page__section {
+  background-color: white;
+  border-radius: $border-radius;
+  padding: var(--page-section-padding);
+  margin-bottom: var(--page-section-margin-bottom);
+}
+
+.page__subheading {
+  font-size: var(--page-subheading-font-size);
+  font-weight: var(--page-subheading-font-weight);
+  margin-bottom: var(--page-subheading-margin-bottom);
 }
 
 .card {
@@ -210,7 +228,7 @@ ol {
   @extend .btn;
   background-color: black;
   color: white;
-  font-size: 15pt;
+  font-size: 15px;
   padding: 0.625rem 0.875rem;
   display: flex;
   align-items: center;
@@ -240,6 +258,75 @@ ol {
   .slick {
     &-list {
       width: auto;
+    }
+  }
+  .app-store {
+  }
+}
+
+//Terminos
+
+.terminos {
+  ol {
+    list-style-type: none;
+  }
+  & > ol {
+    counter-reset: item;
+    & > li {
+      margin-bottom: 1rem;
+      counter-increment: item;
+      &:before {
+        content: counter(item) ". ";
+        color: $primary;
+        font-weight: bold;
+      }
+      & > h3 {
+        font-size: 1rem;
+        display: inline-block;
+        color: var(--page-heading-color);
+        margin-bottom: 1rem;
+      }
+
+      ol {
+        list-style-type: none;
+        counter-reset: list;
+        li {
+          counter-increment: list;
+          &:before {
+            content: "(" counter(list, lower-roman) ") ";
+          }
+        }
+      }
+
+      &:nth-child(3) > ol {
+        list-style-type: none;
+        counter-reset: item;
+        & > li {
+          counter-increment: item;
+          &:before {
+            content: counters(item, ".") ". ";
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
+
+//Preguntas
+.faq {
+  .card {
+    margin-bottom: 1rem;
+    border-radius: $border-radius !important;
+    &-header {
+      background-color: white;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    &-body {
+      padding-top: 0;
     }
   }
 }

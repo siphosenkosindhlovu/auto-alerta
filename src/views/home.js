@@ -11,7 +11,6 @@ import accidente from 'images/accidente_Mesa de trabajo 1.svg';
 import descuido from 'images/descuido_Mesa de trabajo 1.svg';
 import bus from 'images/bus_Mesa de trabajo 1.svg';
 import label from 'images/label_Mesa de trabajo 1.svg';
-import Carousel from 'react-bootstrap/Carousel';
 import Slider from 'react-slick';
 import slide1 from 'images/Captura de Pantalla 2020-04-29 a la(s) 20.33.32.png';
 import slide2 from 'images/Captura de Pantalla 2020-04-29 a la(s) 20.34.29.png';
@@ -195,7 +194,7 @@ const Home = (props) => {
           </Row>
         </Container>
       </section>
-      <section className="text-center py-5">
+      <section className="text-center py-5 bg-white">
         <Container fluid style={{ overflowX: 'hidden' }}>
           <h2 className="page__heading">¿Cómo funciona?</h2>
           <p className="page__subtitle">
@@ -232,7 +231,7 @@ const Home = (props) => {
           </a>
         </div>
       </Container>
-      <section className="py-5">
+      <section className="py-5 bg-white">
         <Container className="container-narrow">
           <div className="d-flex flex-column flex-lg-row align-items-center justify-content-center">
             <div className="text-center text-lg-left">

@@ -1,9 +1,34 @@
-import React from 'react';
-
-import Container from 'react-bootstrap/Container';
+import React, { useContext } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
+import AccordionContext from 'react-bootstrap/AccordionContext';
+import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
+
 import Card from 'react-bootstrap/Card';
 import Layout from 'components/Layout';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+function Toggle({ children, eventKey, callback }) {
+  const currentEventKey = useContext(AccordionContext);
+
+  const decoratedOnClick = useAccordionToggle(
+    eventKey,
+    () => callback && callback(eventKey),
+  );
+
+  const isCurrentEventKey = currentEventKey === eventKey;
+
+  return (
+    <Card.Header onClick={decoratedOnClick}>
+      {children}
+      <FontAwesomeIcon
+        icon="chevron-down"
+        rotation={isCurrentEventKey ? 180 : 0}
+        className="text-primary"
+      />
+    </Card.Header>
+  );
+}
+
 const Preguntas = (props) => {
   const preguntasFrecuentes = [
     {
@@ -33,20 +58,19 @@ const Preguntas = (props) => {
       subtitle="Si tienes dudas o comentarios de alguna situación importante."
     >
       <section>
-        <Accordion>
+        <Accordion className="faq">
           {preguntasFrecuentes.map(({ title, body }, index) => {
             return (
               <Card>
-                <Accordion.Toggle
-                  as={Card.Header}
-                  eventKey={index}
-                  dangerouslySetInnerHTML={{ __html: title }}
-                />
+                <Toggle eventKey={index}>
+                  <div dangerouslySetInnerHTML={{ __html: title }} />
+                </Toggle>
 
                 <Accordion.Collapse eventKey={index}>
-                  <Card.Body
-                    dangerouslySetInnerHTML={{ __html: body }}
-                  ></Card.Body>
+                  <Card.Body>
+                    <hr />
+                    <p dangerouslySetInnerHTML={{ __html: body }}></p>
+                  </Card.Body>
                 </Accordion.Collapse>
               </Card>
             );

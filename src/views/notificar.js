@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Context } from './../store/appContext';
 import Layout from 'components/Layout';
@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import alertCircle from 'images/ic-alerta_Mesa de trabajo 1.svg';
 
 const Notificar = (props) => {
   const { store, actions } = useContext(Context);
@@ -19,8 +20,8 @@ const Notificar = (props) => {
         header={'Informar situación'}
         subtitle={`Completa los datos para enviar un mensaje a motos, autos, buses y camiones mediante Auto Alerta`}
       >
-        <section className="bg-white rounded">
-          <h2 className="subheader">Datos del vehículo</h2>
+        <section className="page__section">
+          <h2 className="page__subheading">Datos del vehículo</h2>
           <Container fluid>
             <Form>
               <Form.Group>
@@ -40,11 +41,28 @@ const Notificar = (props) => {
                 <Form.Label>Correo electrónico*</Form.Label>
                 <Form.Control type="text" placeholder="Ingrese tu correo" />
               </Form.Group>
-              <Form.Text>
-                Antes de notificar al destinatario, verificaremos que tu correo
-                sea válido.
-              </Form.Text>
-              <Button type="submit">Enviar</Button>
+              <Form.Group>
+                <Form.Text className="d-flex">
+                  <img
+                    style={{
+                      width: '1.25rem',
+                      height: '1.25rem',
+                      marginRight: '0.6rem',
+                    }}
+                    src={alertCircle}
+                    alt="Alert"
+                  />{' '}
+                  <div>
+                    Antes de notificar al destinatario, verificaremos que tu
+                    correo sea válido.
+                  </div>
+                </Form.Text>
+              </Form.Group>
+              <div className="text-center">
+                <Button type="submit" className="btn-long btn-lg mt-3">
+                  Enviar
+                </Button>
+              </div>
             </Form>
           </Container>
         </section>

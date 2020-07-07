@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 const Registro = (props) => {
   const { store, actions } = useContext(Context);
@@ -17,18 +18,18 @@ const Registro = (props) => {
         'Empieza a recibir notificaciones en caso de que tu vehículo se encuentre en peligro o alguna situación.'
       }
     >
-      <section>
-        <h2 className="subheader">Ingresa tus datos</h2>
+      <section className="page__section">
+        <h2 className="page__subheading">Ingresa tus datos</h2>
         <Form>
           <Container fluid>
             <Row>
-              <Col>
+              <Col xs={12} md={6}>
                 <Form.Group>
                   <Form.Label>Nombre y apellido*</Form.Label>
                   <Form.Control type="text" placeholder="Ingresa nombre" />
                 </Form.Group>
               </Col>
-              <Col>
+              <Col xs={12} md={6}>
                 <Form.Group>
                   <Form.Label>Correo electrónico*</Form.Label>
                   <Form.Control type="text" placeholder="Ingresa tu correo" />
@@ -36,13 +37,25 @@ const Registro = (props) => {
               </Col>
             </Row>
             <Row>
-              <Col>
+              <Col xs={12} md={6}>
                 <Form.Group>
                   <Form.Label>Teléfono</Form.Label>
-                  <Form.Control type="text" placeholder="Ingresa nombre" />
+                  {/* <Form.Control type="text" placeholder="Ingresa nombre" /> */}
+                  <InputGroup>
+                    <InputGroup.Prepend>
+                      <InputGroup.Text style={{ background: 'transparent' }}>
+                        +569
+                      </InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <Form.Control
+                      style={{ borderLeftColor: 'transparent' }}
+                      type="text"
+                      placeholder="XXXXXXXX"
+                    />
+                  </InputGroup>
                 </Form.Group>
               </Col>
-              <Col>
+              <Col xs={12} md={6}>
                 <Form.Group>
                   <Form.Label>Nº Patente*</Form.Label>
                   <Form.Control type="text" placeholder="VSRE23" />
@@ -51,7 +64,7 @@ const Registro = (props) => {
             </Row>
             <Row>
               <Col>
-                <Form.Check type="checkbox">
+                <Form.Check custom type="checkbox">
                   <Form.Check.Input type="checkbox" />
                   <Form.Check.Label>
                     He leído y acepto los {/*eslint-disable-next-line*/}
@@ -61,13 +74,15 @@ const Registro = (props) => {
               </Col>
             </Row>
             <div className="text-center">
-              <Button type="submit">Enviar</Button>
+              <Button type="submit" className="btn-long btn-lg mt-3">
+                Enviar
+              </Button>
             </div>
           </Container>
         </Form>
       </section>
       <section>
-        <div className="bg-primary p-4 rounded p-lg-5 text-white">
+        <div className="page__section bg-primary text-white">
           <h4>Beneficios de Registrarte</h4>
           <ol>
             <li>

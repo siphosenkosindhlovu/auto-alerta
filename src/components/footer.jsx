@@ -18,10 +18,10 @@ import checkCircle from 'images/check-VB_Mesa de trabajo 1.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export default function Footer() {
   const navItems = [
-    'Página de inicio',
-    'Términos y condiciones',
-    'Preguntas Frecuentes',
-    'Contáctanos',
+    {title: 'Página de inicio', href: '/'},
+    {title: 'Términos y condiciones', href: '/terminos'},
+    {title: 'Preguntas Frecuentes', href: '/preguntas-frecuentes'},
+    {title: 'Contáctanos', href: '/contacto'},
   ];
   return (
     <footer className="footer py-5">
@@ -41,13 +41,13 @@ export default function Footer() {
           <Col xs={6} lg={4}>
             <Nav variant="dark" as="ul">
               <NavItem as="li">
-                {navItems.map((item) => (
-                  <Link component={NavLink} to="/pagnai">
+                {navItems.map(({title, href}) => (
+                  <Link component={NavLink} to={href}>
                     <FontAwesomeIcon
                       icon="chevron-right"
                       className="text-primary mr-3"
                     />{' '}
-                    {item}
+                    {title}
                   </Link>
                 ))}
               </NavItem>

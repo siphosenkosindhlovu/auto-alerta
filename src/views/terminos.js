@@ -8,8 +8,8 @@ const Terminos = (props) => {
         header="Términos y condiciones"
         subtitle="Al usar nuestros servicios el usuario (también denominado como el “Usuario” o los “Usuarios”) acepta los siguientes términos y condiciones (los “Términos y Condiciones”)."
       >
-        <section className="bg-white rounded">
-          <h2 className="subheader">
+        <section className="page__section">
+          <h2 className="page__subheading">
             Cualquiera que no acepte estos términos y condiciones íntegramente,
             los cuáles son obligatorios y vinculantes, deberá abstenerse de usar
             el sitio web y los servicios de Auto Alerta.
@@ -32,7 +32,7 @@ const Terminos = (props) => {
               legal.
             </p>
           </Container>
-          <Container fluid>
+          <Container fluid className="terminos">
             <ol>
               <li>
                 <h3>Los Servicios.</h3>
@@ -97,7 +97,7 @@ const Terminos = (props) => {
                     del Usuario.
                   </li>
                   <li>
-                    Suspensi&oacute;n.
+                    <b>Suspensi&oacute;n.</b>
                     <ol>
                       <li>
                         <strong>AUTO ALERTA</strong> podr&aacute; suspender o

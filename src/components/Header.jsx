@@ -8,11 +8,12 @@ import NavbarCollapse from 'react-bootstrap/NavbarCollapse';
 import Nav from 'react-bootstrap/Nav';
 import NavLink from 'react-bootstrap/NavLink';
 import Logo from 'components/Logo';
+import Banner from 'components/Banner';
 
 export default function TopNav() {
   const { store } = useContext(Context);
   return (
-    <header>
+    <header style={{position: 'sticky', top: '0', backgroundColor: 'white', zIndex: '2000'}}>
       <Navbar expand="xl" className="container">
         <div class="navbar-header">
           <NavbarToggle />
@@ -46,6 +47,9 @@ export default function TopNav() {
           </Nav>
         </NavbarCollapse>
       </Navbar>
+      <Banner>
+        ¿Tienes dudas de cómo funciona? Haz click <a href="#">AQUÍ</a>
+      </Banner>
     </header>
   );
 }

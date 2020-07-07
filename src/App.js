@@ -13,15 +13,11 @@ import Terminos from './views/terminos';
 import Confirmacion from './views/confirmacion';
 import Configuracion from './views/configuracion';
 import ConfirmacionMessage from './views/confirmacion-message';
-import Banner from 'components/Banner';
 import 'fontawesomeLibrary';
 const Layout = (props) => {
   return (
     <BrowserRouter>
       <Header />
-      <Banner>
-        ¿Tienes dudas de cómo funciona? Haz click <a href="#">AQUÍ</a>
-      </Banner>
       <Switch>
         <Route exact path="/confirmation/:token" component={Confirmacion} />
         <Route exact path="/registro" component={Registro} />
