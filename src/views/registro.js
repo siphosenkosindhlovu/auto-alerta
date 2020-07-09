@@ -33,108 +33,73 @@ const Registro = (props) => {
     >
       <section className="page__section">
         <h2 className="page__subheading">Ingresa tus datos</h2>
-        <Formik
-          validationSchema={registro_schema}
-          initialValues={{
-            registro_nombre: '',
-            registro_email: '',
-            registro_patente: '',
-            registro_telefono: '',
-            registro_condiciones: true,
-          }}
-          onSubmit={() => {
-            showModal();
-          }}
-        >
-          {({ handleSubmit, getFieldProps, errors }) => (
-            <Form noValidate onSubmit={handleSubmit}>
-              <Container fluid>
-                <Row>
-                  <Col xs={12} md={6}>
-                    <Form.Group>
-                      <Form.Label>Nombre y apellido*</Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="Ingresa nombre"
-                        {...getFieldProps('registro_nombre')}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col xs={12} md={6}>
-                    <Form.Group>
-                      <Form.Label>Correo electrónico*</Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="Ingresa tu correo"
-                        {...getFieldProps('registro_email')}
-                      />
-                    </Form.Group>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xs={12} md={6}>
-                    <Form.Group>
-                      <Form.Label>Teléfono</Form.Label>
-                      <InputGroup>
-                        <InputGroup.Prepend>
-                          <InputGroup.Text
-                            style={{ background: 'transparent' }}
-                          >
-                            +569
-                          </InputGroup.Text>
-                        </InputGroup.Prepend>
-                        <Form.Control
-                          style={{ borderLeftColor: 'transparent' }}
-                          type="text"
-                          placeholder="XXXXXXXX"
-                          {...getFieldProps('registro_telefono')}
-                        />
-                      </InputGroup>
-                    </Form.Group>
-                  </Col>
-                  <Col xs={12} md={6}>
-                    <Form.Group>
-                      <Form.Label>Nº Patente*</Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="VSRE23"
-                        {...getFieldProps('registro_patente')}
-                      />
-                    </Form.Group>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <Form.Group>
-                      <Form.Check
-                        custom
-                        required
-                        id="terms-and-contitions"
-                        type="checkbox"
-                        {...getFieldProps('registro_condiciones')}
-                      >
-                        <Form.Check.Input
-                          value={true}
-                          checkbox
-                          {...getFieldProps('registro_condiciones')}
-                        />
-                        <Form.Check.Label>
-                          He leído y acepto los {/*eslint-disable-next-line*/}
-                          <a href="#">Términos y Condiciones</a> de Auto Alerta.
-                        </Form.Check.Label>
-                      </Form.Check>
-                    </Form.Group>
-                  </Col>
-                </Row>
-                <div className="text-center">
-                  <Button type="submit" className="btn-long btn-lg mt-3">
-                    Enviar
-                  </Button>
-                </div>
-              </Container>
-            </Form>
-          )}
-        </Formik>
+
+        <Form noValidate>
+          <Container fluid>
+            <Row>
+              <Col xs={12} md={6}>
+                <Form.Group>
+                  <Form.Label>Nombre y apellido*</Form.Label>
+                  <Form.Control type="text" placeholder="Ingresa nombre" />
+                </Form.Group>
+              </Col>
+              <Col xs={12} md={6}>
+                <Form.Group>
+                  <Form.Label>Correo electrónico*</Form.Label>
+                  <Form.Control type="text" placeholder="Ingresa tu correo" />
+                </Form.Group>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12} md={6}>
+                <Form.Group>
+                  <Form.Label>Teléfono</Form.Label>
+                  <InputGroup>
+                    <InputGroup.Prepend>
+                      <InputGroup.Text style={{ background: 'transparent' }}>
+                        +569
+                      </InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <Form.Control
+                      style={{ borderLeftColor: 'transparent' }}
+                      type="text"
+                      placeholder="XXXXXXXX"
+                    />
+                  </InputGroup>
+                </Form.Group>
+              </Col>
+              <Col xs={12} md={6}>
+                <Form.Group>
+                  <Form.Label>Nº Patente*</Form.Label>
+                  <Form.Control type="text" placeholder="VSRE23" />
+                </Form.Group>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Form.Group>
+                  <Form.Check
+                    custom
+                    required
+                    id="terms-and-contitions"
+                    type="checkbox"
+                  >
+                    <Form.Check.Input value={true} checkbox />
+                    <Form.Check.Label>
+                      He leído y acepto los {/*eslint-disable-next-line*/}
+                      <a href="#">Términos y Condiciones</a> de Auto Alerta.
+                    </Form.Check.Label>
+                  </Form.Check>
+                </Form.Group>
+              </Col>
+            </Row>
+            <div className="text-center">
+              <Button type="submit" className="btn-long btn-lg mt-3">
+                Enviar
+              </Button>
+            </div>
+          </Container>
+        </Form>
       </section>
       <section>
         <div className="page__section bg-primary text-white">
