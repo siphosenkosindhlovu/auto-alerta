@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Context } from '../store/appContext';
 import Layout from 'components/Layout';
@@ -12,127 +12,186 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Figure from 'react-bootstrap/Figure';
 import useModal from 'hooks/useModal';
 import moto from 'images/moto.png';
-import { Formik } from 'formik';
-import { registro_schema } from 'utils/validationSchema';
 const Registro = (props) => {
-  const { store, actions } = useContext(Context);
-  const { handleSubmitRegistro, handleChangeContact } = actions;
-  const {
-    registro_nombre,
-    registro_email,
-    registro_patente,
-    registro_condiciones,
-  } = store;
-  const { isShown, show: showModal, hide } = useModal();
-  return (
-    <Layout
-      header={'Registrate'}
-      subtitle={
-        'Empieza a recibir notificaciones en caso de que tu vehículo se encuentre en peligro o alguna situación.'
-      }
-    >
-      <section className="page__section">
-        <h2 className="page__subheading">Ingresa tus datos</h2>
+    const { store, actions } = useContext(Context);
+    const { handleSubmitRegistro, handleChangeContact } = actions;
+    const {
+        registro_nombre,
+        registro_email,
+        registro_patente,
+        registro_condiciones,
+        registro_errors,
+        registro_result_success,
+        registro_result_error,
+    } = store;
+    const { isShown, show: showModal, hide } = useModal();
 
-        <Form noValidate>
-          <Container fluid>
-            <Row>
-              <Col xs={12} md={6}>
-                <Form.Group>
-                  <Form.Label>Nombre y apellido*</Form.Label>
-                  <Form.Control type="text" placeholder="Ingresa nombre" />
-                </Form.Group>
-              </Col>
-              <Col xs={12} md={6}>
-                <Form.Group>
-                  <Form.Label>Correo electrónico*</Form.Label>
-                  <Form.Control type="text" placeholder="Ingresa tu correo" />
-                </Form.Group>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={12} md={6}>
-                <Form.Group>
-                  <Form.Label>Teléfono</Form.Label>
-                  <InputGroup>
-                    <InputGroup.Prepend>
-                      <InputGroup.Text style={{ background: 'transparent' }}>
-                        +569
-                      </InputGroup.Text>
-                    </InputGroup.Prepend>
-                    <Form.Control
-                      style={{ borderLeftColor: 'transparent' }}
-                      type="text"
-                      placeholder="XXXXXXXX"
-                    />
-                  </InputGroup>
-                </Form.Group>
-              </Col>
-              <Col xs={12} md={6}>
-                <Form.Group>
-                  <Form.Label>Nº Patente*</Form.Label>
-                  <Form.Control type="text" placeholder="VSRE23" />
-                </Form.Group>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <Form.Group>
-                  <Form.Check
-                    custom
-                    required
-                    id="terms-and-contitions"
-                    type="checkbox"
-                  >
-                    <Form.Check.Input value={true} checkbox />
-                    <Form.Check.Label>
-                      He leído y acepto los {/*eslint-disable-next-line*/}
-                      <a href="#">Términos y Condiciones</a> de Auto Alerta.
-                    </Form.Check.Label>
-                  </Form.Check>
-                </Form.Group>
-              </Col>
-            </Row>
-            <div className="text-center">
-              <Button type="submit" className="btn-long btn-lg mt-3">
-                Enviar
-              </Button>
-            </div>
-          </Container>
-        </Form>
-      </section>
-      <section>
-        <div className="page__section bg-primary text-white">
-          <div className="d-flex flex-column flex-lg-row">
-            <Figure className="mr-lg-4">
-              <img src={moto} alt="Moped" className="img-fluid" />
-            </Figure>
-            <div>
-              <h4>Beneficios de Registrarte</h4>
-              <ol className="list-circled-numbers">
-                <li>
-                  Recibirás notificaciones por parte de la comunidad de
-                  cualquier situación que le ocurra a tu vehículo.
-                </li>
-                <li>
-                  Te informaremos de constantes mejoras dentro de la web y app.
-                </li>
-                <li>Serás parte de la comunidad Auto Alerta.</li>
-              </ol>
-            </div>
-          </div>
-        </div>
-      </section>
-      <Modal
-        title="BIENVENIDO A AUTO ALERTA"
-        dismissButtonText="Aceptar"
-        show={isShown}
-        handleClose={hide}
-      >
-        Tu registro y tus datos han sido guardados exitosamente. Hemos enviado
-        un correo de confirmación a tu email.
-      </Modal>
-      {/* <section id="page">
+    useEffect(() => {
+        if (registro_result_success || registro_result_error) {
+            showModal();
+        }
+    });
+    return (
+        <Layout
+            header={'Registrate'}
+            subtitle={
+                'Empieza a recibir notificaciones en caso de que tu vehículo se encuentre en peligro o alguna situación.'
+            }
+        >
+            <section className="page__section">
+                <h2 className="page__subheading">Ingresa tus datos</h2>
+
+                <Form onSubmit={handleSubmitRegistro}>
+                    <Container fluid>
+                        <Row>
+                            <Col xs={12} md={6}>
+                                <Form.Group>
+                                    <Form.Label>Nombre y apellido*</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        name="registro_nombre"
+                                        placeholder="Ingresa nombre"
+                                        onChange={handleChangeContact}
+                                        isInvalid={!!registro_errors.nombre}
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                        {registro_errors.nombre}
+                                    </Form.Control.Feedback>
+                                </Form.Group>
+                            </Col>
+                            <Col xs={12} md={6}>
+                                <Form.Group>
+                                    <Form.Label>Correo electrónico*</Form.Label>
+                                    <Form.Control
+                                        name="registro_email"
+                                        type="text"
+                                        placeholder="Ingresa tu correo"
+                                        onChange={handleChangeContact}
+                                        isInvalid={!!registro_errors.email}
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                        {registro_errors.email}
+                                    </Form.Control.Feedback>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xs={12} md={6}>
+                                <Form.Group>
+                                    <Form.Label>Teléfono</Form.Label>
+                                    <InputGroup>
+                                        <InputGroup.Prepend>
+                                            <InputGroup.Text
+                                                style={{
+                                                    background: 'transparent',
+                                                }}
+                                            >
+                                                +569
+                                            </InputGroup.Text>
+                                        </InputGroup.Prepend>
+                                        <Form.Control
+                                            style={{
+                                                borderLeftColor: 'transparent',
+                                            }}
+                                            type="text"
+                                            placeholder="XXXXXXXX"
+                                        />
+                                    </InputGroup>
+                                </Form.Group>
+                            </Col>
+                            <Col xs={12} md={6}>
+                                <Form.Group>
+                                    <Form.Label>Nº Patente*</Form.Label>
+                                    <Form.Control
+                                        name="registro_patente"
+                                        type="text"
+                                        placeholder="VSRE23"
+                                        onChange={handleChangeContact}
+                                        isInvalid={!!registro_errors.patente}
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                        {registro_errors.patente}
+                                    </Form.Control.Feedback>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Form.Group>
+                                    <Form.Check
+                                        custom
+                                        required
+                                        id="terms-and-contitions"
+                                        type="checkbox"
+                                        onChange={handleChangeContact}
+                                        isInvalid={true}
+                                        feedback={registro_errors.condiciones}
+                                    >
+                                        <Form.Check.Input
+                                            value={true}
+                                            checkbox
+                                        />
+                                        <Form.Check.Label>
+                                            He leído y acepto los{' '}
+                                            {/*eslint-disable-next-line*/}
+                                            <a href="#">
+                                                Términos y Condiciones
+                                            </a>{' '}
+                                            de Auto Alerta.
+                                        </Form.Check.Label>
+                                    </Form.Check>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <div className="text-center">
+                            <Button
+                                type="submit"
+                                className="btn-long btn-lg mt-3"
+                            >
+                                Enviar
+                            </Button>
+                        </div>
+                    </Container>
+                </Form>
+            </section>
+            <section>
+                <div className="page__section bg-primary text-white">
+                    <div className="d-flex flex-column flex-lg-row">
+                        <Figure className="mr-lg-4">
+                            <img src={moto} alt="Moped" className="img-fluid" />
+                        </Figure>
+                        <div>
+                            <h4>Beneficios de Registrarte</h4>
+                            <ol className="list-circled-numbers">
+                                <li>
+                                    Recibirás notificaciones por parte de la
+                                    comunidad de cualquier situación que le
+                                    ocurra a tu vehículo.
+                                </li>
+                                <li>
+                                    Te informaremos de constantes mejoras dentro
+                                    de la web y app.
+                                </li>
+                                <li>
+                                    Serás parte de la comunidad Auto Alerta.
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {!!(registro_result_success || registro_result_error)}
+            <Modal
+                title="BIENVENIDO A AUTO ALERTA"
+                dismissButtonText="Aceptar"
+                show={isShown}
+                handleClose={hide}
+                success={true}
+            >
+                Tu registro y tus datos han sido guardados exitosamente. Hemos
+                enviado un correo de confirmación a tu email.
+            </Modal>
+            {/* <section id="page">
         <div className="container">
           <h1>Registro</h1>
           <hr />
@@ -352,8 +411,8 @@ const Registro = (props) => {
           )}
         </div>
       </section> */}
-    </Layout>
-  );
+        </Layout>
+    );
 };
 
 export default Registro;
