@@ -9,10 +9,13 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Layout from 'components/Layout';
+import Modal from 'components/BaseModal';
+import useModal from 'hooks/useModal';
 
 const Contact = (props) => {
   const { store, actions } = useContext(Context);
   //6LcXsh4TAAAAAIMQIRcgdLIoA9KOz3mB2qKs4LOY
+  const { isShown, show: showModal, hide } = useModal();
   const {
     contacto_errors: errors,
     contacto_nombre: name,
@@ -74,12 +77,27 @@ const Contact = (props) => {
               />
             </Form.Group>
             <div className="text-center">
-              <Button type="submit" className="btn-long btn-lg mt-3">
+              <Button
+                type="submit"
+                className="btn-long btn-lg mt-3"
+                onClick={(e) => {
+                  e.preventDefault();
+                  showModal();
+                }}
+              >
                 Enviar
               </Button>
             </div>
           </Container>
         </Form>
+        <Modal
+          title="MENSAJE RECIBIDO"
+          dismissButtonText="Aceptar"
+          show={isShown}
+          handleClose={hide}
+        >
+          Recibimos tu mensaje. Nos pondremos en contacto contigo a la brevedad.
+        </Modal>
       </section>
       {/* <div className="container">
         <h1>Contacto</h1>

@@ -9,7 +9,8 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import alertCircle from 'images/ic-alerta_Mesa de trabajo 1.svg';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Modal from 'components/BaseModal';
+import useModal from 'hooks/useModal';
 
 export function FilterSearchHeader({ children, desktop }) {
   let classNames = 'filter-search__header bg-primary align-self-center';
@@ -19,6 +20,7 @@ export function FilterSearchHeader({ children, desktop }) {
 }
 
 export default function FilterSearch() {
+  const { isShown, show: showModal, hide } = useModal();
   return (
     <section
       class="filter-search__wrapper pt-0 pb-3 py-xl-5"
@@ -46,7 +48,7 @@ export default function FilterSearch() {
                 />
               </FormGroup>
             </Col>
-            <Col lg={5}>
+            <Col lg={5} xl={4}>
               <FormGroup controlId="patente">
                 <FormLabel>Mensaje</FormLabel>
                 <FormControl
@@ -64,10 +66,14 @@ export default function FilterSearch() {
                 />
               </FormGroup>
             </Col>
-            <FormGroup className="text-center mx-auto-upto-lg">
+            <FormGroup className="text-center col-lg">
               <Button
                 className="filter-search__input filter-search__input--submit"
                 type="submit"
+                onClick={(e) => {
+                  e.preventDefault();
+                  showModal();
+                }}
               >
                 Enviar
               </Button>
@@ -96,6 +102,16 @@ export default function FilterSearch() {
           </Row>
         </Form>
       </Container>
+      <Modal
+        title="ALERTA RECIBIDA"
+        dismissButtonText="Aceptar"
+        show={isShown}
+        handleClose={hide}
+      >
+        Hemos recibido la información ingresada. Una vez que validemos tu correo
+        notificaremos al dueño del vehículo. Gracias por ser parte de nuestra
+        comunidad.
+      </Modal>
     </section>
   );
 }

@@ -8,9 +8,11 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import alertCircle from 'images/ic-alerta_Mesa de trabajo 1.svg';
-
+import Modal from 'components/BaseModal';
+import useModal from 'hooks/useModal';
 const Notificar = (props) => {
   const { store, actions } = useContext(Context);
+  const { isShown, show: showModal, hide } = useModal();
   const AceptarTerminosCondiciones = () => {
     //alert(1);
   };
@@ -59,13 +61,30 @@ const Notificar = (props) => {
                 </Form.Text>
               </Form.Group>
               <div className="text-center">
-                <Button type="submit" className="btn-long btn-lg mt-3">
+                <Button
+                  type="submit"
+                  className="btn-long btn-lg mt-3"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    showModal();
+                  }}
+                >
                   Enviar
                 </Button>
               </div>
             </Form>
           </Container>
         </section>
+        <Modal
+          title="ALERTA RECIBIDA"
+          dismissButtonText="Aceptar"
+          show={isShown}
+          handleClose={hide}
+        >
+          Hemos recibido la información ingresada. Una vez que validemos tu
+          correo notificaremos al dueño del vehículo. Gracias por ser parte de
+          nuestra comunidad.
+        </Modal>
         {/* <section id="page">
         <div className="container">
           <h1>Informar situación</h1>

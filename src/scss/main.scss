@@ -91,6 +91,7 @@ html {
 @import "./components/footer";
 @import "./components/banner";
 @import "./components/hero";
+@import "./components/modal";
 
 .page__heading {
   font-size: var(--page-heading-font-size);
@@ -266,6 +267,37 @@ ol {
 
 //Terminos
 
+.list-circled-numbers {
+  list-style-type: none;
+  counter-reset: list;
+  li {
+    counter-increment: list;
+    display: table;
+    position: relative;
+    &:before {
+      content: " ";
+      display: table-cell;
+      width: 1.5rem;
+    }
+    &:after {
+      content: counter(list);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background-color: white;
+      color: $primary;
+      width: 1rem;
+      height: 1rem;
+      font-size: 0.75rem;
+      margin-right: 1rem;
+      position: absolute;
+      left: 0;
+      top: 0.375rem;
+    }
+  }
+}
+
 .terminos {
   ol {
     list-style-type: none;
@@ -332,16 +364,16 @@ ol {
 }
 .mx-auto-upto-lg {
   margin: {
-    left: auto;
-    right: auto;
+    left: 0;
+    right: 0;
   }
 }
 
 @media (max-width: var(--breakpoint-lg)) {
   .mx-auto-upto-lg {
     margin: {
-      left: 0;
-      right: 0;
+      left: auto;
+      right: auto;
     }
   }
 }

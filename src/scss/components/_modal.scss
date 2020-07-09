@@ -1,0 +1,18 @@
+.modal {
+  text-align: center;
+  &-content {
+    border: none;
+    border-radius: 10pt;
+    padding: 2rem;
+  }
+  &-header {
+    border-bottom: none;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+  }
+  &-footer {
+    border-top: none;
+    justify-content: center;
+  }
+}

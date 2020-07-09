@@ -1,70 +1,73 @@
 import React, { Fragment, useContext, useEffect } from 'react';
 import { Context } from '../store/appContext';
+import Layout from 'components/Layout';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
 //import { Link } from 'react-router-dom';
 
-const Login = props => {
-    const { store, actions } = useContext(Context);
+const Login = (props) => {
+  const { store, actions } = useContext(Context);
 
-    useEffect(() => {
-        if (store.isAuthenticated) props.history.push("/");
-    });
+  useEffect(() => {
+    if (store.isAuthenticated) props.history.push('/');
+  });
 
-    return (
-        <Fragment>
-            <section id="page">
-                <div className="container">
-
-                    <h1>Login</h1>
-                    <hr />
-
-                    <form method="post" className="form-horizontal col-lg-12" onSubmit={e => actions.getLogin(e, '/api/login', props.history)}>
-
-                        <br />
-
-                        {!!store.error && (
-                            <div className="col-lg-9 col-md-offset-1">
-                                <div className="alert alert-danger">
-                                    {store.error.msg}
-                                </div>
-                            </div>
-                        )}
-
-                        <div className="form-group">
-                            <div className="col-lg-8 col-md-offset-1">
-                                <div className="form-group control-type-text control-name-nombre ">
-                                    <label htmlFor="contacto_nombre" className="col-lg-3 control-label">Email</label>
-                                    <div className="col-lg-9"><input type="text" name="email" className="form-control"
-                                        placeholder="john.doe@email.com" id="contacto_nombre" onChange={e => actions.handleChange(e)} /></div>
-
-                                    <div className="col-lg-offset-3 col-lg-9">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="form-group">
-                            <div className="col-lg-8 col-md-offset-1">
-                                <div className="form-group control-type-text control-name-nombre ">
-                                    <label htmlFor="contacto_password" className="col-lg-3 control-label">Password</label>
-                                    <div className="col-lg-9"><input type="password" name="password" className="form-control"
-                                        placeholder="*********" id="contacto_password" onChange={e => actions.handleChange(e)} /></div>
-
-                                    <div className="col-lg-offset-3 col-lg-9">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="form-group">
-                            <div className="col-lg-12">
-                                <div className="text-center">
-                                    <button type="submit" className="btn btn-lg btn-success">Login</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </section>
-        </Fragment>
-    )
-}
+  return (
+    <>
+      <Layout header="Login">
+        <section className="page__section">
+          {!!store.error && (
+            <div className="mb-5">
+              <Alert>{store.error.msg}</Alert>
+            </div>
+          )}
+          <Row>
+            <Form
+              className="col-lg-7"
+              onSubmit={(e) => actions.getLogin(e, '/api/login', props.history)}
+            >
+              <Form.Group as={Row}>
+                <Form.Label column lg={3}>
+                  Email
+                </Form.Label>
+                <Col lg={9}>
+                  <Form.Control
+                    type="email"
+                    name="email"
+                    className="form-control"
+                    placeholder="john.doe@email.com"
+                    id="contacto_nombre"
+                    onChange={(e) => actions.handleChange(e)}
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row}>
+                <Form.Label column lg={3}>
+                  Password
+                </Form.Label>
+                <Col lg={9}>
+                  <Form.Control
+                    type="password"
+                    name="password"
+                    placeholder="********"
+                    onChange={(e) => actions.handleChange(e)}
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row}>
+                <Col lg={{ span: 9, offset: 3 }}>
+                  <Button type="submit">Sign in</Button>
+                </Col>
+              </Form.Group>
+            </Form>
+          </Row>
+        </section>
+      </Layout>
+    </>
+  );
+};
 
 export default Login;
