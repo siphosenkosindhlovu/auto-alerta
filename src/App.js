@@ -20,6 +20,7 @@ const Layout = (props) => {
       <Header />
       <Switch>
         <Route exact path="/confirmation/:token" component={Confirmacion} />
+        <Route exact path="/confirmation/" component={Confirmacion} />
         <Route exact path="/registro" component={Registro} />
         <Route exact path="/configuracion/:mod" component={Configuracion} />
         <Route exact path="/configuracion" component={Configuracion} />
