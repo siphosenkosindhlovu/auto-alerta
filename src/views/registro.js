@@ -16,21 +16,22 @@ const Registro = (props) => {
     const { store, actions } = useContext(Context);
     const { handleSubmitRegistro, handleChangeContact } = actions;
     const {
-        registro_nombre,
-        registro_email,
-        registro_patente,
-        registro_condiciones,
-        registro_errors,
-        registro_result_success,
-        registro_result_error,
+        registro_nombre: nombre,
+        registro_email: email,
+        registro_patente: patente,
+        registro_condiciones: condiciones,
+        registro_errors: errors,
+        registro_result_success: result_success,
+        registro_result_error: result_error,
     } = store;
     const { isShown, show: showModal, hide } = useModal();
 
     useEffect(() => {
-        if (registro_result_success || registro_result_error) {
+        if (result_success || result_error) {
+            console.log('Show');
             showModal();
         }
-    });
+    }, [result_success, result_error, showModal]);
     return (
         <Layout
             header={'Registrate'}
@@ -41,7 +42,7 @@ const Registro = (props) => {
             <section className="page__section">
                 <h2 className="page__subheading">Ingresa tus datos</h2>
 
-                <Form onSubmit={handleSubmitRegistro}>
+                <Form>
                     <Container fluid>
                         <Row>
                             <Col xs={12} md={6}>
@@ -52,10 +53,11 @@ const Registro = (props) => {
                                         name="registro_nombre"
                                         placeholder="Ingresa nombre"
                                         onChange={handleChangeContact}
-                                        isInvalid={!!registro_errors.nombre}
+                                        isInvalid={!!errors.nombre}
+                                        value={nombre}
                                     />
                                     <Form.Control.Feedback type="invalid">
-                                        {registro_errors.nombre}
+                                        {errors.nombre}
                                     </Form.Control.Feedback>
                                 </Form.Group>
                             </Col>
@@ -67,10 +69,11 @@ const Registro = (props) => {
                                         type="text"
                                         placeholder="Ingresa tu correo"
                                         onChange={handleChangeContact}
-                                        isInvalid={!!registro_errors.email}
+                                        isInvalid={!!errors.email}
+                                        value={email}
                                     />
                                     <Form.Control.Feedback type="invalid">
-                                        {registro_errors.email}
+                                        {errors.email}
                                     </Form.Control.Feedback>
                                 </Form.Group>
                             </Col>
@@ -107,10 +110,11 @@ const Registro = (props) => {
                                         type="text"
                                         placeholder="VSRE23"
                                         onChange={handleChangeContact}
-                                        isInvalid={!!registro_errors.patente}
+                                        isInvalid={!!errors.patente}
+                                        value={patente}
                                     />
                                     <Form.Control.Feedback type="invalid">
-                                        {registro_errors.patente}
+                                        {errors.patente}
                                     </Form.Control.Feedback>
                                 </Form.Group>
                             </Col>
@@ -123,12 +127,15 @@ const Registro = (props) => {
                                         required
                                         id="terms-and-contitions"
                                         type="checkbox"
-                                        onChange={handleChangeContact}
-                                        isInvalid={true}
-                                        feedback={registro_errors.condiciones}
+                                        feedback={errors.condiciones}
                                     >
                                         <Form.Check.Input
-                                            value={true}
+                                            onChange={handleChangeContact}
+                                            name="registro_condiciones"
+                                            value={condiciones}
+                                            isInvalid={
+                                                !!errors.condiciones
+                                            }
                                             checkbox
                                         />
                                         <Form.Check.Label>
@@ -140,6 +147,9 @@ const Registro = (props) => {
                                             de Auto Alerta.
                                         </Form.Check.Label>
                                     </Form.Check>
+                                    <Form.Control.Feedback type="invalid">
+                                        {errors.patente}
+                                    </Form.Control.Feedback>
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -147,6 +157,7 @@ const Registro = (props) => {
                             <Button
                                 type="submit"
                                 className="btn-long btn-lg mt-3"
+                                onClick={handleSubmitRegistro}
                             >
                                 Enviar
                             </Button>
@@ -180,15 +191,14 @@ const Registro = (props) => {
                     </div>
                 </div>
             </section>
-            {!!(registro_result_success || registro_result_error)}
             <Modal
                 title="BIENVENIDO A AUTO ALERTA"
                 dismissButtonText="Aceptar"
                 show={isShown}
                 handleClose={hide}
-                success={true}
+                success={false}
             >
-                Tu registro y tus datos han sido guardados exitosamente. Hemos
+                Tu registro y tus da-tos han sido guardados exitosamente. Hemos
                 enviado un correo de confirmación a tu email.
             </Modal>
             {/* <section id="page">

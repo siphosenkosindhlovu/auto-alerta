@@ -11,81 +11,117 @@ import alertCircle from 'images/ic-alerta_Mesa de trabajo 1.svg';
 import Modal from 'components/BaseModal';
 import useModal from 'hooks/useModal';
 const Notificar = (props) => {
-  const { store, actions } = useContext(Context);
-  const { isShown, show: showModal, hide } = useModal();
-  const AceptarTerminosCondiciones = () => {
-    //alert(1);
-  };
-  return (
-    <>
-      <Layout
-        header={'Informar situación'}
-        subtitle={`Completa los datos para enviar un mensaje a motos, autos, buses y camiones mediante Auto Alerta`}
-      >
-        <section className="page__section">
-          <h2 className="page__subheading">Datos del vehículo</h2>
-          <Container fluid>
-            <Form>
-              <Form.Group>
-                <Form.Label>Nº Patente*</Form.Label>
-                <Form.Control type="text" placeholder="VSRE23" />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Mensaje*</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  placeholder="Ingresa detalles de la situación vista"
-                  rows="4"
-                />
-              </Form.Group>
-              <hr className="bg-primary" />
-              <Form.Group>
-                <Form.Label>Correo electrónico*</Form.Label>
-                <Form.Control type="text" placeholder="Ingrese tu correo" />
-              </Form.Group>
-              <Form.Group>
-                <Form.Text className="d-flex">
-                  <img
-                    style={{
-                      width: '1.25rem',
-                      height: '1.25rem',
-                      marginRight: '0.6rem',
-                    }}
-                    src={alertCircle}
-                    alt="Alert"
-                  />{' '}
-                  <div>
-                    Antes de notificar al destinatario, verificaremos que tu
-                    correo sea válido.
-                  </div>
-                </Form.Text>
-              </Form.Group>
-              <div className="text-center">
-                <Button
-                  type="submit"
-                  className="btn-long btn-lg mt-3"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    showModal();
-                  }}
+    const { store, actions } = useContext(Context);
+    const {
+        notificar_patente: patente,
+        notificar_mensaje: mensanje,
+        notificar_email: email,
+        notificar_errors: errors,
+        notificar_result,
+        notificar_result_success,
+        notificar_result_error,
+        notificar_confirm_success,
+        notificar_confirm_msg,
+    } = store;
+
+    const { handleChange, handleSubmitNotificar } = actions;
+    const { isShown, show: showModal, hide } = useModal();
+    const AceptarTerminosCondiciones = () => {
+        //alert(1);
+    };
+    return (
+        <>
+            <Layout
+                header={'Informar situación'}
+                subtitle={`Completa los datos para enviar un mensaje a motos, autos, buses y camiones mediante Auto Alerta`}
+            >
+                <section className="page__section">
+                    <h2 className="page__subheading">Datos del vehículo</h2>
+                    <Container fluid>
+                        <Form onSubmit={handleSubmitNotificar}>
+                            <Form.Group>
+                                <Form.Label>Nº Patente*</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="VSRE23"
+                                    name="notificar_patente"
+                                    value={patente}
+                                    onChange={handleChange}
+                                    isInvalid={!!errors.patente}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.patente}
+                                </Form.Control.Feedback>
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label>Mensaje*</Form.Label>
+                                <Form.Control
+                                    as="textarea"
+                                    name="notificar_mensanje"
+                                    placeholder="Ingresa detalles de la situación vista"
+                                    rows="4"
+                                    value={mensanje}
+                                    onChange={handleChange}
+                                    isInvalid={!!errors.mensaje}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.mensaje}
+                                </Form.Control.Feedback>
+                            </Form.Group>
+                            <hr className="bg-primary" />
+                            <Form.Group>
+                                <Form.Label>Correo electrónico*</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="notificar_email"
+                                    placeholder="Ingrese tu correo"
+                                    value={email}
+                                    onChange={handleChange}
+                                    isInvalid={!!errors.email}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.email}
+                                </Form.Control.Feedback>
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Text className="d-flex">
+                                    <img
+                                        style={{
+                                            width: '1.25rem',
+                                            height: '1.25rem',
+                                            marginRight: '0.6rem',
+                                        }}
+                                        src={alertCircle}
+                                        alt="Alert"
+                                    />{' '}
+                                    <div>
+                                        Antes de notificar al destinatario,
+                                        verificaremos que tu correo sea válido.
+                                    </div>
+                                </Form.Text>
+                            </Form.Group>
+                            <div className="text-center">
+                                <Button
+                                    type="submit"
+                                    className="btn-long btn-lg mt-3"
+                                >
+                                    Enviar
+                                </Button>
+                            </div>
+                        </Form>
+                    </Container>
+                </section>
+                <Modal
+                    title="ALERTA RECIBIDA"
+                    dismissButtonText="Aceptar"
+                    show={isShown}
+                    handleClose={hide}
                 >
-                  Enviar
-                </Button>
-              </div>
-            </Form>
-          </Container>
-        </section>
-        <Modal
-          title="ALERTA RECIBIDA"
-          dismissButtonText="Aceptar"
-          show={isShown}
-          handleClose={hide}
-        >
-          Hemos recibido la información ingresada. Una vez que validemos tu
-          correo notificaremos al dueño del vehículo. Gracias por ser parte de
-          nuestra comunidad.
-        </Modal>
-        {/* <section id="page">
+                    Hemos recibido la información ingresada. Una vez que
+                    validemos tu correo notificaremos al dueño del vehículo.
+                    Gracias por ser parte de nuestra comunidad.
+                </Modal>
+                {/* <section id="page">
         <div className="container">
           <h1>Informar situación</h1>
           <hr />
@@ -252,9 +288,9 @@ const Notificar = (props) => {
           </form>
         </div>
       </section> */}
-      </Layout>
-    </>
-  );
+            </Layout>
+        </>
+    );
 };
 
 export default Notificar;

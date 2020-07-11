@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Context } from './../store/appContext';
 //import { loadReCaptcha, ReCaptcha } from 'react-recaptcha-google';
@@ -13,93 +13,141 @@ import Modal from 'components/BaseModal';
 import useModal from 'hooks/useModal';
 
 const Contact = (props) => {
-  const { store, actions } = useContext(Context);
-  //6LcXsh4TAAAAAIMQIRcgdLIoA9KOz3mB2qKs4LOY
-  const { isShown, show: showModal, hide } = useModal();
-  const {
-    contacto_errors: errors,
-    contacto_nombre: name,
-    contacto_email: email,
-    contacto_result: result,
-  } = store;
-  const { handleChangeContact, handleSubmitContact, clearData } = actions;
+    const { store, actions } = useContext(Context);
+    //6LcXsh4TAAAAAIMQIRcgdLIoA9KOz3mB2qKs4LOY
+    const { isShown, show: showModal, hide } = useModal();
+    const {
+        contacto_errors: errors,
+        contacto_nombre: nombre,
+        contacto_asunto: asunto,
+        contacto_email: email,
+        contacto_result: result,
+        contacto_mensaje: message,
+    } = store;
+    const {
+        handleChangeContact,
+        handleSubmitContact,
+        clearData,
+        verifyCallback,
+    } = actions;
 
-  return (
-    <Layout
-      header="Contacto"
-      subtitle="Si tienes dudas o comentarios de alguna situación importante."
-    >
-      <section className="page__section">
-        <h2 className="page__subheading">¿En qué podemos ayudarte?</h2>
-        <Form>
-          <Container fluid>
-            <Row>
-              <Col>
-                <Form.Group>
-                  <Form.Label>Nombre y apellido*</Form.Label>
-                  <Form.Control type="text" placeholder="Ingresa nombre" />
-                </Form.Group>
-              </Col>
-              <Col>
-                <Form.Group>
-                  <Form.Label>Correo electrónico*</Form.Label>
-                  <Form.Control type="text" placeholder="Ingresa tu correo" />
-                </Form.Group>
-              </Col>
-            </Row>
-            <Form.Group>
-              <Form.Label>Asunto</Form.Label>
-              <Form.Control as="select" onChange={handleChangeContact}>
-                <option value="">SELECCIONE</option>
-                <option value="Informar un problema">
-                  Informar un problema
-                </option>
-                <option value="Hacer una sugerencia">
-                  Hacer una sugerencia
-                </option>
-                <option value="Asociarte con nosotros">
-                  Asociarte con nosotros
-                </option>
-                <option value="Otro">Otro</option>
-              </Form.Control>
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Mensaje</Form.Label>
-              <Form.Control as="textarea" placeholder="Mensanje" rows="4" />
-            </Form.Group>
-            <Form.Group>
-              <ReCAPTCHA
-                sitekey="6LcFadYUAAAAAGxPFH7Uyw6mA4cTEw1w6TXGHMdP"
-                onChange={actions.verifyCallback}
-                theme="dark"
-                className="g-recaptcha"
-                name="contacto_recaptcha"
-              />
-            </Form.Group>
-            <div className="text-center">
-              <Button
-                type="submit"
-                className="btn-long btn-lg mt-3"
-                onClick={(e) => {
-                  e.preventDefault();
-                  showModal();
-                }}
-              >
-                Enviar
-              </Button>
-            </div>
-          </Container>
-        </Form>
-        <Modal
-          title="MENSAJE RECIBIDO"
-          dismissButtonText="Aceptar"
-          show={isShown}
-          handleClose={hide}
+    useEffect(() => {
+        console.log(asunto);
+    });
+    return (
+        <Layout
+            header="Contacto"
+            subtitle="Si tienes dudas o comentarios de alguna situación importante."
         >
-          Recibimos tu mensaje. Nos pondremos en contacto contigo a la brevedad.
-        </Modal>
-      </section>
-      {/* <div className="container">
+            <section className="page__section">
+                <h2 className="page__subheading">¿En qué podemos ayudarte?</h2>
+                <Form onSubmit={handleSubmitContact}>
+                    <Container fluid>
+                        <Row>
+                            <Col>
+                                <Form.Group>
+                                    <Form.Label>Nombre y apellido*</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        name="contacto_nombre"
+                                        placeholder="Ingresa nombre"
+                                        value={nombre}
+                                        onChange={handleChangeContact}
+                                        isInvalid={!!errors.nombre}
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                        {errors.nombre}
+                                    </Form.Control.Feedback>
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group>
+                                    <Form.Label>Correo electrónico*</Form.Label>
+                                    <Form.Control
+                                        type="email"
+                                        name="contacto_email"
+                                        placeholder="Ingresa tu correo"
+                                        value={email}
+                                        onChange={handleChangeContact}
+                                        isInvalid={!!errors.email}
+                                    />{' '}
+                                    <Form.Control.Feedback type="invalid">
+                                        {errors.email}
+                                    </Form.Control.Feedback>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Form.Group>
+                            <Form.Label>Asunto</Form.Label>
+                            <Form.Control
+                                as="select"
+                                name="contacto_asunto"
+                                onChange={handleChangeContact}
+                                isInvalid={!!errors.asunto}
+                            >
+                                <option value="">SELECCIONE</option>
+                                <option value="Informar un problema">
+                                    Informar un problema
+                                </option>
+                                <option value="Hacer una sugerencia">
+                                    Hacer una sugerencia
+                                </option>
+                                <option value="Asociarte con nosotros">
+                                    Asociarte con nosotros
+                                </option>
+                                <option value="Otro">Otro</option>
+                            </Form.Control>
+                            <Form.Control.Feedback type="invalid">
+                                {errors.asunto}
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Mensaje</Form.Label>
+                            <Form.Control
+                                as="textarea"
+                                placeholder="Mensanje"
+                                rows="4"
+                                name="contacto_mensaje"
+                                value={message}
+                                isInvalid={!!errors.mensaje}
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                {errors.mensaje}
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                        <Form.Group>
+                            <ReCAPTCHA
+                                sitekey="6LcFadYUAAAAAGxPFH7Uyw6mA4cTEw1w6TXGHMdP"
+                                onChange={verifyCallback}
+                                theme="dark"
+                                className="g-recaptcha"
+                                name="contacto_recaptcha"
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                {errors.recaptcha}
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                        <div className="text-center">
+                            <Button
+                                type="submit"
+                                className="btn-long btn-lg mt-3"
+                            >
+                                Enviar
+                            </Button>
+                        </div>
+                    </Container>
+                </Form>
+                <Modal
+                    title="MENSAJE RECIBIDO"
+                    dismissButtonText="Aceptar"
+                    show={isShown}
+                    handleClose={hide}
+                >
+                    Recibimos tu mensaje. Nos pondremos en contacto contigo a la
+                    brevedad.
+                </Modal>
+            </section>
+            {/* <div className="container">
         <h1>Contacto</h1>
         <hr />
 
@@ -316,8 +364,8 @@ const Contact = (props) => {
           )}
         </div>
       </div> */}
-    </Layout>
-  );
+        </Layout>
+    );
 };
 
 export default withRouter(Contact);
