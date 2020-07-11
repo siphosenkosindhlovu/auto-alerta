@@ -67,9 +67,6 @@ export default function FilterSearch() {
                                     onChange={handleChange}
                                     isInvalid={!!errors.patente}
                                 />
-                                <Form.Control.Feedback type="invalid">
-                                    {errors.patente}
-                                </Form.Control.Feedback>
                             </FormGroup>
                         </Col>
                         <Col lg={5} xl={4}>
@@ -83,9 +80,6 @@ export default function FilterSearch() {
                                     onChange={handleChange}
                                     isInvalid={!!errors.mensaje}
                                 />
-                                <Form.Control.Feedback type="invalid">
-                                    {errors.mensaje}
-                                </Form.Control.Feedback>
                             </FormGroup>
                         </Col>
                         <Col lg={3} className="filter-search__input--bordered">
@@ -99,9 +93,6 @@ export default function FilterSearch() {
                                     onChange={handleChange}
                                     isInvalid={!!errors.email}
                                 />
-                                <Form.Control.Feedback type="invalid">
-                                    {errors.email}
-                                </Form.Control.Feedback>
                             </FormGroup>
                         </Col>
                         <FormGroup className="text-center col-lg">
