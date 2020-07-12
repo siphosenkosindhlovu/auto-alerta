@@ -17,7 +17,7 @@ export default function Layout({ header, subtitle, children }) {
 }
 
 Layout.propTypes = {
-  header: PropTypes.element.isRequired,
-  subheader: PropTypes.element.isRequired,
+  header: PropTypes.string.isRequired,
+  subheader: PropTypes.string,
   children: PropTypes.element,
 };

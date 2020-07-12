@@ -134,6 +134,7 @@ const Contact = (props) => {
                                 name="contacto_mensaje"
                                 value={message}
                                 isInvalid={!!errors.mensaje}
+                                onChange={handleChangeContact}
                             />
                             <Form.Control.Feedback type="invalid">
                                 {errors.mensaje}
@@ -163,7 +164,6 @@ const Contact = (props) => {
                 </Form>
                 <Modal
                     isShown={isShown}
-                    hideModal={hideModal}
                     {...modalProperties}
                 />
             </section>

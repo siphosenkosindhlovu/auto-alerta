@@ -5,7 +5,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import Figure from 'react-bootstrap/Figure';
 import robo from 'images/robo_Mesa de trabajo 1.svg';
 import accidente from 'images/accidente_Mesa de trabajo 1.svg';
 import descuido from 'images/descuido_Mesa de trabajo 1.svg';
@@ -22,7 +21,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Home = (props) => {
   //const { store } = useContext(Context);
-  const settings = {};
   useEffect(() => {
     //if (!store.isAuthenticated) props.history.push("/login");
   });
@@ -64,7 +62,7 @@ const Home = (props) => {
     className: 'slider',
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -215,14 +213,14 @@ const Home = (props) => {
           Estamos trabajando para tener las versiones en Android y iPhone
         </p>
         <div className="d-flex justify-content-center">
-          <a href="#" className="app-store">
+          <a href="/" className="app-store">
             <FontAwesomeIcon
               icon={['fab', 'google-play']}
               className="app-store__icon"
             />
             Google Play
           </a>
-          <a href="#" className="app-store">
+          <a href="/" className="app-store">
             <FontAwesomeIcon
               icon={['fab', 'apple']}
               className="app-store__icon"

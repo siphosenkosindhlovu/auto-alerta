@@ -15,9 +15,9 @@ export default function TopNav() {
   return (
     <header style={{position: 'sticky', top: '0', backgroundColor: 'white', zIndex: '2000'}}>
       <Navbar expand="xl" className="container">
-        <div class="navbar-header">
+        <div className="navbar-header">
           <NavbarToggle />
-          <Link component={NavbarBrand} to="/">
+          <Link component={NavbarBrand} to="/" href="/">
             <Logo variant="header" />
           </Link>
         </div>
@@ -48,7 +48,7 @@ export default function TopNav() {
         </NavbarCollapse>
       </Navbar>
       <Banner>
-        ¿Tienes dudas de cómo funciona? Haz click <a href="#">AQUÍ</a>
+        ¿Tienes dudas de cómo funciona? Haz click <a href="/">AQUÍ</a>
       </Banner>
     </header>
   );

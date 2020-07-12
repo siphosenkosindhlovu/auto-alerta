@@ -41,8 +41,8 @@ export default function Footer() {
           <Col xs={6} lg={4}>
             <Nav variant="dark" as="ul">
               <NavItem as="li">
-                {navItems.map(({ title, href }) => (
-                  <Link component={NavLink} to={href}>
+                {navItems.map(({ title, href }, index) => (
+                  <Link key={index} component={NavLink} to={href}>
                     <FontAwesomeIcon
                       icon="chevron-right"
                       className="text-primary mr-3"
@@ -90,7 +90,7 @@ export default function Footer() {
           </Col>
         </Row>
         <hr className="bg-primary my-lg-5" />
-        <div class="footer__copyright text-center">
+        <div className="footer__copyright text-center">
           &copy; 2020 Auto Alerta - Todos los derechos reservados.
         </div>
         {/* <div id="developer" className="pull-right">

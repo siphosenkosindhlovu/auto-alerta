@@ -3,8 +3,6 @@ import { useHistory } from 'react-router-dom';
 import { Context } from './../store/appContext';
 import Layout from 'components/Layout';
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import alertCircle from 'images/ic-alerta_Mesa de trabajo 1.svg';

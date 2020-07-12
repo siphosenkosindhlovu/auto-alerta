@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Context } from 'store/appContext';
 import Form from 'react-bootstrap/Form';
 import FormText from 'react-bootstrap/FormText';
@@ -22,20 +23,48 @@ export function FilterSearchHeader({ children, desktop }) {
 
 export default function FilterSearch() {
     const { store, actions } = useContext(Context);
-    const { isShown, show: showModal, hide } = useModal();
+    const history = useHistory();
     const {
         notificar_patente: patente,
-        notificar_mensaje: mensanje,
+        notificar_mensaje: mensaje,
         notificar_email: email,
         notificar_errors: errors,
-        notificar_result,
-        notificar_result_success,
-        notificar_result_error,
-        notificar_confirm_success,
-        notificar_confirm_msg,
+        notificar_result_success: result_success,
+        notificar_result_error: result_error,
     } = store;
 
-    const { handleChange, handleSubmitNotificar } = actions;
+    const {
+        handleChange,
+        handleSubmitNotificar,
+        clearDataNotificacion,
+    } = actions;
+
+    const { isShown, showModal, hideModal, modalProperties } = useModal();
+    
+    useEffect(() => {
+        let isSuccess = result_success ? true : false;
+        function activateModal() {
+            showModal({
+                title: 'BIENVENIDO A AUTO ALERTA',
+                dismissButtonText: 'Aceptar',
+                bodyText: result_success || result_error,
+                isSuccess: !!result_success,
+                handleClose: function () {
+                    clearDataNotificacion();
+                    hideModal();
+                    if (isSuccess) {
+                        setTimeout(() => {
+                            history.push('/');
+                        }, 600);
+                    }
+                },
+            });
+        }
+        if (isSuccess) {
+            activateModal();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [result_success, result_error]);
     return (
         <section
             class="filter-search__wrapper pt-0 pb-3 py-xl-5"
@@ -76,7 +105,7 @@ export default function FilterSearch() {
                                     className="filter-search__input"
                                     placeholder="Reportar robo"
                                     name="notificar_mensanje"
-                                    value={mensanje}
+                                    value={mensaje}
                                     onChange={handleChange}
                                     isInvalid={!!errors.mensaje}
                                 />
@@ -128,15 +157,10 @@ export default function FilterSearch() {
                 </Form>
             </Container>
             <Modal
-                title="ALERTA RECIBIDA"
-                dismissButtonText="Aceptar"
-                show={isShown}
-                handleClose={hide}
-            >
-                Hemos recibido la información ingresada. Una vez que validemos
-                tu correo notificaremos al dueño del vehículo. Gracias por ser
-                parte de nuestra comunidad.
-            </Modal>
+                    isShown={isShown}
+                    hideModal={hideModal}
+                    {...modalProperties}
+                />
         </section>
     );
 }

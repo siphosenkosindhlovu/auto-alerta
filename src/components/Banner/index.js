@@ -9,5 +9,9 @@ export default function Banner({ children }) {
 }
 
 Banner.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.element,
+    PropTypes.node,
+  ]),
 };
