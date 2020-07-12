@@ -1,0 +1,89 @@
+ul,
+ol {
+  padding-inline-start: 0;
+  list-style-position: inside;
+}
+
+.list-alphabet {
+  list-style-type: lower-alpha;
+  list-style-position: outside;
+  padding-inline-start: 1rem;
+}
+
+.list-circled-numbers {
+  list-style-type: none;
+  counter-reset: list;
+  li {
+    counter-increment: list;
+    display: table;
+    position: relative;
+    &:before {
+      content: " ";
+      display: table-cell;
+      width: 1.5rem;
+    }
+    &:after {
+      content: counter(list);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background-color: white;
+      color: $primary;
+      width: 1rem;
+      height: 1rem;
+      font-size: 0.75rem;
+      margin-right: 1rem;
+      position: absolute;
+      left: 0;
+      top: 0.375rem;
+    }
+  }
+}
+
+.terminos {
+  ol {
+    list-style-type: none;
+  }
+  & > ol {
+    counter-reset: item;
+    & > li {
+      margin-bottom: 1rem;
+      counter-increment: item;
+      &:before {
+        content: counter(item) ". ";
+        color: $primary;
+        font-weight: bold;
+      }
+      & > h3 {
+        font-size: 1rem;
+        display: inline-block;
+        color: var(--page-heading-color);
+        margin-bottom: 1rem;
+      }
+
+      ol {
+        list-style-type: none;
+        counter-reset: list;
+        li {
+          counter-increment: list;
+          &:before {
+            content: "(" counter(list, lower-roman) ") ";
+          }
+        }
+      }
+
+      &:nth-child(3) > ol {
+        list-style-type: none;
+        counter-reset: item;
+        & > li {
+          counter-increment: item;
+          &:before {
+            content: counters(item, ".") ". ";
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}

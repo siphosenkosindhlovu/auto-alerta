@@ -1,3 +1,4 @@
+//Boostrap overrides
 $primary: #cf302a;
 $body-color: #4d4d4d;
 
@@ -33,10 +34,8 @@ $container-max-widths: (
 
 $form-text-margin-top: 0.5rem;
 $input-placeholder-color: #b7b7b7;
-//$input-border-color: transparent;
-// $input-btn-padding-y: 1rem;
-// $input-btn-padding-x: 1.5rem;
 @import "~bootstrap/scss/bootstrap";
+
 html {
   font-size: 14px;
 }
@@ -84,61 +83,23 @@ html {
     --page-section-margin-bottom: 3rem;
   }
 }
-@import "./components/forms";
-@import "./components/buttons";
-@import "./components/logo";
-@import "./components/navbar";
-@import "./components/footer";
-@import "./components/banner";
-@import "./components/hero";
-@import "./components/modal";
-
-.page__heading {
-  font-size: var(--page-heading-font-size);
-  color: var(--page-heading-color);
-  font-weight: var(--page-heading-font-weight);
-  margin-top: var(--page-heading-margin-top);
-}
-
-.page__subtitle {
-  font-size: var(--page-subtitle-font-size);
-}
-
-.page__section {
-  background-color: white;
-  border-radius: $border-radius;
-  padding: var(--page-section-padding);
-  margin-bottom: var(--page-section-margin-bottom);
-}
-
-.page__subheading {
-  font-size: var(--page-subheading-font-size);
-  font-weight: var(--page-subheading-font-weight);
-  margin-bottom: var(--page-subheading-margin-bottom);
-}
+@import "./partials/forms";
+@import "./partials/buttons";
+@import "./partials/logo";
+@import "./partials/navbar";
+@import "./partials/footer";
+@import "./partials/banner";
+@import "./partials/home";
+@import "./partials/page";
+@import "./partials/preguntas";
+@import "./partials/lists";
+@import "./partials/modal";
 
 .card {
   box-shadow: 0 9px 21px rgba(0, 0, 0, 0.039);
   border-radius: 1rem;
 }
 
-.btn-long {
-  padding: {
-    left: 2.5rem;
-    right: 2.5rem;
-  }
-}
-
-//home.scss
-
-.inform {
-  &__img {
-    height: 85px;
-  }
-  &__text {
-    font-size: 10pt;
-  }
-}
 .container-narrow {
   width: 85%;
   max-width: 1600px;
@@ -146,18 +107,6 @@ html {
   padding: 15px;
 }
 
-//lists
-ul,
-ol {
-  padding-inline-start: 0;
-  list-style-position: inside;
-}
-
-.list-alphabet {
-  list-style-type: lower-alpha;
-  list-style-position: outside;
-  padding-inline-start: 1rem;
-}
 //separator component
 .seperator {
   border-top: 1px solid rgba(207, 48, 42, 0.267);
@@ -166,202 +115,6 @@ ol {
   flex-basis: 80%;
 }
 
-//homepage sections
-.community {
-  position: relative;
-  background: url(../images/Luis1.png), $primary;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: bottom;
-  color: white;
-  &__label {
-    position: absolute;
-    left: 0;
-    height: 28pt;
-    top: -10px;
-  }
-}
-
-.situations {
-  &__card {
-    padding: 1.5rem;
-    border-radius: 1rem;
-    box-shadow: 0pt 9pt 21px rgba(0, 0, 0, 0.039);
-    padding-bottom: 1rem;
-    border: none;
-    margin-bottom: 1rem;
-    &__img {
-      height: 96px;
-    }
-    &__label {
-      font-size: 16pt;
-      font-weight: medium;
-    }
-  }
-}
-
-.slider {
-  &__inner {
-    padding: 9px;
-    img {
-      width: auto;
-      height: 425px;
-    }
-  }
-}
-.slick {
-  &-list {
-    overflow: visible !important;
-    width: 75%;
-  }
-  &-dots {
-    position: static;
-    li.slick-active {
-      button:before {
-        color: $primary;
-        opacity: 1;
-      }
-    }
-  }
-}
-
-.app-store {
-  @extend .btn;
-  background-color: black;
-  color: white;
-  font-size: 15px;
-  padding: 0.625rem 0.875rem;
-  display: flex;
-  align-items: center;
-  margin: 1rem;
-  &__icon {
-    height: 26pt;
-    width: auto !important;
-    margin-right: 1rem;
-  }
-}
-
-@include media-breakpoint-up(md) {
-  .community {
-    background-position: left;
-  }
-  .slider {
-    max-width: 1250px;
-    margin: auto;
-    &__inner {
-      img {
-        padding: 18px;
-        max-width: 100%;
-        height: auto;
-      }
-    }
-  }
-  .slick {
-    &-list {
-      width: auto;
-    }
-  }
-  .app-store {
-  }
-}
-
-//Terminos
-
-.list-circled-numbers {
-  list-style-type: none;
-  counter-reset: list;
-  li {
-    counter-increment: list;
-    display: table;
-    position: relative;
-    &:before {
-      content: " ";
-      display: table-cell;
-      width: 1.5rem;
-    }
-    &:after {
-      content: counter(list);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background-color: white;
-      color: $primary;
-      width: 1rem;
-      height: 1rem;
-      font-size: 0.75rem;
-      margin-right: 1rem;
-      position: absolute;
-      left: 0;
-      top: 0.375rem;
-    }
-  }
-}
-
-.terminos {
-  ol {
-    list-style-type: none;
-  }
-  & > ol {
-    counter-reset: item;
-    & > li {
-      margin-bottom: 1rem;
-      counter-increment: item;
-      &:before {
-        content: counter(item) ". ";
-        color: $primary;
-        font-weight: bold;
-      }
-      & > h3 {
-        font-size: 1rem;
-        display: inline-block;
-        color: var(--page-heading-color);
-        margin-bottom: 1rem;
-      }
-
-      ol {
-        list-style-type: none;
-        counter-reset: list;
-        li {
-          counter-increment: list;
-          &:before {
-            content: "(" counter(list, lower-roman) ") ";
-          }
-        }
-      }
-
-      &:nth-child(3) > ol {
-        list-style-type: none;
-        counter-reset: item;
-        & > li {
-          counter-increment: item;
-          &:before {
-            content: counters(item, ".") ". ";
-            font-weight: bold;
-          }
-        }
-      }
-    }
-  }
-}
-
-//Preguntas
-.faq {
-  .card {
-    margin-bottom: 1rem;
-    border-radius: $border-radius !important;
-    &-header {
-      background-color: white;
-      font-weight: bold;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    &-body {
-      padding-top: 0;
-    }
-  }
-}
 .mx-auto-upto-lg {
   margin: {
     left: 0;

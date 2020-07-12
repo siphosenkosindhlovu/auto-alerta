@@ -1,0 +1,16 @@
+.faq {
+  .card {
+    margin-bottom: 1rem;
+    border-radius: $border-radius !important;
+    &-header {
+      background-color: white;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    &-body {
+      padding-top: 0;
+    }
+  }
+}

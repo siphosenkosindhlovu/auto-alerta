@@ -1,0 +1,164 @@
+.hero {
+  position: relative;
+  height: 215px;
+  background: {
+    position: center;
+    image: url("../../images/Slide.jpg");
+    size: cover;
+    repeat: no-repeat;
+  }
+
+  &__filter {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba($color: #000000, $alpha: 0.4);
+  }
+  &__title {
+    color: white;
+    font: {
+      weight: 500;
+      size: 19px;
+    }
+    white-space: nowrap;
+    line-height: 24px;
+    //font: Medium 19px/24px Helvetica Neue;
+  }
+  &__content {
+    height: 50%;
+    transform: translateY(100%);
+  }
+  &__cta {
+    font: 500 14px/17px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    @extend .py-2;
+    @extend .px-4;
+  }
+}
+
+.inform {
+  &__img {
+    height: 85px;
+  }
+  &__text {
+    font-size: 10pt;
+  }
+}
+
+.community {
+  position: relative;
+  background: url(../../images/Luis1.png), $primary;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom;
+  color: white;
+  &__label {
+    position: absolute;
+    left: 0;
+    height: 28pt;
+    top: -10px;
+  }
+}
+
+.situations {
+  &__card {
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0pt 9pt 21px rgba(0, 0, 0, 0.039);
+    padding-bottom: 1rem;
+    border: none;
+    margin-bottom: 1rem;
+    &__img {
+      height: 96px;
+    }
+    &__label {
+      font-size: 16pt;
+      font-weight: medium;
+    }
+  }
+}
+
+.slider {
+  &__inner {
+    padding: 9px;
+    img {
+      width: auto;
+      height: 425px;
+    }
+  }
+}
+.slick {
+  &-list {
+    overflow: visible !important;
+    width: 75%;
+  }
+  &-dots {
+    position: static;
+    li.slick-active {
+      button:before {
+        color: $primary;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.app-store {
+  @extend .btn;
+  background-color: black;
+  color: white;
+  font-size: 15px;
+  padding: 0.625rem 0.875rem;
+  display: flex;
+  align-items: center;
+  margin: 1rem;
+  &__icon {
+    height: 26pt;
+    width: auto !important;
+    margin-right: 1rem;
+  }
+}
+@include media-breakpoint-up(md) {
+  .community {
+    background-position: left;
+  }
+  .slider {
+    max-width: 1250px;
+    margin: auto;
+    &__inner {
+      img {
+        padding: 18px;
+        max-width: 100%;
+        height: auto;
+      }
+    }
+  }
+  .slick {
+    &-list {
+      width: auto;
+    }
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .hero {
+    height: 600px;
+    &__title {
+      font-size: 57px;
+      line-height: 70px;
+    }
+    &__cta {
+      font: {
+        weight: 500;
+        size: 20px;
+      }
+      line-height: 25px;
+      @extend .py-xl-3;
+      @extend .px-xl-5;
+    }
+  }
+}
