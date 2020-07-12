@@ -13,12 +13,18 @@ import Button from 'react-bootstrap/Button';
 import alertCircle from 'images/ic-alerta_Mesa de trabajo 1.svg';
 import Modal from 'components/BaseModal';
 import useModal from 'hooks/useModal';
+import PropTypes from 'prop-types'
 
-export function FilterSearchHeader({ children, desktop }) {
+function FilterSearchHeader({ children, desktop }) {
     let classNames = 'filter-search__header bg-primary align-self-center';
     if (!desktop) classNames += ' d-xl-none';
     if (desktop) classNames += ' filter-search__header--desktop';
     return <div className={classNames}>{children}</div>;
+}
+
+FilterSearchHeader.protoTypes = {
+    children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+    desktop: PropTypes.bool
 }
 
 export default function FilterSearch() {

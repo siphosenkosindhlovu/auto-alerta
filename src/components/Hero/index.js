@@ -6,11 +6,6 @@ export default function Hero() {
   return (
     <section class="hero">
       <div class="hero__filter"></div>
-      {/* <img
-        src={heroImage}
-        alt="Person breaking into vehicle"
-        className="hero__background"
-      /> */}
       <Container className="hero__content text-center">
         <Row>
           <Col xl={{ offset: 5 }}>
