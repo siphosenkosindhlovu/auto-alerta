@@ -1,8 +1,10 @@
 //Boostrap overrides
 $primary: #cf302a;
 $body-color: #4d4d4d;
-
 $body-bg: #fafafa;
+
+$font-family-sans-serif: "Helvetica Neue", sans-serif;
+
 $border-radius: 0.35rem;
 $card-border-color: transparent;
 $enable-responsive-font-sizes: true;
@@ -83,6 +85,7 @@ html {
     --page-section-margin-bottom: 3rem;
   }
 }
+@import "./partials/fonts";
 @import "./partials/forms";
 @import "./partials/buttons";
 @import "./partials/logo";
