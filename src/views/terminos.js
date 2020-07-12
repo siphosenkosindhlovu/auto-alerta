@@ -275,7 +275,7 @@ const Terminos = () => {
                   acuerdo con la ley y estos T&eacute;rminos y Condiciones, por
                   ende el Usuario no podr&aacute;, entre otras cosas:
                 </p>
-                <p>
+                
                   <ol>
                     <li>
                       Usar los Servicios o el Sitio para fines distintos de los
@@ -384,7 +384,7 @@ const Terminos = () => {
                       <a href="#_ftn1">[1]</a>&rdquo;).
                     </li>
                   </ol>
-                </p>
+                
                 <p>
                   En general, realizar cualquier acto que pueda dar lugar a una
                   infracci&oacute;n o da&ntilde;o de las leyes, los presentes
@@ -468,7 +468,7 @@ const Terminos = () => {
               </li>
               <li>
                 <h3>Confidencialidad.</h3>
-                <p>
+               
                   <ol>
                     <li>
                       Cualquier informaci&oacute;n puesta a disposici&oacute;n
@@ -505,7 +505,7 @@ const Terminos = () => {
                       competentes.
                     </li>
                   </ol>
-                </p>
+                
               </li>
               <li>
                 <h3>Modificaciones a los T&eacute;rminos y Condiciones. </h3>
