@@ -12,12 +12,10 @@ export default function useModal() {
     const [modalProperties, setModalProperties] = useState(defaultProperties);
     function hideModal() {
         setIsShown(false);
-        console.log(isShown)
     }
     function showModal({ title, dismissButtonText, bodyText, isSuccess, handleClose }) {
         setModalProperties({ title, dismissButtonText, bodyText, isSuccess, handleClose });
         setIsShown(true);
-        console.log(isShown)
     }
     function toggleModal() {
         setIsShown(!isShown);

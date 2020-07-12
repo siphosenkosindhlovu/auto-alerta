@@ -13,9 +13,9 @@ import Terminos from './views/terminos';
 import Confirmacion from './views/confirmacion';
 import Configuracion from './views/configuracion';
 import ConfirmacionMessage from './views/confirmacion-message';
-
 import 'fontawesomeLibrary';
-const Layout = (props) => {
+
+const Layout = () => {
   return (
     <BrowserRouter>
       <Header />
