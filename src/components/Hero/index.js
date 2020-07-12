@@ -4,8 +4,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 export default function Hero() {
   return (
-    <section class="hero">
-      <div class="hero__filter"></div>
+    <section className="hero">
+      <div className="hero__filter"></div>
       <Container className="hero__content text-center">
         <Row>
           <Col xl={{ offset: 5 }}>

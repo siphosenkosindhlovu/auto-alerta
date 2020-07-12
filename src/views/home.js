@@ -93,7 +93,7 @@ const Home = (props) => {
                                 />
                             </figure>
                             <div className="inform__text">
-                                <p className="">
+                                <div>
                                     <ol className="list-alphabet">
                                         <li
                                             style={{
@@ -105,7 +105,7 @@ const Home = (props) => {
                                         <li>Llamas a carabineros</li>
                                         <li>Contactas al dueño</li>
                                     </ol>
-                                </p>
+                                </div>
                                 <p>
                                     El tiempo es vital, utiliza{' '}
                                     <span className="text-primary">
@@ -130,7 +130,7 @@ const Home = (props) => {
                                 />
                             </figure>
                             <div className="inform__text">
-                                <p>
+                                <div>
                                     <ol className="list-alphabet">
                                         <li
                                             style={{
@@ -146,7 +146,7 @@ const Home = (props) => {
                                             Informas directamente a la empresa
                                         </li>
                                     </ol>
-                                </p>
+                                </div>
                                 <p>¿Deseas lamentar o prevenir?</p>
                             </div>
                         </div>
@@ -204,8 +204,8 @@ const Home = (props) => {
                         verte involucrado.
                     </p>
                     <Row>
-                        {situaciones.map(({ image, label }) => (
-                            <Col lg={4}>
+                        {situaciones.map(({ image, label }, i) => (
+                            <Col key={i} lg={4}>
                                 <Card className="situations__card">
                                     <Card.Img
                                         variant="top"
@@ -230,8 +230,8 @@ const Home = (props) => {
                         Ante estas situaciones informa y previene
                     </p>
                     <Slider {...sliderSettings}>
-                        {slides.map(({ image, alt }) => (
-                            <div className="slider__inner">
+                        {slides.map(({ image, alt },i) => (
+                            <div key={i} className="slider__inner">
                                 <img src={image} alt={alt} />
                             </div>
                         ))}
@@ -269,7 +269,7 @@ const Home = (props) => {
                                 ¿Quieres informar alguna situación pero no
                                 tienes cuenta?
                             </h3>
-                            <p class="page__subtitle">
+                            <p className="page__subtitle">
                                 Puedes Informarla de todas formas, ingresando
                                 los datos solicitados.
                             </p>

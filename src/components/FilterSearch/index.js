@@ -73,7 +73,7 @@ export default function FilterSearch() {
     }, [result_success, result_error]);
     return (
         <section
-            class="filter-search__wrapper pt-0 pb-3 py-xl-5"
+            className="filter-search__wrapper pt-0 pb-3 py-xl-5"
             style={{ backgroundColor: '#e5e5e5' }}
         >
             {' '}

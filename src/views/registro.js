@@ -156,7 +156,7 @@ const Registro = (props) => {
                                             checked={!!condiciones}
                                             isInvalid={!!errors.condiciones}
                                             onChange={handleChangeContact}
-                                            checkbox
+                                            checkbox="true"
                                         />
                                         <Form.Check.Label>
                                             He leído y acepto los{' '}

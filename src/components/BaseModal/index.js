@@ -12,7 +12,6 @@ export default function BaseModal({
     dismissButtonText,
     bodyText,
 }) {
-    console.log(handleClose)
     return (
         <Modal show={isShown} onHide={handleClose} centered>
             <Modal.Header>
