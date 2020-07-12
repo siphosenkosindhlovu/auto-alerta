@@ -13,6 +13,7 @@ import Terminos from './views/terminos';
 import Confirmacion from './views/confirmacion';
 import Configuracion from './views/configuracion';
 import ConfirmacionMessage from './views/confirmacion-message';
+
 import 'fontawesomeLibrary';
 const Layout = (props) => {
   return (
@@ -37,6 +38,7 @@ const Layout = (props) => {
         <Route exact path="/" component={Home} />
         <Route render={() => <h1>Not Found</h1>} />
       </Switch>
+      
       <Footer />
     </BrowserRouter>
   );

@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Context } from './../store/appContext';
 import Layout from 'components/Layout';
 import Container from 'react-bootstrap/Container';
@@ -12,23 +12,48 @@ import Modal from 'components/BaseModal';
 import useModal from 'hooks/useModal';
 const Notificar = (props) => {
     const { store, actions } = useContext(Context);
+    const history = useHistory();
     const {
         notificar_patente: patente,
-        notificar_mensaje: mensanje,
+        notificar_mensaje: mensaje,
         notificar_email: email,
         notificar_errors: errors,
-        notificar_result,
-        notificar_result_success,
-        notificar_result_error,
-        notificar_confirm_success,
-        notificar_confirm_msg,
+        notificar_result_success: result_success,
+        notificar_result_error: result_error,
     } = store;
 
-    const { handleChange, handleSubmitNotificar } = actions;
-    const { isShown, show: showModal, hide } = useModal();
-    const AceptarTerminosCondiciones = () => {
-        //alert(1);
-    };
+    const {
+        handleChange,
+        handleSubmitNotificar,
+        clearDataNotificacion,
+    } = actions;
+
+    const { isShown, showModal, hideModal, modalProperties } = useModal();
+    
+    useEffect(() => {
+        let isSuccess = result_success ? true : false;
+        function activateModal() {
+            showModal({
+                title: 'BIENVENIDO A AUTO ALERTA',
+                dismissButtonText: 'Aceptar',
+                bodyText: result_success || result_error,
+                isSuccess: !!result_success,
+                handleClose: function () {
+                    clearDataNotificacion();
+                    hideModal();
+                    if (isSuccess) {
+                        setTimeout(() => {
+                            history.push('/');
+                        }, 600);
+                    }
+                },
+            });
+        }
+        if (isSuccess) {
+            activateModal();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [result_success, result_error]);
     return (
         <>
             <Layout
@@ -57,10 +82,10 @@ const Notificar = (props) => {
                                 <Form.Label>Mensaje*</Form.Label>
                                 <Form.Control
                                     as="textarea"
-                                    name="notificar_mensanje"
+                                    name="notificar_mensaje"
                                     placeholder="Ingresa detalles de la situación vista"
                                     rows="4"
-                                    value={mensanje}
+                                    value={mensaje}
                                     onChange={handleChange}
                                     isInvalid={!!errors.mensaje}
                                 />
@@ -112,15 +137,10 @@ const Notificar = (props) => {
                     </Container>
                 </section>
                 <Modal
-                    title="ALERTA RECIBIDA"
-                    dismissButtonText="Aceptar"
-                    show={isShown}
-                    handleClose={hide}
-                >
-                    Hemos recibido la información ingresada. Una vez que
-                    validemos tu correo notificaremos al dueño del vehículo.
-                    Gracias por ser parte de nuestra comunidad.
-                </Modal>
+                    isShown={isShown}
+                    hideModal={hideModal}
+                    {...modalProperties}
+                />
                 {/* <section id="page">
         <div className="container">
           <h1>Informar situación</h1>

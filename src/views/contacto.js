@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Context } from './../store/appContext';
 //import { loadReCaptcha, ReCaptcha } from 'react-recaptcha-google';
 import ReCAPTCHA from 'react-google-recaptcha';
@@ -14,8 +14,9 @@ import useModal from 'hooks/useModal';
 
 const Contact = (props) => {
     const { store, actions } = useContext(Context);
+    const history = useHistory();
     //6LcXsh4TAAAAAIMQIRcgdLIoA9KOz3mB2qKs4LOY
-    const { isShown, show: showModal, hide } = useModal();
+    const { isShown, showModal, hideModal, modalProperties } = useModal();
     const {
         contacto_errors: errors,
         contacto_nombre: nombre,
@@ -32,8 +33,30 @@ const Contact = (props) => {
     } = actions;
 
     useEffect(() => {
-        console.log(asunto);
-    });
+        let isSuccess = result ? true : false;
+        function activateModal() {
+            showModal({
+                title: 'BIENVENIDO A AUTO ALERTA',
+                dismissButtonText: 'Aceptar',
+                bodyText: result,
+                isSuccess: !!result,
+                handleClose: function () {
+                    clearData();
+                    hideModal();
+                    if (isSuccess) {
+                        setTimeout(() => {
+                            history.push('/');
+                        }, 600);
+                    }
+                },
+            });
+        }
+        if (isSuccess) {
+            activateModal();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [result]);
+
     return (
         <Layout
             header="Contacto"
@@ -82,6 +105,7 @@ const Contact = (props) => {
                             <Form.Control
                                 as="select"
                                 name="contacto_asunto"
+                                value={asunto}
                                 onChange={handleChangeContact}
                                 isInvalid={!!errors.asunto}
                             >
@@ -138,14 +162,10 @@ const Contact = (props) => {
                     </Container>
                 </Form>
                 <Modal
-                    title="MENSAJE RECIBIDO"
-                    dismissButtonText="Aceptar"
-                    show={isShown}
-                    handleClose={hide}
-                >
-                    Recibimos tu mensaje. Nos pondremos en contacto contigo a la
-                    brevedad.
-                </Modal>
+                    isShown={isShown}
+                    hideModal={hideModal}
+                    {...modalProperties}
+                />
             </section>
             {/* <div className="container">
         <h1>Contacto</h1>
@@ -368,4 +388,4 @@ const Contact = (props) => {
     );
 };
 
-export default withRouter(Contact);
+export default Contact;

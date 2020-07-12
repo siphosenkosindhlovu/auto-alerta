@@ -408,7 +408,8 @@ const getState = ({
                         "email": store.registro_email,
                         "password": store.registro_patente,
                         "patent": store.registro_patente
-                    }
+                    };
+                    
                     fetch(store.path + '/api/register', {
                         method: 'POST',
                         body: JSON.stringify(data),

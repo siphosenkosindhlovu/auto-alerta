@@ -1,8 +1,7 @@
-import React, { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Context } from '../store/appContext';
 import Layout from 'components/Layout';
-import Modal from 'components/BaseModal';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -12,9 +11,15 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Figure from 'react-bootstrap/Figure';
 import useModal from 'hooks/useModal';
 import moto from 'images/moto.png';
+import Modal from 'components/BaseModal';
 const Registro = (props) => {
     const { store, actions } = useContext(Context);
-    const { handleSubmitRegistro, handleChangeContact } = actions;
+    const history = useHistory();
+    const {
+        handleSubmitRegistro,
+        handleChangeContact,
+        clearDataRegistro,
+    } = actions;
     const {
         registro_nombre: nombre,
         registro_email: email,
@@ -23,15 +28,31 @@ const Registro = (props) => {
         registro_errors: errors,
         registro_result_success: result_success,
         registro_result_error: result_error,
+        registro_result,
     } = store;
-    const { isShown, show: showModal, hide } = useModal();
+    const { isShown, showModal, hideModal, modalProperties } = useModal();
 
     useEffect(() => {
-        if (result_success || result_error) {
-            console.log('Show');
-            showModal();
+        function activateModal() {
+            showModal({
+                title: 'BIENVENIDO A AUTO ALERTA',
+                dismissButtonText: 'Aceptar',
+                bodyText: result_success || result_error,
+                isSuccess: !!result_success,
+                handleClose: function () {
+                    clearDataRegistro();
+                    hideModal();
+                    setTimeout(() => {
+                        history.push('/');
+                    }, 600);
+                },
+            });
         }
-    }, [result_success, result_error, showModal]);
+        if (registro_result) {
+            activateModal();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [registro_result]);
     return (
         <Layout
             header={'Registrate'}
@@ -42,7 +63,7 @@ const Registro = (props) => {
             <section className="page__section">
                 <h2 className="page__subheading">Ingresa tus datos</h2>
 
-                <Form>
+                <Form onSubmit={handleSubmitRegistro}>
                     <Container fluid>
                         <Row>
                             <Col xs={12} md={6}>
@@ -130,12 +151,10 @@ const Registro = (props) => {
                                         feedback={errors.condiciones}
                                     >
                                         <Form.Check.Input
-                                            onChange={handleChangeContact}
                                             name="registro_condiciones"
-                                            value={condiciones}
-                                            isInvalid={
-                                                !!errors.condiciones
-                                            }
+                                            checked={!!condiciones}
+                                            isInvalid={!!errors.condiciones}
+                                            onChange={handleChangeContact}
                                             checkbox
                                         />
                                         <Form.Check.Label>
@@ -157,13 +176,18 @@ const Registro = (props) => {
                             <Button
                                 type="submit"
                                 className="btn-long btn-lg mt-3"
-                                onClick={handleSubmitRegistro}
+                                //onClick={handleSubmitRegistro}
                             >
                                 Enviar
                             </Button>
                         </div>
                     </Container>
                 </Form>
+                <Modal
+                    isShown={isShown}
+                    hideModal={hideModal}
+                    {...modalProperties}
+                />
             </section>
             <section>
                 <div className="page__section bg-primary text-white">
@@ -191,16 +215,7 @@ const Registro = (props) => {
                     </div>
                 </div>
             </section>
-            <Modal
-                title="BIENVENIDO A AUTO ALERTA"
-                dismissButtonText="Aceptar"
-                show={isShown}
-                handleClose={hide}
-                success={false}
-            >
-                Tu registro y tus da-tos han sido guardados exitosamente. Hemos
-                enviado un correo de confirmación a tu email.
-            </Modal>
+            {/* <Modal isShown={isShown} /> */}
             {/* <section id="page">
         <div className="container">
           <h1>Registro</h1>
