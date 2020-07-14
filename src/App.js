@@ -1,8 +1,8 @@
 import React from 'react';
 import injectContext from './store/appContext';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Header from './components/Header.jsx';
-import Footer from './components/footer.jsx';
+import Header from './components/Header';
+import Footer from './components/Footer';
 import Login from './views/login';
 import Home from './views/home';
 import Registro from './views/registro';
