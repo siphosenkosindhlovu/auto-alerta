@@ -40,7 +40,7 @@ const Contact = (props) => {
                 dismissButtonText: 'Aceptar',
                 bodyText: result,
                 isSuccess: !!result,
-                handleClose: function () {
+                handleClose: function() {
                     clearData();
                     hideModal();
                     if (isSuccess) {
@@ -162,7 +162,13 @@ const Contact = (props) => {
                         </div>
                     </Container>
                 </Form>
-                <Modal isShown={isShown} {...modalProperties} />
+                {(result) && (
+                    <Modal
+                        isShown={isShown}
+                        hideModal={hideModal}
+                        {...modalProperties}
+                    />
+                )}
             </section>
         </Layout>
     );

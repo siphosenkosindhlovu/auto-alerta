@@ -11,45 +11,71 @@ import Logo from 'components/Logo';
 import Banner from 'components/Banner';
 
 export default function TopNav() {
-  const { store } = useContext(Context);
-  return (
-    <header style={{position: 'sticky', top: '0', backgroundColor: 'white', zIndex: '2000'}}>
-      <Navbar expand="xl" className="container">
-        <div className="navbar-header">
-          <NavbarToggle />
-          <Link component={NavbarBrand} to="/" href="/">
-            <Logo variant="header" />
-          </Link>
-        </div>
-        <NavbarCollapse className="justify-content-end">
-          <Nav>
-            <Link activeClassName="active" component={NavLink} to="/">
-              Inicio
-            </Link>
-            {store.currentUser && (
-              <Link
-                activeClassName="active"
-                component={NavLink}
-                to="/configuracion"
-              >
-                Configuracion
-              </Link>
-            )}
-            <Link activeClassName="active" component={NavLink} to="/registro">
-              Registrate
-            </Link>
-            <Link activeClassName="active" component={NavLink} to="/notificar">
-              Informa Aquí
-            </Link>
-            <Link activeClassName="active" component={NavLink} to="/contacto">
-              Contacto
-            </Link>
-          </Nav>
-        </NavbarCollapse>
-      </Navbar>
-      <Banner>
-        ¿Tienes dudas de cómo funciona? Haz click <a href="/">AQUÍ</a>
-      </Banner>
-    </header>
-  );
+    const { store } = useContext(Context);
+    return (
+        <header
+            style={{
+                position: 'sticky',
+                top: '0',
+                backgroundColor: 'white',
+                zIndex: '2000',
+            }}
+        >
+            <Navbar expand="xl" className="container">
+                <div className="navbar-header">
+                    <NavbarToggle />
+                    <NavbarBrand as={'div'}>
+                        <Link to="/">
+                            <Logo variant="header" />
+                        </Link>
+                    </NavbarBrand>
+                </div>
+                <NavbarCollapse className="justify-content-end">
+                    <Nav>
+                        <NavLink
+                            activeClassName="active"
+                            as={Link}
+                            to="/"
+                            exact
+                        >
+                            Inicio
+                        </NavLink>
+                        {store.currentUser && (
+                            <NavLink
+                                activeClassName="active"
+                                as={Link}
+                                to="/configuracion"
+                            >
+                                Configuracion
+                            </NavLink>
+                        )}
+                        <NavLink
+                            activeClassName="active"
+                            as={Link}
+                            to="/registro"
+                        >
+                            Registrate
+                        </NavLink>
+                        <NavLink
+                            activeClassName="active"
+                            as={Link}
+                            to="/notificar"
+                        >
+                            Informa Aquí
+                        </NavLink>
+                        <NavLink
+                            activeClassName="active"
+                            as={Link}
+                            to="/contacto"
+                        >
+                            Contacto
+                        </NavLink>
+                    </Nav>
+                </NavbarCollapse>
+            </Navbar>
+            <Banner>
+                ¿Tienes dudas de cómo funciona? Haz click <a href="/">AQUÍ</a>
+            </Banner>
+        </header>
+    );
 }

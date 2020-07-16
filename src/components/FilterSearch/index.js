@@ -13,7 +13,7 @@ import Button from 'react-bootstrap/Button';
 import alertCircle from 'images/ic-alerta_Mesa de trabajo 1.svg';
 import Modal from 'components/BaseModal';
 import useModal from 'hooks/useModal';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 function FilterSearchHeader({ children, desktop }) {
     let classNames = 'filter-search__header bg-primary align-self-center';
@@ -24,8 +24,8 @@ function FilterSearchHeader({ children, desktop }) {
 
 FilterSearchHeader.protoTypes = {
     children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-    desktop: PropTypes.bool
-}
+    desktop: PropTypes.bool,
+};
 
 export default function FilterSearch() {
     const { store, actions } = useContext(Context);
@@ -46,7 +46,7 @@ export default function FilterSearch() {
     } = actions;
 
     const { isShown, showModal, hideModal, modalProperties } = useModal();
-    
+
     useEffect(() => {
         let isSuccess = result_success ? true : false;
         function activateModal() {
@@ -55,7 +55,7 @@ export default function FilterSearch() {
                 dismissButtonText: 'Aceptar',
                 bodyText: result_success || result_error,
                 isSuccess: !!result_success,
-                handleClose: function () {
+                handleClose: function() {
                     clearDataNotificacion();
                     hideModal();
                     if (isSuccess) {
@@ -92,7 +92,7 @@ export default function FilterSearch() {
                             </FormGroup>
                         </Col>
                         <Col lg={2}>
-                            <FormGroup controlId="patente">
+                            <FormGroup controlId="notificar_patente">
                                 <FormLabel>Nº Patente</FormLabel>
                                 <FormControl
                                     className="filter-search__input"
@@ -105,12 +105,12 @@ export default function FilterSearch() {
                             </FormGroup>
                         </Col>
                         <Col lg={5} xl={4}>
-                            <FormGroup controlId="patente">
+                            <FormGroup controlId="notificar_mensaje">
                                 <FormLabel>Mensaje</FormLabel>
                                 <FormControl
                                     className="filter-search__input"
                                     placeholder="Reportar robo"
-                                    name="notificar_mensanje"
+                                    name="notificar_mensaje"
                                     value={mensaje}
                                     onChange={handleChange}
                                     isInvalid={!!errors.mensaje}
@@ -118,7 +118,7 @@ export default function FilterSearch() {
                             </FormGroup>
                         </Col>
                         <Col lg={3} className="filter-search__input--bordered">
-                            <FormGroup controlId="patente">
+                            <FormGroup controlId="notificar_email">
                                 <FormLabel>Correo electrónico</FormLabel>
                                 <FormControl
                                     className="filter-search__input"
@@ -162,11 +162,13 @@ export default function FilterSearch() {
                     </Row>
                 </Form>
             </Container>
-            <Modal
+            {(result_success || result_error) && (
+                <Modal
                     isShown={isShown}
                     hideModal={hideModal}
                     {...modalProperties}
                 />
+            )}
         </section>
     );
 }

@@ -40,7 +40,7 @@ const Registro = (props) => {
                 dismissButtonText: 'Aceptar',
                 bodyText: result_success || result_error,
                 isSuccess: !!result_success,
-                handleClose: function () {
+                handleClose: function() {
                     clearDataRegistro();
                     hideModal();
                     setTimeout(() => {
@@ -184,11 +184,13 @@ const Registro = (props) => {
                         </div>
                     </Container>
                 </Form>
-                <Modal
-                    isShown={isShown}
-                    hideModal={hideModal}
-                    {...modalProperties}
-                />
+                {registro_result && (
+                    <Modal
+                        isShown={isShown}
+                        hideModal={hideModal}
+                        {...modalProperties}
+                    />
+                )}
             </section>
             <section>
                 <div className="page__section bg-primary text-white">

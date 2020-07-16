@@ -42,13 +42,13 @@ export default function Footer() {
             <Nav variant="dark" as="ul">
               <NavItem as="li">
                 {navItems.map(({ title, href }, index) => (
-                  <Link key={index} component={NavLink} to={href}>
+                  <NavLink key={index} as={Link} to={href}>
                     <FontAwesomeIcon
                       icon="chevron-right"
                       className="text-primary mr-3"
                     />{' '}
                     {title}
-                  </Link>
+                  </NavLink>
                 ))}
               </NavItem>
             </Nav>

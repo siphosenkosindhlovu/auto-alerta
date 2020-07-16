@@ -37,7 +37,7 @@ const Notificar = (props) => {
                 dismissButtonText: 'Aceptar',
                 bodyText: result_success || result_error,
                 isSuccess: !!result_success,
-                handleClose: function () {
+                handleClose: function() {
                     clearDataNotificacion();
                     hideModal();
                     if (isSuccess) {
@@ -135,11 +135,13 @@ const Notificar = (props) => {
                         </Form>
                     </Container>
                 </section>
-                <Modal
-                    isShown={isShown}
-                    hideModal={hideModal}
-                    {...modalProperties}
-                />
+                {(result_success || result_error) && (
+                    <Modal
+                        isShown={isShown}
+                        hideModal={hideModal}
+                        {...modalProperties}
+                    />
+                )}
             </Layout>
         </>
     );
