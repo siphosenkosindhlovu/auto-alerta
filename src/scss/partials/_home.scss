@@ -49,11 +49,25 @@
   }
 }
 
+@include media-breakpoint-up(lg){
+  .inform {
+    &__img {
+      height: 165px;
+    }
+    &__text {
+      font-size: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+}
+
 .community {
   position: relative;
   background: url(../../images/Luis1.png), $primary;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: 85%;
   background-position: bottom;
   color: white;
   &__label {
@@ -63,6 +77,7 @@
     top: -10px;
   }
 }
+
 
 .situations {
   &__card {
@@ -82,12 +97,27 @@
   }
 }
 
+@include media-breakpoint-up(lg) {
+  .community {
+    background-size: contain;
+  }
+  .situations {
+    &__card {
+      &__img {
+        height: 155px;
+      }
+    }
+  }
+}
+
+
 .slider {
   &__inner {
     padding: 9px;
     img {
-      width: auto;
-      height: 425px;
+      max-width: 100%;
+      max-height: 400px;
+      margin: auto
     }
   }
 }

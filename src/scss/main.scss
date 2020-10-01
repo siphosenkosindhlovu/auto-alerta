@@ -33,7 +33,6 @@ $container-max-widths: (
   xl: 1250px,
   xxl: 1600px,
 );
-
 $form-text-margin-top: 0.5rem;
 $input-placeholder-color: #b7b7b7;
 @import "~bootstrap/scss/bootstrap";
@@ -55,7 +54,7 @@ html {
   --page-heading-font-size: 28px;
   --page-heading-color: #cf302a;
   --page-heading-font-weight: 300;
-  --page-subtitle-font-size: 14px;
+  --page-subtitle-font-size: 11pt;
   --page-subheading-font-size: 18pt;
   --page-subheading-font-weight: 700;
   --page-subheading-margin-bottom: 1.375rem;

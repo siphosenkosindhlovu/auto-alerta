@@ -23,6 +23,17 @@ export default function Footer() {
     { title: 'Preguntas Frecuentes', href: '/preguntas-frecuentes' },
     { title: 'Contáctanos', href: '/contacto' },
   ];
+  const navMenu = (
+    navItems.map(({ title, href }, index) => (
+      <NavLink key={index} as={Link} to={href} className="text-nowrap">
+        <FontAwesomeIcon
+          icon="chevron-right"
+          className="text-primary mr-3"
+        />{' '}
+        {title}
+      </NavLink>
+    ))
+  )
   return (
     <footer className="footer py-5">
       <Container>
@@ -41,15 +52,7 @@ export default function Footer() {
           <Col xs={6} lg={4}>
             <Nav variant="dark" as="ul">
               <NavItem as="li">
-                {navItems.map(({ title, href }, index) => (
-                  <NavLink key={index} as={Link} to={href}>
-                    <FontAwesomeIcon
-                      icon="chevron-right"
-                      className="text-primary mr-3"
-                    />{' '}
-                    {title}
-                  </NavLink>
-                ))}
+                {navMenu}
               </NavItem>
             </Nav>
           </Col>

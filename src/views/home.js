@@ -72,7 +72,7 @@ const Home = (props) => {
         <>
             <Hero />
             <FilterSearch />
-            <Container className="container-narrow py-5">
+            <Container className="py-5 px-4">
                 <h2 className="text-center page__heading">
                     Informar es prevenir
                 </h2>
@@ -97,13 +97,13 @@ const Home = (props) => {
                                     <ol className="list-alphabet">
                                         <li
                                             style={{
-                                                textDecoration: 'strikethough',
+                                                'textDecoration': 'line-through',
                                             }}
                                         >
                                             Intervienes
                                         </li>
                                         <li>Llamas a carabineros</li>
-                                        <li>Contactas al dueño</li>
+                                        <li><strong>Contactas al dueño</strong></li>
                                     </ol>
                                 </div>
                                 <p>
@@ -134,7 +134,7 @@ const Home = (props) => {
                                     <ol className="list-alphabet">
                                         <li
                                             style={{
-                                                textDecoration: 'strikethough',
+                                                textDecoration: 'line-through',
                                             }}
                                         >
                                             Intervienes
@@ -143,7 +143,7 @@ const Home = (props) => {
                                             Informas al Ministerio de Transporte
                                         </li>
                                         <li>
-                                            Informas directamente a la empresa
+                                        <strong>Informas directamente a la empresa</strong>
                                         </li>
                                     </ol>
                                 </div>
@@ -156,7 +156,7 @@ const Home = (props) => {
 
             <section className="community">
                 <Container
-                    className=" py-4 py-lg-5"
+                    className="py-5 px-0 container-narrow"
                     style={{ position: 'relative' }}
                 >
                     <img
@@ -224,7 +224,7 @@ const Home = (props) => {
                 </Container>
             </section>
             <section className="text-center py-5 bg-white">
-                <Container fluid style={{ overflowX: 'hidden' }}>
+                <Container lg style={{ overflowX: 'hidden' }}>
                     <h2 className="page__heading">¿Cómo funciona?</h2>
                     <p className="page__subtitle">
                         Ante estas situaciones informa y previene

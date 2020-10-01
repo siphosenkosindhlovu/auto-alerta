@@ -83,7 +83,7 @@ export default function FilterSearch() {
             </FilterSearchHeader>
             <Container>
                 <Form onSubmit={handleSubmitNotificar}>
-                    <Row className="align-items-end mx-auto">
+                    <Row className="align-items-end">
                         <Col xl={2} className="d-none d-xl-block">
                             <FormGroup>
                                 <FilterSearchHeader desktop>
@@ -139,7 +139,7 @@ export default function FilterSearch() {
                             </Button>
                         </FormGroup>
                     </Row>
-                    <Row className="mx-0">
+                    <Row>
                         <Col lg={{ offset: 2 }}>
                             <FormGroup>
                                 <FormText className="d-flex">
