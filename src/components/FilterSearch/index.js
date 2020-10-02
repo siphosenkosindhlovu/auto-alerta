@@ -84,14 +84,14 @@ export default function FilterSearch() {
             <Container>
                 <Form onSubmit={handleSubmitNotificar}>
                     <Row className="align-items-end">
-                        <Col xl={2} className="d-none d-xl-block">
+                        <Col xl className="d-none d-xl-block">
                             <FormGroup>
                                 <FilterSearchHeader desktop>
                                     Informar
                                 </FilterSearchHeader>
                             </FormGroup>
                         </Col>
-                        <Col lg={2}>
+                        <Col lg>
                             <FormGroup controlId="notificar_patente">
                                 <FormLabel>Nº Patente</FormLabel>
                                 <FormControl

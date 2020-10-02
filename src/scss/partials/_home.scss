@@ -146,6 +146,7 @@
   display: flex;
   align-items: center;
   margin: 1rem;
+  width: 12rem;
   &__icon {
     height: 26pt;
     width: auto !important;
@@ -163,6 +164,7 @@
       img {
         padding: 18px;
         max-width: 100%;
+        max-height: unset;
         height: auto;
       }
     }
